@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAXNUM 4294967295
 int main() {
 	
 	char * binary;
@@ -15,9 +16,16 @@ int main() {
 	printf("Enter a number to get its binary representation: ");
 	fgets(buffer, 32, stdin);
 
-	printf("\nThe number entered was: %s\n", buffer);
-	
-	number  = atoi(buffer);
+	number = atoi(buffer);
+
+	// Check the number is valid (positive)
+	while(number < 0) {
+		printf("The number %d is not valid!\n", number);
+		printf("Enter a positive number: ");
+		fgets(buffer, 32, stdin);
+		number = atoi(buffer);
+	}
+
 	binary = malloc(sizeof(int));
 	if(binary == NULL) {
 		printf("Memory allocation failed! Try again!\n");
