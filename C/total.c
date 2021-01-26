@@ -29,6 +29,7 @@ int main() {
 			scanf("%d", &ones);
 		}
 
+		// Need to change the input format to fgets instead of scanf
 		printf("How many five dollar bills?\n");
 		scanf("%d", &fives);
 
@@ -44,6 +45,7 @@ int main() {
 		printf("How many one hundred dollar bills?\n");
 		scanf("%d", &oneHundred);
 
+		// Need to make a function for this computation
 		int totalFives, totalTens, totalTwenty, totalFifty, totalHundred;
 		totalFives = fives * 5;
 		totalTens = tens * 10;
