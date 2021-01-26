@@ -7,6 +7,7 @@
 #include <string.h>
 
 #define MAXNUM 4294967295
+
 int main() {
 	
 	char * binary;
@@ -41,6 +42,7 @@ int main() {
 		mask = number & 0x01;
 		number >>= 0x01;
 
+		// If mask is one, save the bit as 1, otherwise as 0
 		if(mask == 1) { binary[i] = '1'; }
 		else { binary[i] = '0'; }
 
