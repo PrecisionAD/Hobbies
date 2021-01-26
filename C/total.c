@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+/*
+ * Args:
+ *
+ * Notes:
+ * 		Makes sure the user will enter positive values
+ * 		to compute the total amount.
+ */
 void input() {
 	
 	char buffer[10];
