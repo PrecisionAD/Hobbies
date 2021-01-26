@@ -1,6 +1,14 @@
 #include <stdio.h>
 
-	int main(){
+void input() {
+	
+	char buffer[10];
+
+	fgets(buffer, 9, stdin);
+}
+
+
+int main() {
 
 		puts("Enter the number of bills:");
 		int ones, fives, tens, twenty, fifty, oneHundred;
@@ -39,6 +47,5 @@
 		printf("The total amount is: $%d\n", grandTotal);
 
 		return 0;
-
 
 }
