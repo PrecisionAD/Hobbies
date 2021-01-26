@@ -1,5 +1,6 @@
 
 /* Small program to compute an approximation of pi.
+ * Currently, it will comute up to 8 correct digits.
  * Programmer: Adrian M. */
 #include <stdio.h>
 #include <stdlib.h>
