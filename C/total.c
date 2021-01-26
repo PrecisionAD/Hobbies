@@ -15,12 +15,15 @@ void input() {
 	fgets(buffer, 9, stdin);
 }
 
-
+/*
+ * Main
+ */
 int main() {
 
 		puts("Enter the number of bills:");
 		int ones, fives, tens, twenty, fifty, oneHundred;
 
+		// This should be on a look or maybe a switch?
 		printf("How many one dollar bills do you have?:\n");
 		scanf("%d", &ones);
 		while(ones < 0){
