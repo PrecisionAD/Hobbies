@@ -10,7 +10,8 @@
 void input() {
 	
 	char buffer[10];
-
+	
+	printf("Enter the number of bills\n");
 	fgets(buffer, 9, stdin);
 }
 
