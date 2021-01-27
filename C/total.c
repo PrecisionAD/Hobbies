@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /*
  * Args:
@@ -10,9 +11,19 @@
 void input() {
 	
 	char buffer[10];
-	
-	printf("Enter the number of bills\n");
+	int number = 0;
+
 	fgets(buffer, 9, stdin);
+	number = atoi(buffer);
+
+	if(number < 0) {
+		while(number < 0) {
+			printf("Can't be a negative value!\n");
+			printf("Enter new amount: ");
+			fgets(buffer, 9, stdin);
+		}
+	}
+
 }
 
 /*
