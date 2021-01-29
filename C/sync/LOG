@@ -1,0 +1,8 @@
+Date: 8/25/2020
+Version 1.0 released.
+
+Date: 9/6/2020
+Version 1.1 released.
+Changes: 
+	- Added feature to ask if addition or subtraction is needed (addOrSub()).
+	- Tweaked adjusted() to include new feature.

@@ -1,0 +1,3 @@
+Program version: 1.0
+
+Description: The program reads a specific file (.srt) to extract the digits and subtract a value to re-sync the file with the audio. The program will first ask for the number to subtract and then for the name of the file.
