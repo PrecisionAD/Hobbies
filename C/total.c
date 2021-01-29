@@ -1,6 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+int total(int ones, int fives, int tens, int twenty, int fifty, int oneHundred) {
+
+		int totalFives, totalTens, totalTwenty, totalFifty, totalHundred;
+		totalFives = fives * 5;
+		totalTens = tens * 10;
+		totalTwenty = twenty * 20;
+		totalFifty = fifty * 50;
+		totalHundred = oneHundred * 100;
+
+		int grandTotal = ones + totalFives + totalTens + totalTwenty + totalFifty + totalHundred;
+
+		return grandTotal;
+}
+
+
 /*
  * Args:
  *
@@ -37,47 +53,34 @@ int main() {
 		puts("Enter the number of bills:");
 		int ones, fives, tens, twenty, fifty, oneHundred = 0;
 
-		// This should be on a look or maybe a switch?
 		printf("How many one dollar bills do you have?:\n");
 		ones = input();
 
-		//scanf("%d", &ones);
-		//while(ones < 0){
-		//	printf("Error! The amount cannot be less than 0!\n");
-		//	printf("Please enter a number higher than or equal to 0:\n");
-		//	scanf("%d", &ones);
-		//}
-
-		// Need to change the input format to fgets instead of scanf
 		printf("How many five dollar bills?\n");
 		fives = input();
-		//scanf("%d", &fives);
 
 		printf("How many ten dollar bills?\n");
 		tens = input();
-		//scanf("%d", &tens);
 
 		printf("How many twenty dollar bills?\n");
 		twenty = input();
-		//scanf("%d", &twenty);
 
 		printf("How many fifty dollar bills?\n");
 		fifty = input();
-		//scanf("%d", &fifty);
 
 		printf("How many one hundred dollar bills?\n");
 		oneHundred = input();
-		//scanf("%d", &oneHundred);
 
 		// Need to make a function for this computation
-		int totalFives, totalTens, totalTwenty, totalFifty, totalHundred;
+	/*	int totalFives, totalTens, totalTwenty, totalFifty, totalHundred;
 		totalFives = fives * 5;
 		totalTens = tens * 10;
 		totalTwenty = twenty * 20;
 		totalFifty = fifty * 50;
 		totalHundred = oneHundred * 100;
 
-		int grandTotal = ones + totalFives + totalTens + totalTwenty + totalFifty + totalHundred;
+		int grandTotal = ones + totalFives + totalTens + totalTwenty + totalFifty + totalHundred;*/
+		int grandTotal = total(ones, fives, tens, twenty, fifty, oneHundred);
 		printf("The total amount is: $%d\n", grandTotal);
 
 		return 0;
