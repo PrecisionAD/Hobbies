@@ -35,32 +35,39 @@ int input() {
 int main() {
 
 		puts("Enter the number of bills:");
-		int ones, fives, tens, twenty, fifty, oneHundred;
+		int ones, fives, tens, twenty, fifty, oneHundred = 0;
 
 		// This should be on a look or maybe a switch?
 		printf("How many one dollar bills do you have?:\n");
-		scanf("%d", &ones);
-		while(ones < 0){
-			printf("Error! The amount cannot be less than 0!\n");
-			printf("Please enter a number higher than or equal to 0:\n");
-			scanf("%d", &ones);
-		}
+		ones = input();
+
+		//scanf("%d", &ones);
+		//while(ones < 0){
+		//	printf("Error! The amount cannot be less than 0!\n");
+		//	printf("Please enter a number higher than or equal to 0:\n");
+		//	scanf("%d", &ones);
+		//}
 
 		// Need to change the input format to fgets instead of scanf
 		printf("How many five dollar bills?\n");
-		scanf("%d", &fives);
+		fives = input();
+		//scanf("%d", &fives);
 
 		printf("How many ten dollar bills?\n");
-		scanf("%d", &tens);
+		tens = input();
+		//scanf("%d", &tens);
 
 		printf("How many twenty dollar bills?\n");
-		scanf("%d", &twenty);
+		twenty = input();
+		//scanf("%d", &twenty);
 
 		printf("How many fifty dollar bills?\n");
-		scanf("%d", &fifty);
+		fifty = input();
+		//scanf("%d", &fifty);
 
 		printf("How many one hundred dollar bills?\n");
-		scanf("%d", &oneHundred);
+		oneHundred = input();
+		//scanf("%d", &oneHundred);
 
 		// Need to make a function for this computation
 		int totalFives, totalTens, totalTwenty, totalFifty, totalHundred;
