@@ -8,7 +8,7 @@
  * 		Makes sure the user will enter positive values
  * 		to compute the total amount.
  */
-void input() {
+int input() {
 	
 	char buffer[10];
 	int number = 0;
@@ -21,8 +21,11 @@ void input() {
 			printf("Can't be a negative value!\n");
 			printf("Enter new amount: ");
 			fgets(buffer, 9, stdin);
+			number = atoi(buffer);
 		}
 	}
+
+	return number;
 
 }
 
