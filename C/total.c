@@ -1,7 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/*
+ * Args:
+ * 		Receive the value for each argument (dolar amount)
+ *
+ * Returns:
+ * 		Returns the total amount of the addition of all values.
+ *
+ * Notes:
+ * 		Nothing.
+ */
 int total(int ones, int fives, int tens, int twenty, int fifty, int oneHundred) {
 
 		int totalFives, totalTens, totalTwenty, totalFifty, totalHundred;
@@ -71,15 +80,6 @@ int main() {
 		printf("How many one hundred dollar bills?\n");
 		oneHundred = input();
 
-		// Need to make a function for this computation
-	/*	int totalFives, totalTens, totalTwenty, totalFifty, totalHundred;
-		totalFives = fives * 5;
-		totalTens = tens * 10;
-		totalTwenty = twenty * 20;
-		totalFifty = fifty * 50;
-		totalHundred = oneHundred * 100;
-
-		int grandTotal = ones + totalFives + totalTens + totalTwenty + totalFifty + totalHundred;*/
 		int grandTotal = total(ones, fives, tens, twenty, fifty, oneHundred);
 		printf("The total amount is: $%d\n", grandTotal);
 
