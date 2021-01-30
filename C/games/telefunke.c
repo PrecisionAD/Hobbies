@@ -1,3 +1,13 @@
+/*
+ * Record keeping program. It will open a file (scores.txt)
+ * and start saving the current points for the round for each
+ * player. As of right now, up to 6 players can play.
+ *
+ * Programmer: Adrian Meneses
+ * Date: 01/15/2021
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
