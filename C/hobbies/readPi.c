@@ -1,3 +1,13 @@
+
+/*
+ * Reading aprox ~340m digits of pi. Reads the ocurrence of
+ * every number in pi.
+ *
+ * Programmer: Adrian Meneses
+ * Date: 01/23/2021
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -6,6 +16,18 @@
 #define TWO_MILL 200000000
 #define THREE_MILL 300000000
 
+
+/*
+ * Args:
+ * 		None.
+ *
+ * Returns:
+ * 		Nothing.
+ *
+ * Notes:
+ * 		Switch statement will increase the counter 
+ * 		for each digit.
+ */
 void totalDigits() {
 	
 	char buffer[5];
@@ -21,11 +43,9 @@ void totalDigits() {
 	int zero, one, two, three, four, five, six, seven, eight, nine;
 	zero = one = two = three = four = five = six = seven = eight = nine = 0;
 	fgets(buffer, 2, read);
-	//printf("buffer = %s\n", buffer);
+
 	while(enough != THREE_MILL) {
 		char c = buffer[0];
-		//printf("c = %c\n", c);
-		//break;
 		switch(c) {
 			case '0': zero++; 	break;
 			case '1': one++;		break;
@@ -57,6 +77,7 @@ void totalDigits() {
 				, zero, one, two, three, four, five, six, seven, eight, nine);
 
 }
+
 
 int main() {
 
