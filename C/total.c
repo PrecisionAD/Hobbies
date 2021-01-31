@@ -6,7 +6,7 @@
  * 		Receive the value for each argument (dolar amount)
  *
  * Returns:
- * 		Returns the total amount of the addition of all values.
+ * 		The total amount of the addition of all values.
  *
  * Notes:
  * 		Nothing.
@@ -28,6 +28,7 @@ int total(int ones, int fives, int tens, int twenty, int fifty, int oneHundred) 
 
 /*
  * Args:
+ 			None.
  *
  * Notes:
  * 		Makes sure the user will enter positive values
@@ -51,7 +52,6 @@ int input() {
 	}
 
 	return number;
-
 }
 
 /*
@@ -84,5 +84,4 @@ int main() {
 		printf("The total amount is: $%d\n", grandTotal);
 
 		return 0;
-
 }
