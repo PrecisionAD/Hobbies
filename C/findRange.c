@@ -1,3 +1,15 @@
+
+/*
+ * The intention of the program is to calculate the 
+ * exponent as well as the number from the mantissa.
+ * As it stands, everything is hardcoded which means
+ * a better implementation (such as to ask to enter 
+ * a number) should be put in place.
+ *
+ * Programmer: Adrian Meneses
+ * Date: 02/19/2020
+ */
+
 #include <stdio.h>
 
 int main() {
@@ -44,4 +56,5 @@ int main() {
 	printf("\n");
 
 	return 0;
+
 }
