@@ -202,6 +202,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 		printf("%d) %s\n", (i+1), players[i]);
 	}
 
+	// Maybe change this to a while loop instead
 	do {
 		printf("\nSelect a name to update the score:\n");
 		fgets(option, 5, stdin);
@@ -245,7 +246,7 @@ void setScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]
 	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
 	printf("╚═════════╝\n");
 	
-	enterScores(players, totalScores);
+	//enterScores(players, totalScores);
 
 	do {
 		/* Update scores but also save them on a temp array. */
