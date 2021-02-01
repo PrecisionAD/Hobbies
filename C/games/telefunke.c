@@ -207,6 +207,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 		printf("\nSelect a name to update the score:\n");
 		fgets(option, 5, stdin);
 		selectedOption = atoi(option);
+		selected[selectedOption] = 1;
 		printf("Update points for %s:", players[selectedOption]);
 		fgets(option, 5, stdin);
 		points = atoi(option);
