@@ -187,13 +187,44 @@ void printDividers() {
 }
 
 
+
+/*
+ * args:
+ *
+ * returns:
+ *
+ * Notes:
+ *
+ */
+void printPlayers(int *selected, char players[][MAX_NAME]) {
+
+	if(selected[0] != 1) { printf("1) %s\n", players[0]); }
+	else { printf("1) %s ✓\n", players[0]); }
+
+	if(selected[1] != 1) { printf("2) %s\n", players[1]); }
+	else { printf("2) %s ✓\n", players[1]); }
+
+	if(selected[2] != 1) { printf("3) %s\n", players[2]); }
+	else { printf("3) %s ✓\n", players[2]); }
+		
+	if(selected[3] != 1) { printf("4) %s\n", players[3]); }
+	else { printf("4) %s ✓\n", players[3]); }
+		
+	if(selected[4] != 1) { printf("5) %s\n", players[4]); }
+	else { printf("5) %s ✓\n", players[4]); }
+		
+	if(selected[5] != 1) { printf("6) %s\n", players[5]); }
+	else { printf("6) %s ✓\n", players[5]); }
+}
+
+
 void enterScores(char players[][MAX_NAME], int *totalScores) {
 
 	int i;
 	int counter = 0;
 	int points = 0;
 	int selectedOption = 0;
-	int selected[6];
+	int selected[6] = { 0, 0, 0, 0, 0, 0 };
 	char option[6];
 
 
@@ -207,13 +238,15 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 	while(done != 1) {
 		printf("Update score for which player?\n");
 
+		printPlayers(selected, players);
 		// If name has not been updated, print it
-		if(selected[0] != 1) { printf("1) %s\n", players[0]); }
+		// Make this another function --------------------------------------
+		/*if(selected[0] != 1) { printf("1) %s\n", players[0]); }
 		if(selected[1] != 1) { printf("2) %s\n", players[1]); }
 		if(selected[2] != 1) { printf("3) %s\n", players[2]); }
 		if(selected[3] != 1) { printf("4) %s\n", players[3]); }
 		if(selected[4] != 1) { printf("5) %s\n", players[4]); }
-		if(selected[5] != 1) { printf("6) %s\n", players[5]); }
+		if(selected[5] != 1) { printf("6) %s\n", players[5]); }*/
 
 		// Ask for option and convert it to number
 		printf("Enter option: ");
@@ -221,12 +254,16 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 		selectedOption = atoi(option);
 
 		// Check if player was updated already
-		if(selected[selectedOption - 1] != 1) {
+		if(selected[selectedOption - 1] == 0) {
 			printf("Enter new score for %s: ", players[selectedOption - 1]);
 			fgets(option, 4, stdin);
 			int newScore = atoi(option);
 			totalScores[selectedOption - 1] += newScore; // Ask to confirm
+			selected[selectedOption - 1] = 1; // Mark player as updated
+			// need to update  master counter here
 		}
+
+		// check if master counter is at max (if it is, set done = 1)
 
 	}
 
