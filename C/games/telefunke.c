@@ -215,6 +215,8 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 		
 	if(selected[5] != 1) { printf("6) %s\n", players[5]); }
 	else { printf("6) %s ✓\n", players[5]); }
+
+	puts("");
 }
 
 
@@ -222,11 +224,12 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 
 	int i;
 	int counter = 0;
+	int allDone = 0;
 	int points = 0;
 	int selectedOption = 0;
 	int selected[6] = { 0, 0, 0, 0, 0, 0 };
 	char option[6];
-
+	char buffer[5];
 
 	// Display all names first
 	/*for(i = 0; i < SIX; i++) {
@@ -236,17 +239,10 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 
 	int done = 0;
 	while(done != 1) {
-		printf("Update score for which player?\n");
+		printf("\nUpdate score for which player?\n");
 
-		printPlayers(selected, players);
 		// If name has not been updated, print it
-		// Make this another function --------------------------------------
-		/*if(selected[0] != 1) { printf("1) %s\n", players[0]); }
-		if(selected[1] != 1) { printf("2) %s\n", players[1]); }
-		if(selected[2] != 1) { printf("3) %s\n", players[2]); }
-		if(selected[3] != 1) { printf("4) %s\n", players[3]); }
-		if(selected[4] != 1) { printf("5) %s\n", players[4]); }
-		if(selected[5] != 1) { printf("6) %s\n", players[5]); }*/
+		printPlayers(selected, players);
 
 		// Ask for option and convert it to number
 		printf("Enter option: ");
@@ -256,14 +252,28 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 		// Check if player was updated already
 		if(selected[selectedOption - 1] == 0) {
 			printf("Enter new score for %s: ", players[selectedOption - 1]);
-			fgets(option, 4, stdin);
-			int newScore = atoi(option);
-			totalScores[selectedOption - 1] += newScore; // Ask to confirm
+			fgets(option, 6, stdin);
+			points = atoi(option);
+			
+			
+			totalScores[selectedOption - 1] += points; // Ask to confirm
 			selected[selectedOption - 1] = 1; // Mark player as updated
+			allDone++;
 			// need to update  master counter here
+			
+			printf("Is the score correct?");
+			fgets(buffer, 5, stdin);
+			if(strcmp(buffer, "no\n") == 0 || strcmp(buffer, "n\n") == 0) {
+				totalScores[selectedOption - 1] -= points;
+				selected[selectedOption - 1] = 0;
+				allDone--;
+				puts("");
+			}
+
 		}
 
 		// check if master counter is at max (if it is, set done = 1)
+		if(allDone == 6) { done = 1; }
 
 	}
 
