@@ -194,7 +194,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 	int points = 0;
 	int selectedOption = 0;
 	int selected[6];
-	char option[5];
+	char option[6];
 
 
 	// Display all names first
@@ -207,17 +207,31 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 	while(done != 1) {
 		printf("Update score for which player?\n");
 
+		// If name has not been updated, print it
 		if(selected[0] != 1) { printf("1) %s\n", players[0]); }
 		if(selected[1] != 1) { printf("2) %s\n", players[1]); }
 		if(selected[2] != 1) { printf("3) %s\n", players[2]); }
 		if(selected[3] != 1) { printf("4) %s\n", players[3]); }
 		if(selected[4] != 1) { printf("5) %s\n", players[4]); }
 		if(selected[5] != 1) { printf("6) %s\n", players[5]); }
+
+		// Ask for option and convert it to number
+		fgets(option, 3, stdin);	
+		selectedOption = atoi(option);
+
+		// Check if player was updated already
+		if(selected[selectedOption - 1] != 1) {
+			printf("Enter new score for %s: ", players[selectedOption - 1]);
+			fgets(option, 4, stdin);
+			int newScore = atoi(option);
+			totalScores[selectedOption - 1] += newScore; // Ask to confirm
+		}
+
 	}
 
 
 	// Maybe change this to a while loop instead
-	do {
+	/*do {
 		printf("\nSelect a name to update the score:\n");
 		fgets(option, 5, stdin);
 		selectedOption = atoi(option);
@@ -229,7 +243,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 
 		
 		counter++;
-	} while(counter < SIX);
+	} while(counter < SIX);*/
 
 }
 
