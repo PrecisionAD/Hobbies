@@ -198,9 +198,9 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 
 
 	// Display all names first
-	for(i = 0; i < SIX; i++) {
+	/*for(i = 0; i < SIX; i++) {
 		printf("%d) %s\n", (i+1), players[i]);
-	}
+	}*/
 
 
 	int done = 0;
@@ -216,6 +216,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 		if(selected[5] != 1) { printf("6) %s\n", players[5]); }
 
 		// Ask for option and convert it to number
+		printf("Enter option: ");
 		fgets(option, 3, stdin);	
 		selectedOption = atoi(option);
 
@@ -229,21 +230,6 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 
 	}
 
-
-	// Maybe change this to a while loop instead
-	/*do {
-		printf("\nSelect a name to update the score:\n");
-		fgets(option, 5, stdin);
-		selectedOption = atoi(option);
-		selected[selectedOption] = 1;
-		printf("Update points for %s:", players[selectedOption]);
-		fgets(option, 5, stdin);
-		points = atoi(option);
-		totalScores[selectedOption - 1] = totalScores[selectedOption - 1] + points;	
-
-		
-		counter++;
-	} while(counter < SIX);*/
 
 }
 
@@ -275,21 +261,21 @@ void setScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]
 	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
 	printf("╚═════════╝\n");
 	
-	//enterScores(players, totalScores);
+	enterScores(players, totalScores);
 
-	do {
+	//do {
 		/* Update scores but also save them on a temp array. */
-		printf("Enter new score for %s: ", players[i]);
+		/*printf("Enter new score for %s: ", players[i]);
 		fgets(tempScore, 5, stdin);
 		temp = atoi(tempScore);
 		tempTotal[i] = temp;
 		totalScores[i] = temp + totalScores[i];
 		counter++;
-		i++;
+		i++;*/
 
 		/* Let's check if all scores are correct. If not, we
 		 * will use the tempTotal array to reset the totalScores. */
-		if(counter == SIX) {
+		/*if(counter == SIX) {
 			printf("\nAre all scores ok? Enter yes or no: \n");
 			fgets(buffer, 5, stdin);
 			if(strcmp(buffer, "no\n") == 0) {
@@ -304,7 +290,7 @@ void setScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]
 		}
 
 	} while(counter < SIX);
-	puts("");
+	puts("");*/
 
 }
 
