@@ -220,24 +220,20 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 }
 
 
-void enterScores(char players[][MAX_NAME], int *totalScores) {
+void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
 
-	int i;
-	int counter = 0;
 	int allDone = 0;
 	int points = 0;
 	int selectedOption = 0;
 	int selected[6] = { 0, 0, 0, 0, 0, 0 };
 	char option[6];
 	char buffer[5];
-
-	// Display all names first
-	/*for(i = 0; i < SIX; i++) {
-		printf("%d) %s\n", (i+1), players[i]);
-	}*/
-
-
 	int done = 0;
+
+	printf("╔═════════╗\n");
+	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
+	printf("╚═════════╝\n");
+	
 	while(done != 1) {
 		printf("\nUpdate score for which player?\n");
 
@@ -255,11 +251,9 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 			fgets(option, 6, stdin);
 			points = atoi(option);
 			
-			
-			totalScores[selectedOption - 1] += points; // Ask to confirm
+			totalScores[selectedOption - 1] += points;
 			selected[selectedOption - 1] = 1; // Mark player as updated
 			allDone++;
-			// need to update  master counter here
 			
 			printf("Is the score correct?");
 			fgets(buffer, 5, stdin);
@@ -269,15 +263,12 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 				allDone--;
 				puts("");
 			}
-
 		}
 
-		// check if master counter is at max (if it is, set done = 1)
+		// If all players updated, move on
 		if(allDone == 6) { done = 1; }
 
 	}
-
-
 }
 
 
@@ -297,47 +288,19 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
  */
 void setScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
 
-	int i = 0;
-	int temp = 0;
-	int counter = 0;
-	char buffer[SIX];
-	char tempScore[SIX];
-	char tempTotal[SIX];
+	//int i = 0;
+	//int temp = 0;
+	//int counter = 0;
+	//char buffer[SIX];
+	//char tempScore[SIX];
+	//char tempTotal[SIX];
 
 	printf("╔═════════╗\n");
 	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
 	printf("╚═════════╝\n");
 	
-	enterScores(players, totalScores);
-
-	//do {
-		/* Update scores but also save them on a temp array. */
-		/*printf("Enter new score for %s: ", players[i]);
-		fgets(tempScore, 5, stdin);
-		temp = atoi(tempScore);
-		tempTotal[i] = temp;
-		totalScores[i] = temp + totalScores[i];
-		counter++;
-		i++;*/
-
-		/* Let's check if all scores are correct. If not, we
-		 * will use the tempTotal array to reset the totalScores. */
-		/*if(counter == SIX) {
-			printf("\nAre all scores ok? Enter yes or no: \n");
-			fgets(buffer, 5, stdin);
-			if(strcmp(buffer, "no\n") == 0) {
-				for(i = 0; i < SIX; i++) {
-					totalScores[i] = totalScores[i] - tempTotal[i];
-					tempTotal[i] = 0;
-				}
-
-				counter = 0;
-				i = 0;
-			}
-		}
-
-	} while(counter < SIX);
-	puts("");*/
+	//enterScores(players, totalScores);
+	puts("");
 
 }
 
@@ -443,7 +406,7 @@ void gameWith5() {
 			printFile();
 		}
 		else {
-			setScores(players, totalScores, game);
+			enterScores(players, totalScores, game);
 			saveScores(players, totalScores, game);	
 			printTable();
 			puts("\n");
