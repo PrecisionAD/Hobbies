@@ -193,7 +193,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 	int counter = 0;
 	int points = 0;
 	int selectedOption = 0;
-	int selected[5];
+	int selected[6];
 	char option[5];
 
 
@@ -201,6 +201,20 @@ void enterScores(char players[][MAX_NAME], int *totalScores) {
 	for(i = 0; i < SIX; i++) {
 		printf("%d) %s\n", (i+1), players[i]);
 	}
+
+
+	int done = 0;
+	while(done != 1) {
+		printf("Update score for which player?\n");
+
+		if(selected[0] != 1) { printf("1) %s\n", players[0]); }
+		if(selected[1] != 1) { printf("2) %s\n", players[1]); }
+		if(selected[2] != 1) { printf("3) %s\n", players[2]); }
+		if(selected[3] != 1) { printf("4) %s\n", players[3]); }
+		if(selected[4] != 1) { printf("5) %s\n", players[4]); }
+		if(selected[5] != 1) { printf("6) %s\n", players[5]); }
+	}
+
 
 	// Maybe change this to a while loop instead
 	do {
