@@ -5,6 +5,7 @@
  *
  * Programmer: Adrian Meneses
  * Date: 01/15/2021
+ * v1.1
  */
 
 
@@ -131,7 +132,7 @@ void printTable() {
  *
  * Notes:
  * 		This will save to the file the header of the table 
- * 		with the names of each player. This fucntion is
+ * 		with the names of each player. This function is
  * 		only run once everytime in the program.
  */
 void writeFile(char players[][MAX_NAME]) {
@@ -219,16 +220,16 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 	puts("");
 }
 
-
+// remember to maybe make the current order of player and display the diff in pts
 void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
 
+	int done = 0;
 	int allDone = 0;
 	int points = 0;
 	int selectedOption = 0;
 	int selected[6] = { 0, 0, 0, 0, 0, 0 };
 	char option[6];
 	char buffer[5];
-	int done = 0;
 
 	printf("╔═════════╗\n");
 	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
@@ -242,7 +243,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 
 		// Ask for option and convert it to number
 		printf("Enter option: ");
-		fgets(option, 3, stdin);	
+		fgets(option, 4, stdin);	
 		selectedOption = atoi(option);
 
 		// Check if player was updated already
@@ -251,16 +252,17 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 			fgets(option, 6, stdin);
 			points = atoi(option);
 			
-			totalScores[selectedOption - 1] += points;
-			selected[selectedOption - 1] = 1; // Mark player as updated
-			allDone++;
-			
+			totalScores[selectedOption - 1] += points; 	// Update points
+			selected[selectedOption - 1] = 1; 					// Mark player as updated
+			allDone++;																	// Update master count
+
+			// Let's confirm if points entered are correct
 			printf("Is the score correct?");
 			fgets(buffer, 5, stdin);
 			if(strcmp(buffer, "no\n") == 0 || strcmp(buffer, "n\n") == 0) {
-				totalScores[selectedOption - 1] -= points;
-				selected[selectedOption - 1] = 0;
-				allDone--;
+				totalScores[selectedOption - 1] -= points;// Reset points
+				selected[selectedOption - 1] = 0;					// Unmark player
+				allDone--;																// Reset master count
 				puts("");
 			}
 		}
@@ -295,12 +297,12 @@ void setScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]
 	//char tempScore[SIX];
 	//char tempTotal[SIX];
 
-	printf("╔═════════╗\n");
-	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
-	printf("╚═════════╝\n");
+	//printf("╔═════════╗\n");
+	//printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
+	//printf("╚═════════╝\n");
 	
 	//enterScores(players, totalScores);
-	puts("");
+	//puts("");
 
 }
 
@@ -353,7 +355,7 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
  * 		store it in the 2D array for later use in 
  * 		the game.
  */
-void getNames5(char players[SIX][MAX_NAME]) {
+void getNames(char players[SIX][MAX_NAME]) {
 
 	int i;
 	int len = 0;
@@ -389,29 +391,34 @@ void gameWith5() {
 	char game[7][MAX_NAME] = { "3x3", "3x4", "4x4", "3x3x3",
 															"3x3x4", "3x4x4", "4x4x4" };
 	int totalScores[SIX] = { 0, 0, 0, 0, 0, 0 };
-	int counter = 0;
+	int round = 0;
 	int done = 0;
 
-	getNames5(players);
+	getNames(players);
 	writeFile(players);
 
 	do {
-		printf("Play a round? Enter yes or no: ");
-		fgets(answer, 5, stdin);
-		puts("");
-		if(strcmp(answer, "no\n") == 0) {
+		// If there are rounds left to play, ask
+		if(round != 7) {
+			printf("Play a round? Enter yes or no: ");
+			fgets(answer, 5, stdin);
+			puts("");
+		}
+		// If answer is no or no more rounds to play, end game
+		if(strcmp(answer, "no\n") == 0 || round == 7) {
 			done = 1;	
 			printDone();
 			updateFile();
 			printFile();
 		}
+		// Play a round
 		else {
 			enterScores(players, totalScores, game);
 			saveScores(players, totalScores, game);	
 			printTable();
 			puts("\n");
 		}
-		counter++;
+		round++;
 	} while(done != 1);
 
 }
