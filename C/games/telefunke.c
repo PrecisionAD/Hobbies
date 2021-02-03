@@ -220,6 +220,19 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 	puts("");
 }
 
+
+/*
+ * args: @players contains the names of the players.
+ * 			 @totalScores contains the scores for the players.
+ * 			 @game contains the round type currently in play.
+ *
+ * returns: nothing.
+ *
+ * Notes:
+ * 		This will ask to enter the points obtained for each
+ * 		player in the round. If a mistakes was made while
+ * 		entering a score, the option to redo it is present.
+ */
 // remember to maybe make the current order of player and display the diff in pts
 void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
 
@@ -271,39 +284,6 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 		if(allDone == 6) { done = 1; }
 
 	}
-}
-
-
-
-
-/*
- * args: @players contains the names of the players.
- * 			 @totalScores contains the scores for the players.
- * 			 @game contains the round type currently in play.
- *
- * returns: nothing.
- *
- * Notes:
- * 		This will ask to enter the points obtained for each
- * 		player in the round. If a mistakes was made while
- * 		entering a score, the option to redo it is present.
- */
-void setScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
-
-	//int i = 0;
-	//int temp = 0;
-	//int counter = 0;
-	//char buffer[SIX];
-	//char tempScore[SIX];
-	//char tempTotal[SIX];
-
-	//printf("╔═════════╗\n");
-	//printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
-	//printf("╚═════════╝\n");
-	
-	//enterScores(players, totalScores);
-	//puts("");
-
 }
 
 
