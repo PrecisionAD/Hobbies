@@ -191,8 +191,8 @@ void printDividers() {
 
 
 /*
- * args: @players contains the names of the players
- * 			 @totalScores contains the points for each player
+ * args: @players contains the names of the player.
+ * 			 @totalScores contains the scores for the players
  *
  * returns: nothing.
  *
