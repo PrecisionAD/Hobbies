@@ -109,10 +109,12 @@ void printTable() {
 		exit(1);
 	}
 
+	/* Print the table from the file */
 	while(fgets(buffer, 100, fp) != NULL) {
 		printf("%s", buffer);
 	}
 	
+	/* Add the total scores at the bottom of the table */
 	for(i = 0; i < SIX; i++) {
 		printf("| %-7d", totalScore[i][0]);
 	}
@@ -188,6 +190,21 @@ void printDividers() {
 }
 
 
+/*
+ * args: @players contains the names of the players
+ * 			 @totalScores contains the points for each player
+ *
+ * returns: nothing.
+ *
+ * Notes:
+ * 		Print the difference in points from each player
+ * 		with respect to whoever is currently leading the 
+ * 		scoreboard.
+ */
+void scoreDiff(char players[][MAX_NAME], int *totalScores) {
+
+}
+
 
 /*
  * args: @players contains the names of the player.
@@ -236,9 +253,8 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
  * Notes:
  * 		This will ask to enter the points obtained for each
  * 		player in the round. If a mistakes was made while
- * 		entering a score, the option to redo it is present.
+ * 		entering a score, the option to redo it is available.
  */
-// remember to maybe make the current order of player and display the diff in pts
 void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
 
 	int done = 0;
