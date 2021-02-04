@@ -190,12 +190,17 @@ void printDividers() {
 
 
 /*
- * args:
+ * args: @players contains the names of the player.
+ * 			 @totalScores contains the scores for the players
+ * 			 @game contains the round type currently in play.
  *
- * returns:
+ * returns: nothing.
  *
  * Notes:
- *
+ * 		Prints the names of the players with a checkmark
+ * 		if his/her score has been updated. Otherwise, it
+ * 		prints his/her name without the checkmark to signal
+ * 		that the player needs to be updated.
  */
 void printPlayers(int *selected, char players[][MAX_NAME]) {
 
@@ -270,7 +275,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 			allDone++;																	// Update master count
 
 			// Let's confirm if points entered are correct
-			printf("Is the score correct?");
+			printf("Is the score correct? ");
 			fgets(buffer, 5, stdin);
 			if(strcmp(buffer, "no\n") == 0 || strcmp(buffer, "n\n") == 0) {
 				totalScores[selectedOption - 1] -= points;// Reset points
@@ -278,6 +283,9 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 				allDone--;																// Reset master count
 				puts("");
 			}
+		}
+		else {
+			printf("That players has already been updated!\n");
 		}
 
 		// If all players updated, move on
