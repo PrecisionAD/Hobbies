@@ -6,11 +6,11 @@ FLAGS = -Wall
 
 all: words telefunke
 
-words: words.c
-	$(CC) $(FLAGS) -o runWords words.c
+#words: words.c
+#	$(CC) $(FLAGS) -o runWords words.c
 
 telefunke: telefunke.c
 	$(CC) $(FLAGS) -o telefunke telefunke.c
 
 clean:
-	rm runWords telefunke
+	rm telefunke
