@@ -201,18 +201,16 @@ void printDividers() {
  * 		with respect to whoever is currently leading the 
  * 		scoreboard.
  */
-void scoreDiff(char players[][MAX_NAME]/*, int *totalScores*/) {
+void scoreDiff(char players[][MAX_NAME]) {
 
 	int i = 0;
 	int lowestScore[1];
 	int highestScore[1];
 	int indexLow = 0;
 	int indexHigh = 0;
-	//char positions[6];
 
 	lowestScore[0] = totalScore[0][0]; // Start comparing from index 0
 	highestScore[0] = totalScore[0][0];
-	//printf("lowest %d\n", lowestScore[0]);
 	for(i = 0; i < SIX; i++) {
 		if(totalScore[i][0] == - 1) { continue; }
 		if(totalScore[i][0] < lowestScore[0] && totalScore[i][0] > 0) {
@@ -225,7 +223,6 @@ void scoreDiff(char players[][MAX_NAME]/*, int *totalScores*/) {
 		}
 	}
 
-	//printf("lowest after %d\n", lowestScore[0]);
 	/* Print the difference */
 	for(i = 0; i < SIX; i++) {
 		if(totalScore[i][0] < 0) {
@@ -236,7 +233,6 @@ void scoreDiff(char players[][MAX_NAME]/*, int *totalScores*/) {
 			printf("☠ ");
 		}
 		puts("");
-		//printf("total[%d] = %d\n",i, *(totalScores[i]));
 	}
 }
 
@@ -455,7 +451,7 @@ void gameWith5() {
 			enterScores(players, totalScores, game);
 			saveScores(players, totalScores, game);	
 			printTable();
-			scoreDiff(players/*,totalScores*/);
+			scoreDiff(players);
 			puts("\n");
 		}
 		round++;
