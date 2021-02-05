@@ -5,7 +5,7 @@
  *
  * Programmer: Adrian Meneses
  * Date: 01/15/2021
- * v1.1
+ * v1.2.1
  */
 
 
@@ -205,20 +205,37 @@ void scoreDiff(char players[][MAX_NAME]/*, int *totalScores*/) {
 
 	int i = 0;
 	int lowestScore[1];
+	int highestScore[1];
+	int indexLow = 0;
+	int indexHigh = 0;
 	//char positions[6];
 
 	lowestScore[0] = totalScore[0][0]; // Start comparing from index 0
+	highestScore[0] = totalScore[0][0];
 	//printf("lowest %d\n", lowestScore[0]);
 	for(i = 0; i < SIX; i++) {
-		if(totalScore[i][0] < lowestScore[0]) {
+		if(totalScore[i][0] == - 1) { continue; }
+		if(totalScore[i][0] < lowestScore[0] && totalScore[i][0] > 0) {
 			lowestScore[0] = totalScore[i][0];
+			indexLow = i;
+		}
+		if(totalScore[i][0] > highestScore[0]) {
+			highestScore[0] = totalScore[i][0];
+			indexHigh = i;
 		}
 	}
 
 	//printf("lowest after %d\n", lowestScore[0]);
 	/* Print the difference */
 	for(i = 0; i < SIX; i++) {
-		printf("%d) %-7s +%d\n", (i+1), players[i], totalScore[i][0] - lowestScore[0]);
+		if(totalScore[i][0] < 0) {
+			continue;
+		}
+		printf("%d) %-7s +%d", (i+1), players[i], totalScore[i][0] - lowestScore[0]);
+		if(i == indexHigh) {
+			printf("☠ ");
+		}
+		puts("");
 		//printf("total[%d] = %d\n",i, *(totalScores[i]));
 	}
 }
