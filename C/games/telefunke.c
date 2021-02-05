@@ -211,6 +211,8 @@ void scoreDiff(char players[][MAX_NAME]) {
 
 	lowestScore[0] = totalScore[0][0]; // Start comparing from index 0
 	highestScore[0] = totalScore[0][0];
+
+	/* Get the lowest and highest score as well as index */
 	for(i = 0; i < SIX; i++) {
 		if(totalScore[i][0] == - 1) { continue; }
 		if(totalScore[i][0] < lowestScore[0] && totalScore[i][0] > 0) {
@@ -225,9 +227,7 @@ void scoreDiff(char players[][MAX_NAME]) {
 
 	/* Print the difference */
 	for(i = 0; i < SIX; i++) {
-		if(totalScore[i][0] < 0) {
-			continue;
-		}
+		if(totalScore[i][0] < 0) { continue; }
 		printf("%d) %-7s +%d", (i+1), players[i], totalScore[i][0] - lowestScore[0]);
 		if(i == indexHigh) {
 			printf("☠ ");
