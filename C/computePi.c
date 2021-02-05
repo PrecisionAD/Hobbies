@@ -1,7 +1,9 @@
 
 /* Small program to compute an approximation of pi.
  * Currently, it will comute up to 8 correct digits.
- * Programmer: Adrian M. */
+ * Programmer: Adrian M.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -35,6 +37,7 @@ int main() {
 	}
 
 	printf("The approximation of pi is %.15f\n", pi);
+	printf("den = %f\n", den);
 
 	return 0;
 }
