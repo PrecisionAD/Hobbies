@@ -5,7 +5,7 @@
  *
  * Programmer: Adrian Meneses
  * Date: 01/15/2021
- * v1.2.1
+ * v1.3
  */
 
 
@@ -228,7 +228,7 @@ void scoreDiff(char players[][MAX_NAME]) {
 	/* Print the difference */
 	for(i = 0; i < SIX; i++) {
 		if(totalScore[i][0] < 0) { continue; }
-		printf("%d) %-7s +%d", (i+1), players[i], totalScore[i][0] - lowestScore[0]);
+		printf("%d) %-7s +%d", (i + 1), players[i], totalScore[i][0] - lowestScore[0]);
 		if(i == indexHigh) {
 			printf("☠ ");
 		}
@@ -406,6 +406,42 @@ void getNames(char players[SIX][MAX_NAME]) {
 
 
 
+void adjustScore(char players[][MAX_NAME]) {
+	
+	int i;
+	int done = 0;
+	int option = 0;
+	int newScore = 0;
+	char buffer[10];
+
+	printf("\nAdjust score for which player?\n");
+	for(i = 0; i < SIX; i++) {
+		printf("%d) %s \n", (i + 1), players[i]);
+	}
+
+	do {
+		// Get the user's choice and make sure it's valid
+		printf("Choice: ");
+		fgets(buffer, 9, stdin);
+		option = atoi(buffer);
+
+		if(option < 1 || option > 6) { printf("Invalid option! Try again!\n"); }
+		else { done = 1; }
+
+	} while(done != 1);
+
+	// Adjust the score
+	printf("\nThe current score for %s is %d\n", players[option - 1], totalScore[option - 1][0]);
+	printf("Enter the new score: ");
+	fgets(buffer, 9, stdin);
+	newScore = atoi(buffer);
+	totalScore[option - 1][0] = newScore;
+	printf("\nNew score of %d was updated.\n\n", totalScore[option - 1][0]);
+
+}
+
+
+
 /*
  * args: none.
  *
@@ -425,12 +461,12 @@ int option() {
 
 	printf("What would you like to do?\n");
 	printf("1) Adjust a score\n");
-	printf("2) Play another round\n");
+	printf("2) Play a round\n");
 	printf("3) End the game\n");
 
 	do {
 		// Ask for menu choice 
-		printf("Menu choice: ");
+		printf("\nMenu choice: ");
 		fgets(buffer, 4, stdin);
 		option = atoi(buffer);
 
@@ -465,7 +501,6 @@ int option() {
  */
 void gameWith5() {
 
-	//char answer[5];
 	char players[SIX][MAX_NAME];
 	char game[7][MAX_NAME] = { "3x3", "3x4", "4x4", "3x3x3",
 															"3x3x4", "3x4x4", "4x4x4" };
@@ -483,6 +518,8 @@ void gameWith5() {
 
 		switch(menuOption) {
 			case 1:
+				adjustScore(players);
+				break;
 
 			case 2:
 				if(round == 7) { break; }
