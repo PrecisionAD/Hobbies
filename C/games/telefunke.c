@@ -405,7 +405,16 @@ void getNames(char players[SIX][MAX_NAME]) {
 }
 
 
-
+/*
+ * args: @players contains the name of the players.
+ *
+ * returns: nothing.
+ *
+ * Notes:
+ * 		Let's the players adjust their scores if a mistake was
+ * 		made after entering their scores after each round. This 
+ * 		can be done at any time.
+ */
 void adjustScore(char players[][MAX_NAME]) {
 	
 	int i;
