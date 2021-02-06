@@ -5,7 +5,7 @@
  *
  * Programmer: Adrian Meneses
  * Date: 01/15/2021
- * v1.2.1
+ * v1.3
  */
 
 
@@ -228,7 +228,7 @@ void scoreDiff(char players[][MAX_NAME]) {
 	/* Print the difference */
 	for(i = 0; i < SIX; i++) {
 		if(totalScore[i][0] < 0) { continue; }
-		printf("%d) %-7s +%d", (i+1), players[i], totalScore[i][0] - lowestScore[0]);
+		printf("%d) %-7s +%d", (i + 1), players[i], totalScore[i][0] - lowestScore[0]);
 		if(i == indexHigh) {
 			printf("☠ ");
 		}
@@ -405,6 +405,86 @@ void getNames(char players[SIX][MAX_NAME]) {
 }
 
 
+
+void adjustScore(char players[][MAX_NAME]) {
+	
+	int i;
+	int done = 0;
+	int option = 0;
+	int newScore = 0;
+	char buffer[10];
+
+	printf("\nAdjust score for which player?\n");
+	for(i = 0; i < SIX; i++) {
+		printf("%d) %s \n", (i + 1), players[i]);
+	}
+
+	do {
+		// Get the user's choice and make sure it's valid
+		printf("Choice: ");
+		fgets(buffer, 9, stdin);
+		option = atoi(buffer);
+
+		if(option < 1 || option > 6) { printf("Invalid option! Try again!\n"); }
+		else { done = 1; }
+
+	} while(done != 1);
+
+	// Adjust the score
+	printf("\nThe current score for %s is %d\n", players[option - 1], totalScore[option - 1][0]);
+	printf("Enter the new score: ");
+	fgets(buffer, 9, stdin);
+	newScore = atoi(buffer);
+	totalScore[option - 1][0] = newScore;
+	printf("\nNew score of %d was updated.\n\n", totalScore[option - 1][0]);
+
+}
+
+
+
+/*
+ * args: none.
+ *
+ * returns: the menu option selected by the user.
+ *
+ * Notes:
+ * 		Show a menu for the game where users can select
+ * 		as of right now three options which are to modify
+ * 		the scores of a player, play a round, or end
+ * 		the game.
+ */
+int option() {
+
+	int option = 0;
+	int done = 0;
+	char buffer[5];
+
+	printf("What would you like to do?\n");
+	printf("1) Adjust a score\n");
+	printf("2) Play a round\n");
+	printf("3) End the game\n");
+
+	do {
+		// Ask for menu choice 
+		printf("\nMenu choice: ");
+		fgets(buffer, 4, stdin);
+		option = atoi(buffer);
+
+		// Check if input is valid 
+		if(option < 1 || option > 3) {
+			printf("That's an invalid option! Try again!\n");
+		}
+		else {
+			done = 1;
+		}
+	
+	} while(done != 1);
+
+	return option;
+
+}
+
+
 /*
  * args: none. 
  *
@@ -421,40 +501,50 @@ void getNames(char players[SIX][MAX_NAME]) {
  */
 void gameWith5() {
 
-	char answer[5];
 	char players[SIX][MAX_NAME];
 	char game[7][MAX_NAME] = { "3x3", "3x4", "4x4", "3x3x3",
 															"3x3x4", "3x4x4", "4x4x4" };
 	int totalScores[SIX] = { 0, 0, 0, 0, 0, 0 };
 	int round = 0;
 	int done = 0;
+	int menuOption = 0;
 
 	getNames(players);
 	writeFile(players);
 
 	do {
-		// If there are rounds left to play, ask
-		if(round != 7) {
-			printf("Play a round? Enter yes or no: ");
-			fgets(answer, 5, stdin);
-			puts("");
+		// Ask for a menu option
+		if(round != 7) { menuOption = option(); }
+		else { menuOption = 3; }
+
+		switch(menuOption) {
+			case 1:
+				adjustScore(players);
+				break;
+
+			case 2:
+				//if(round == 7) { break; }
+				//else {
+					enterScores(players, totalScores, game);
+					saveScores(players, totalScores, game);	
+					printTable();
+					scoreDiff(players);
+					puts("\n");
+				//}
+				break;
+
+			case 3:
+				done = 1;	
+				printDone();
+				updateFile();
+				printFile();
+				break;
+
 		}
-		// If answer is no or no more rounds to play, end game
-		if(strcmp(answer, "no\n") == 0 || round == 7) {
-			done = 1;	
-			printDone();
-			updateFile();
-			printFile();
-		}
-		// Play a round
-		else {
-			enterScores(players, totalScores, game);
-			saveScores(players, totalScores, game);	
-			printTable();
-			scoreDiff(players);
-			puts("\n");
-		}
+
+		// One round was played
 		round++;
+
 	} while(done != 1);
 
 }
