@@ -523,14 +523,14 @@ void gameWith5() {
 				break;
 
 			case 2:
-				if(round == 7) { break; }
-				else {
+				//if(round == 7) { break; }
+				//else {
 					enterScores(players, totalScores, game);
 					saveScores(players, totalScores, game);	
 					printTable();
 					scoreDiff(players);
 					puts("\n");
-				}
+				//}
 				break;
 
 			case 3:

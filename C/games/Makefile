@@ -10,7 +10,7 @@ all: words telefunke
 #	$(CC) $(FLAGS) -o runWords words.c
 
 telefunke: telefunke.c
-	$(CC) $(FLAGS) -o telefunke telefunke.c
+	$(CC) $(FLAGS) -o playTele telefunke.c
 
 clean:
-	rm telefunke
+	rm playTele
