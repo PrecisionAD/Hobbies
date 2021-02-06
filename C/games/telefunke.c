@@ -406,6 +406,17 @@ void getNames(char players[SIX][MAX_NAME]) {
 
 
 
+/*
+ * args: none.
+ *
+ * returns: the menu option selected by the user.
+ *
+ * Notes:
+ * 		Show a menu for the game where users can select
+ * 		as of right now three options which are to modify
+ * 		the scores of a player, play a round, or end
+ * 		the game.
+ */
 int option() {
 
 	int option = 0;
@@ -490,28 +501,10 @@ void gameWith5() {
 				break;
 
 		}
-		// If there are rounds left to play, ask
-	/*	if(round != 7) {
-			printf("Play a round? Enter yes or no: ");
-			fgets(answer, 5, stdin);
-			puts("");
-		}
-		// If answer is no or no more rounds to play, end game
-		if(strcmp(answer, "no\n") == 0 || round == 7) {
-			done = 1;	
-			printDone();
-			updateFile();
-			printFile();
-		}
-		// Play a round
-		else {
-			enterScores(players, totalScores, game);
-			saveScores(players, totalScores, game);	
-			printTable();
-			scoreDiff(players);
-			puts("\n");
-		}*/
+
+		// One round was played
 		round++;
+
 	} while(done != 1);
 
 }
