@@ -514,7 +514,8 @@ void gameWith5() {
 
 	do {
 		// Ask for a menu option
-		menuOption = option();
+		if(round != 7) { menuOption = option(); }
+		else { menuOption = 3; }
 
 		switch(menuOption) {
 			case 1:
@@ -523,11 +524,13 @@ void gameWith5() {
 
 			case 2:
 				if(round == 7) { break; }
-				enterScores(players, totalScores, game);
-				saveScores(players, totalScores, game);	
-				printTable();
-				scoreDiff(players);
-				puts("\n");
+				else {
+					enterScores(players, totalScores, game);
+					saveScores(players, totalScores, game);	
+					printTable();
+					scoreDiff(players);
+					puts("\n");
+				}
 				break;
 
 			case 3:
