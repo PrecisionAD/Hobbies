@@ -278,7 +278,8 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 int askInput(char *buffer) {
 
 	int option = 0;
-
+	
+	printf("Enter option: ");
 	fgets(buffer, 5, stdin);
 	option = atoi(buffer);
 
