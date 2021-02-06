@@ -274,6 +274,21 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 }
 
 
+
+int askInput(char *buffer) {
+
+	int option = 0;
+	
+	printf("Enter option: ");
+	fgets(buffer, 5, stdin);
+	option = atoi(buffer);
+
+	return option;
+
+}
+
+
+
 /*
  * args: @players contains the names of the players.
  * 			 @totalScores contains the scores for the players.
@@ -307,32 +322,38 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 		printPlayers(selected, players);
 
 		// Ask for option and convert it to number
-		printf("Enter option: ");
-		fgets(option, 4, stdin);	
-		selectedOption = atoi(option);
+		//printf("Enter option: ");
+		//fgets(option, 4, stdin);	
+		//selectedOption = atoi(option);
+		selectedOption = askInput(option);
 
-		// Check if player was updated already
-		if(selected[selectedOption - 1] == 0) {
-			printf("Enter new score for %s: ", players[selectedOption - 1]);
-			fgets(option, 6, stdin);
-			points = atoi(option);
+		if(selectedOption > 0 && selectedOption < 7) {
+			// Check if player was updated already
+			if(selected[selectedOption - 1] == 0) {
+				printf("Enter new score for %s: ", players[selectedOption - 1]);
+				fgets(option, 6, stdin);
+				points = atoi(option);
 			
-			totalScores[selectedOption - 1] += points; 	// Update points
-			selected[selectedOption - 1] = 1; 					// Mark player as updated
-			allDone++;																	// Update master count
+				totalScores[selectedOption - 1] += points; 	// Update points
+				selected[selectedOption - 1] = 1; 					// Mark player as updated
+				allDone++;																	// Update master count
 
-			// Let's confirm if points entered are correct
-			printf("Is the score correct? ");
-			fgets(buffer, 5, stdin);
-			if(strcmp(buffer, "no\n") == 0 || strcmp(buffer, "n\n") == 0) {
-				totalScores[selectedOption - 1] -= points;// Reset points
-				selected[selectedOption - 1] = 0;					// Unmark player
-				allDone--;																// Reset master count
-				puts("");
+				// Let's confirm if points entered are correct
+				printf("Is the score correct? ");
+				fgets(buffer, 5, stdin);
+				if(strcmp(buffer, "no\n") == 0 || strcmp(buffer, "n\n") == 0) {
+					totalScores[selectedOption - 1] -= points;// Reset points
+					selected[selectedOption - 1] = 0;					// Unmark player
+					allDone--;																// Reset master count
+					puts("");
+				}
+			}
+			else {
+				printf("That players has already been updated!\n");
 			}
 		}
 		else {
-			printf("That players has already been updated!\n");
+			printf("Invalid option! Try again!\n");
 		}
 
 		// If all players updated, move on
@@ -405,7 +426,16 @@ void getNames(char players[SIX][MAX_NAME]) {
 }
 
 
-
+/*
+ * args: @players contains the name of the players.
+ *
+ * returns: nothing.
+ *
+ * Notes:
+ * 		Let's the players adjust their scores if a mistake was
+ * 		made after entering their scores after each round. This 
+ * 		can be done at any time.
+ */
 void adjustScore(char players[][MAX_NAME]) {
 	
 	int i;
@@ -523,14 +553,11 @@ void gameWith5() {
 				break;
 
 			case 2:
-				//if(round == 7) { break; }
-				//else {
-					enterScores(players, totalScores, game);
-					saveScores(players, totalScores, game);	
-					printTable();
-					scoreDiff(players);
-					puts("\n");
-				//}
+				enterScores(players, totalScores, game);
+				saveScores(players, totalScores, game);	
+				printTable();
+				scoreDiff(players);
+				puts("\n");
 				break;
 
 			case 3:
