@@ -405,6 +405,39 @@ void getNames(char players[SIX][MAX_NAME]) {
 }
 
 
+
+int option() {
+
+	int option = 0;
+	int done = 0;
+	char buffer[5];
+
+	printf("What would you like to do?\n");
+	printf("1) Adjust a score\n");
+	printf("2) Play another round\n");
+	printf("3) End the game\n");
+
+	do {
+		// Ask for menu choice 
+		printf("Menu choice: ");
+		fgets(buffer, 4, stdin);
+		option = atoi(buffer);
+
+		// Check if input is valid 
+		if(option < 1 || option > 3) {
+			printf("That's an invalid option! Try again!\n");
+		}
+		else {
+			done = 1;
+		}
+	
+	} while(done != 1);
+
+	return option;
+
+}
+
+
 /*
  * args: none. 
  *
@@ -421,20 +454,44 @@ void getNames(char players[SIX][MAX_NAME]) {
  */
 void gameWith5() {
 
-	char answer[5];
+	//char answer[5];
 	char players[SIX][MAX_NAME];
 	char game[7][MAX_NAME] = { "3x3", "3x4", "4x4", "3x3x3",
 															"3x3x4", "3x4x4", "4x4x4" };
 	int totalScores[SIX] = { 0, 0, 0, 0, 0, 0 };
 	int round = 0;
 	int done = 0;
+	int menuOption = 0;
 
 	getNames(players);
 	writeFile(players);
 
 	do {
+		// Ask for a menu option
+		menuOption = option();
+
+		switch(menuOption) {
+			case 1:
+
+			case 2:
+				if(round == 7) { break; }
+				enterScores(players, totalScores, game);
+				saveScores(players, totalScores, game);	
+				printTable();
+				scoreDiff(players);
+				puts("\n");
+				break;
+
+			case 3:
+				done = 1;	
+				printDone();
+				updateFile();
+				printFile();
+				break;
+
+		}
 		// If there are rounds left to play, ask
-		if(round != 7) {
+	/*	if(round != 7) {
 			printf("Play a round? Enter yes or no: ");
 			fgets(answer, 5, stdin);
 			puts("");
@@ -453,7 +510,7 @@ void gameWith5() {
 			printTable();
 			scoreDiff(players);
 			puts("\n");
-		}
+		}*/
 		round++;
 	} while(done != 1);
 
