@@ -326,9 +326,6 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 		printPlayers(selected, players);
 
 		// Ask for option and convert it to number
-		//printf("Enter option: ");
-		//fgets(option, 4, stdin);	
-		//selectedOption = atoi(option);
 		selectedOption = askInput(option);
 
 		if(selectedOption > 0 && selectedOption < 7) {
@@ -455,9 +452,6 @@ void adjustScore(char players[][MAX_NAME]) {
 
 	do {
 		// Get the user's choice and make sure it's valid
-		//printf("Choice: ");
-		//fgets(buffer, 9, stdin);
-		//option = atoi(buffer);
 		option = askInput(buffer);
 
 		if(option < 1 || option > 6) { printf("Invalid option! Try again!\n"); }
@@ -504,9 +498,6 @@ int option() {
 
 	do {
 		// Ask for menu choice 
-		//printf("\nMenu choice: ");
-		//fgets(buffer, 4, stdin);
-		//option = atoi(buffer);
 		option = askInput(buffer);
 
 		// Check if input is valid 
