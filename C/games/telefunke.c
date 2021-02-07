@@ -5,7 +5,7 @@
  *
  * Programmer: Adrian Meneses
  * Date: 01/15/2021
- * v1.3
+ * v1.4
  */
 
 
@@ -278,7 +278,14 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 }
 
 
-
+/*
+ * args: @buffer contains the buffer to store the input.
+ *
+ * returns: the option number entered by user.
+ *
+ * Notes:
+ * 		Created to simplify and eliminate duplicate code.
+ */
 int askInput(char *buffer) {
 
 	int option = 0;
