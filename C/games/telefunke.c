@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define SIX 6
 #define MAX_NAME 15 
@@ -215,7 +216,7 @@ void scoreDiff(char players[][MAX_NAME]) {
 	/* Get the lowest and highest score as well as index */
 	for(i = 0; i < SIX; i++) {
 		if(totalScore[i][0] == - 1) { continue; }
-		if(totalScore[i][0] < lowestScore[0] && totalScore[i][0] > 0) {
+		if(totalScore[i][0] < lowestScore[0] && totalScore[i][0] >= 0) {
 			lowestScore[0] = totalScore[i][0];
 			indexLow = i;
 		}
@@ -231,6 +232,9 @@ void scoreDiff(char players[][MAX_NAME]) {
 		printf("%d) %-7s +%d", (i + 1), players[i], totalScore[i][0] - lowestScore[0]);
 		if(i == indexHigh) {
 			printf("☠ ");
+		}
+		if(i == indexLow) {
+			printf("⭐");
 		}
 		puts("");
 	}
@@ -446,27 +450,31 @@ void adjustScore(char players[][MAX_NAME]) {
 
 	printf("\nAdjust score for which player?\n");
 	for(i = 0; i < SIX; i++) {
-		printf("%d) %s \n", (i + 1), players[i]);
+		printf("%d) %-6s %-3d pts\n", (i + 1), players[i], totalScore[i][0]);
 	}
 
 	do {
 		// Get the user's choice and make sure it's valid
-		printf("Choice: ");
-		fgets(buffer, 9, stdin);
-		option = atoi(buffer);
+		//printf("Choice: ");
+		//fgets(buffer, 9, stdin);
+		//option = atoi(buffer);
+		option = askInput(buffer);
 
 		if(option < 1 || option > 6) { printf("Invalid option! Try again!\n"); }
 		else { done = 1; }
 
 	} while(done != 1);
 
+	i = option;
+
 	// Adjust the score
-	printf("\nThe current score for %s is %d\n", players[option - 1], totalScore[option - 1][0]);
+	printf("\nThe current score for %s is %d\n", players[i - 1], totalScore[i - 1][0]);
 	printf("Enter the new score: ");
 	fgets(buffer, 9, stdin);
 	newScore = atoi(buffer);
-	totalScore[option - 1][0] = newScore;
-	printf("\nNew score of %d was updated.\n\n", totalScore[option - 1][0]);
+	totalScore[i - 1][0] = newScore;
+	printf("\nNew score of %d for %s was updated.\n\n", totalScore[i - 1][0], players[i - 1]);
+	sleep(2);
 
 }
 
@@ -496,9 +504,10 @@ int option() {
 
 	do {
 		// Ask for menu choice 
-		printf("\nMenu choice: ");
-		fgets(buffer, 4, stdin);
-		option = atoi(buffer);
+		//printf("\nMenu choice: ");
+		//fgets(buffer, 4, stdin);
+		//option = atoi(buffer);
+		option = askInput(buffer);
 
 		// Check if input is valid 
 		if(option < 1 || option > 3) {
@@ -588,8 +597,8 @@ void gameWith5() {
 int main() {
 
 	printf("┌---------------------------┐\n");
-	printf("| Hello! This is telefunke! |\n");
-	printf("└---------------------------┘\n");
+	printf("| Are you ready? Telefunke! |\n");
+	printf("└---------------------------┘\n\n");
 
 	gameWith5();
 	puts("\n");
