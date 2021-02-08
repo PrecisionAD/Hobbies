@@ -271,8 +271,8 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 	if(selected[4] != 1) { printf("5) %s\n", players[4]); }
 	else { printf("5) %s ✓\n", players[4]); }
 		
-	if(selected[5] != 1) { printf("6) %s\n", players[5]); }
-	else { printf("6) %s ✓\n", players[5]); }
+	if(selected[5] != 1) { printf("6) %s", players[5]); }
+	else { printf("6) %s ✓", players[5]); }
 
 	puts("");
 }
@@ -290,7 +290,7 @@ int askInput(char *buffer) {
 
 	int option = 0;
 	
-	printf("Enter option: ");
+	printf("\nEnter option: ");
 	fgets(buffer, 5, stdin);
 	option = atoi(buffer);
 
@@ -469,12 +469,12 @@ void adjustScore(char players[][MAX_NAME]) {
 	i = option;
 
 	// Adjust the score
-	printf("\nThe current score for %s is %d\n", players[i - 1], totalScore[i - 1][0]);
+	printf("\nThe current score for %s is %d pts\n", players[i - 1], totalScore[i - 1][0]);
 	printf("Enter the new score: ");
 	fgets(buffer, 9, stdin);
 	newScore = atoi(buffer);
 	totalScore[i - 1][0] = newScore;
-	printf("\nNew score of %d for %s was updated.\n\n", totalScore[i - 1][0], players[i - 1]);
+	printf("\nNew score of %d pts for player %s was updated.\n\n", totalScore[i - 1][0], players[i - 1]);
 	sleep(2);
 
 }
@@ -509,7 +509,7 @@ int option() {
 
 		// Check if input is valid 
 		if(option < 1 || option > 3) {
-			printf("That's an invalid option! Try again!\n");
+			printf("\nThat's an invalid option! Try again!\n");
 		}
 		else {
 			done = 1;
