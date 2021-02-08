@@ -21,6 +21,17 @@ int row = 0;
 int gameRound = 0;
 int totalScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
 
+
+
+/*
+ * args: none.
+ *
+ * returns: nothing.
+ *
+ * Notes:
+ * 		Let's users know that there are no more games and
+ * 		the final scores are being printed.
+ */
 void printDone() {
 	
 	printf("\n\n\n****************\n");
@@ -29,14 +40,15 @@ void printDone() {
 
 }
 
+
 /*
  * args: none.
  *
  * returns: nothing.
  *
  * Notes:
- * 		Print everything that was saved to the file 
- * 		for each player.
+ * 		Print everything that was saved (such as new scores)
+ * 		to the file for each player.
  */ 		
 void printFile() {
 
@@ -136,7 +148,7 @@ void printTable() {
  * Notes:
  * 		This will save to the file the header of the table 
  * 		with the names of each player. This function is
- * 		only run once everytime in the program.
+ * 		only run once everytime the program is run.
  */
 void writeFile(char players[][MAX_NAME]) {
 
@@ -200,7 +212,9 @@ void printDividers() {
  * Notes:
  * 		Print the difference in points from each player
  * 		with respect to whoever is currently leading the 
- * 		scoreboard.
+ * 		scoreboard (least amount of points). As an extra 
+ * 		token, it will print a star for the leading
+ * 		player or a skull for the bottom player.
  */
 void scoreDiff(char players[][MAX_NAME]) {
 
@@ -271,8 +285,8 @@ void printPlayers(int *selected, char players[][MAX_NAME]) {
 	if(selected[4] != 1) { printf("5) %s\n", players[4]); }
 	else { printf("5) %s ✓\n", players[4]); }
 		
-	if(selected[5] != 1) { printf("6) %s\n", players[5]); }
-	else { printf("6) %s ✓\n", players[5]); }
+	if(selected[5] != 1) { printf("6) %s", players[5]); }
+	else { printf("6) %s ✓", players[5]); }
 
 	puts("");
 }
@@ -290,7 +304,7 @@ int askInput(char *buffer) {
 
 	int option = 0;
 	
-	printf("Enter option: ");
+	printf("\nEnter option: ");
 	fgets(buffer, 5, stdin);
 	option = atoi(buffer);
 
@@ -311,6 +325,12 @@ int askInput(char *buffer) {
  * 		This will ask to enter the points obtained for each
  * 		player in the round. If a mistakes was made while
  * 		entering a score, the option to redo it is available.
+ * 		All this is done dynamically instead of entering each
+ * 		score sequentially. 
+ *
+ * 		The selected[] array is used to mark each player as 
+ * 		updated (the index contains a 0 if the player has not
+ * 		been updated and a 1 if player was updated).
  */
 void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
 
@@ -329,10 +349,10 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 	while(done != 1) {
 		printf("\nUpdate score for which player?\n");
 
-		// If name has not been updated, print it
+		// If name has not been updated, print it without the checkmark
 		printPlayers(selected, players);
 
-		// Ask for option and convert it to number
+		// Ask for player name to be updated
 		selectedOption = askInput(option);
 
 		if(selectedOption > 0 && selectedOption < 7) {
@@ -342,9 +362,9 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 				fgets(option, 6, stdin);
 				points = atoi(option);
 			
-				totalScores[selectedOption - 1] += points; 	// Update points
+				totalScores[selectedOption - 1] += points; 	// Update points for the player
 				selected[selectedOption - 1] = 1; 					// Mark player as updated
-				allDone++;																	// Update master count
+				allDone++;																	// Update master count for loop
 
 				// Let's confirm if points entered are correct
 				printf("Is the score correct? ");
@@ -380,7 +400,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
  *
  * Notes:
  * 		This will save the points obtained by each player in a 
- * 		new row in the table.
+ * 		new row in the table (saved to the file).
  */
 void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAME]) {
 
@@ -452,6 +472,7 @@ void adjustScore(char players[][MAX_NAME]) {
 	int newScore = 0;
 	char buffer[10];
 
+	// Print all players
 	printf("\nAdjust score for which player?\n");
 	for(i = 0; i < SIX; i++) {
 		printf("%d) %-6s %-3d pts\n", (i + 1), players[i], totalScore[i][0]);
@@ -469,12 +490,12 @@ void adjustScore(char players[][MAX_NAME]) {
 	i = option;
 
 	// Adjust the score
-	printf("\nThe current score for %s is %d\n", players[i - 1], totalScore[i - 1][0]);
+	printf("\nThe current score for %s is %d pts\n", players[i - 1], totalScore[i - 1][0]);
 	printf("Enter the new score: ");
 	fgets(buffer, 9, stdin);
 	newScore = atoi(buffer);
 	totalScore[i - 1][0] = newScore;
-	printf("\nNew score of %d for %s was updated.\n\n", totalScore[i - 1][0], players[i - 1]);
+	printf("\nNew score of %d pts for player %s was updated.\n\n", totalScore[i - 1][0], players[i - 1]);
 	sleep(2);
 
 }
@@ -509,7 +530,7 @@ int option() {
 
 		// Check if input is valid 
 		if(option < 1 || option > 3) {
-			printf("That's an invalid option! Try again!\n");
+			printf("\nThat's an invalid option! Try again!\n");
 		}
 		else {
 			done = 1;
@@ -529,12 +550,15 @@ int option() {
  *
  * Notes: 
  *		Game loop. First we get the names of the players,
- *		then we open a file to start saving the game progress.
+ *		then we open a file to start saving the game progress as
+ *		it develops (save it to the scores.txt file after each 
+ *		round).
  *
- *		We then ask if we want to play a round. If no, the 
- *		game ends and we dislay the table with the total scores. 
+ *		We then ask if we want to play a round. If not, the 
+ *		game ends and we display the table with the total scores. 
  *		If yes, we will ask for the new scores for each player, 
- *		append them to the file, and finally we print the table.
+ *		append them to the file, and finally we print the current
+ *		table with all the scores.
  */
 void gameWith5() {
 
