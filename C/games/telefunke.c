@@ -3,9 +3,9 @@
  * and start saving the current points for the round for each
  * player. As of right now, up to 6 players can play.
  *
- * Programmer: Adrian Meneses
+ * Programmed by: Adrian Meneses
  * Date: 01/15/2021
- * v1.4
+ * v1.4.1
  */
 
 
@@ -55,9 +55,9 @@ void printFile() {
 	char buffer[100];
 	FILE *fp = NULL;
 
-	fp = fopen("scores.txt", "r");
+	fp = fopen("temp.txt", "r");
 	if(fp == NULL) {
-		printf("scores.txt could not be openend!\n");
+		printf("temp.txt could not be openend!\n");
 		exit(1);
 	}
 
@@ -83,9 +83,9 @@ void updateFile() {
 	int i;
 	FILE *fp = NULL;
 
-	fp = fopen("scores.txt", "a");
+	fp = fopen("temp.txt", "a");
 	if(fp == NULL) {
-		printf("scores.txt could not be openend!\n");
+		printf("temp.txt could not be openend!\n");
 		exit(1);
 	}
 
@@ -116,9 +116,9 @@ void printTable() {
 	FILE *fp = NULL;
 	int i;
 
-	fp = fopen("scores.txt", "r");
+	fp = fopen("temp.txt", "r");
 	if(fp == NULL) {
-		printf("scores.txt could not be openend!\n");
+		printf("temp.txt could not be openend!\n");
 		exit(1);
 	}
 
@@ -155,9 +155,9 @@ void writeFile(char players[][MAX_NAME]) {
 	int i;
 	FILE *fp = NULL;
 
-	fp = fopen("scores.txt", "a");
+	fp = fopen("temp.txt", "a");
 	if(fp == NULL) {
-		printf("scores.txt could not be openend!\n");
+		printf("temp.txt could not be openend!\n");
 		exit(1);
 	}
 
@@ -190,9 +190,9 @@ void printDividers() {
 
 	FILE *fp = NULL;
 
-	fp = fopen("scores.txt", "a");
+	fp = fopen("temp.txt", "a");
 	if(fp == NULL) {
-		printf("scores.txt could not be openend!\n");
+		printf("temp.txt could not be openend!\n");
 		exit(1);
 	}
 
@@ -407,9 +407,9 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 	int i;
 	FILE *fp = NULL;
 
-	fp = fopen("scores.txt", "a");
+	fp = fopen("temp.txt", "a");
 	if(fp == NULL) {
-		printf("scores.txt could not be openend!\n");
+		printf("temp.txt could not be openend!\n");
 		exit(1);
 	}
 
@@ -560,7 +560,7 @@ int option() {
  *		append them to the file, and finally we print the current
  *		table with all the scores.
  */
-void gameWith5() {
+void gameStart() {
 
 	char players[SIX][MAX_NAME];
 	char game[7][MAX_NAME] = { "3x3", "3x4", "4x4", "3x3x3",
@@ -622,7 +622,7 @@ int main() {
 	printf("| Are you ready? Telefunke! |\n");
 	printf("└---------------------------┘\n\n");
 
-	gameWith5();
+	gameStart();
 	puts("\n");
 
 	return 0;
