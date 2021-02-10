@@ -628,8 +628,8 @@ void gameStart() {
 				printDone();
 				updateFile();
 				printFile();
-				// need to append temp.txt to scores.txt
-				remove("test1.txt");
+				appendNewScores();
+				remove("temp.txt");
 				break;
 
 		}
