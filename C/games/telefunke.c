@@ -5,7 +5,7 @@
  *
  * Programmed by: Adrian Meneses
  * Date: 01/15/2021
- * v1.4.1
+ * v1.5
  */
 
 
@@ -607,7 +607,7 @@ void gameStart() {
 
 	do {
 		// Ask for a menu option
-		if(round != 7) { menuOption = option(); }
+		if(round < 8) { menuOption = option(); }
 		else { menuOption = 3; }
 
 		switch(menuOption) {
@@ -624,12 +624,12 @@ void gameStart() {
 				break;
 
 			case 3:
-				done = 1;	
 				printDone();
 				updateFile();
 				printFile();
 				appendNewScores();
 				remove("temp.txt");
+				done = 1;	
 				break;
 
 		}
