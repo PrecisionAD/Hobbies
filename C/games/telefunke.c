@@ -42,6 +42,38 @@ void printDone() {
 
 
 /*
+ * args:
+ *
+ * returns: nothing.
+ *
+ * Notes:
+ * 		This will save the current scores (table) from the 
+ * 		temp.txt file into the scores.txt file to prevent from
+ * 		reading the complete scores.txt as it was originally. 
+ * 		This is to save a little bit of time in opening and 
+ * 		closing the file (temp.txt) each time during the game.
+ */
+void appendNewScores() {
+	
+	char buffer[100];
+	FILE *fp1 = NULL;
+	FILE *fp2 = NULL;
+
+	fp1 = fopen("scores.txt", "a");
+	fp2 = fopen("temp.txt", "r");
+	if(fp1 == NULL || fp2 == NULL) {
+		printf("There was a problem opening scores.txt or temp.txt! Please check!\n");
+		exit(1);
+	}
+
+	while(fgets(buffer, 100, fp2) != NULL) {
+		fprintf(fp1, "%s", buffer);
+	}
+
+}
+
+
+/*
  * args: none.
  *
  * returns: nothing.
