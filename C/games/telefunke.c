@@ -1,7 +1,9 @@
 /*
- * Record keeping program. It will open a file (scores.txt)
+ * Record keeping program. It will open a file (temp.txt)
  * and start saving the current points for the round for each
- * player. As of right now, up to 6 players can play.
+ * player. At the end of the game or by user's choice, the file
+ * scores.txt will be opened so append everything from temp.txt.
+ * As of right now, up to 6 players can play.
  *
  * Programmed by: Adrian Meneses
  * Date: 01/15/2021
@@ -378,6 +380,10 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 	int selected[6] = { 0, 0, 0, 0, 0, 0 };
 	char option[6];
 	char buffer[5];
+	/*char abc[] = { 'a', 'b', 'c','d', 'e', 'f', 'g', 'h', 'i',
+								 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+								 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+	char *ptr;*/
 
 	printf("╔═════════╗\n");
 	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
