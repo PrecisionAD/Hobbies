@@ -41,7 +41,16 @@ void printDone() {
 }
 
 
-
+/*
+ * args: @fileName contains the file to be opened
+ * 			 @mode is how the file is to be read
+ *
+ * returns: a FILE pointer with the file requested.
+ *
+ * Notes:
+ * 		This function was created to eliminate duplicate code 
+ * 		throughout the program.
+ */
 FILE * openFile(char *fileName, char *mode) {
 
 	FILE *fp = NULL;
