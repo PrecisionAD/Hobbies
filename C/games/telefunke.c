@@ -74,12 +74,14 @@ void appendNewScores() {
 	FILE *fp1 = NULL;
 	FILE *fp2 = NULL;
 
-	fp1 = fopen("scores.txt", "a");
+	fp1 = openFile("scores.txt", "a");
+	fp2 = openFile("temp.txt", "r");
+	/*fp1 = fopen("scores.txt", "a");
 	fp2 = fopen("temp.txt", "r");
 	if(fp1 == NULL || fp2 == NULL) {
 		printf("There was a problem opening scores.txt or temp.txt! Please check!\n");
 		exit(1);
-	}
+	}*/
 
 	while(fgets(buffer, 100, fp2) != NULL) {
 		fprintf(fp1, "%s", buffer);
@@ -102,11 +104,12 @@ void printFile() {
 	char buffer[100];
 	FILE *fp = NULL;
 
-	fp = fopen("temp.txt", "r");
+	fp = openFile("temp.txt", "r");
+	/*fp = fopen("temp.txt", "r");
 	if(fp == NULL) {
 		printf("temp.txt could not be openend!\n");
 		exit(1);
-	}
+	}*/
 
 	while(fgets(buffer, 100, fp) != NULL) {
 		printf("%s", buffer);
@@ -130,11 +133,12 @@ void updateFile() {
 	int i;
 	FILE *fp = NULL;
 
-	fp = fopen("temp.txt", "a");
+	fp = openFile("temp.txt", "a");
+	/*fp = fopen("temp.txt", "a");
 	if(fp == NULL) {
 		printf("temp.txt could not be openend!\n");
 		exit(1);
-	}
+	}*/
 
 	for(i = 0; i < SIX; i++) {
 		fprintf(fp, "| %-7d", totalScore[i][0]);
@@ -163,11 +167,12 @@ void printTable() {
 	FILE *fp = NULL;
 	int i;
 
-	fp = fopen("temp.txt", "r");
+	fp = openFile("temp.txt", "r");
+	/*fp = fopen("temp.txt", "r");
 	if(fp == NULL) {
 		printf("temp.txt could not be openend!\n");
 		exit(1);
-	}
+	}*/
 
 	/* Print the table from the file */
 	while(fgets(buffer, 100, fp) != NULL) {
@@ -202,11 +207,12 @@ void writeFile(char players[][MAX_NAME]) {
 	int i;
 	FILE *fp = NULL;
 
-	fp = fopen("temp.txt", "a");
+	fp = openFile("temp.txt", "a");
+	/*fp = fopen("temp.txt", "a");
 	if(fp == NULL) {
 		printf("temp.txt could not be openend!\n");
 		exit(1);
-	}
+	}*/
 
 	fprintf(fp, "%s", "\n\n┌--------┐\n");
 	fprintf(fp, "%s", "| TABLE  | \n");
@@ -237,11 +243,12 @@ void printDividers() {
 
 	FILE *fp = NULL;
 
-	fp = fopen("temp.txt", "a");
+	fp = openFile("temp.txt", "a");
+	/*fp = fopen("temp.txt", "a");
 	if(fp == NULL) {
 		printf("temp.txt could not be openend!\n");
 		exit(1);
-	}
+	}*/
 
 	fprintf(fp, "%s", "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
 
@@ -454,11 +461,12 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 	int i;
 	FILE *fp = NULL;
 
-	fp = fopen("temp.txt", "a");
+	fp = openFile("temp.txt", "a");
+	/*fp = fopen("temp.txt", "a");
 	if(fp == NULL) {
 		printf("temp.txt could not be openend!\n");
 		exit(1);
-	}
+	}*/
 
 	/* Loop to update the scores. */
 	for(i = 0; i < SIX; i++) {
