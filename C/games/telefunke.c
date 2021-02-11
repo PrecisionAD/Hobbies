@@ -41,6 +41,21 @@ void printDone() {
 }
 
 
+
+FILE * openFile(char *fileName, char *mode) {
+
+	FILE *fp = NULL;
+
+	fp = fopen(fileName, mode);
+	if(fp == NULL) {
+		printf("The file requested could not be opened! (line 51)\n");
+		exit(1);
+	}
+
+	return fp;
+}
+
+
 /*
  * args:
  *
