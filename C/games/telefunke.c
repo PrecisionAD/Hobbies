@@ -5,7 +5,7 @@
  *
  * Programmed by: Adrian Meneses
  * Date: 01/15/2021
- * v1.5
+ * v1.5.1
  */
 
 
@@ -201,7 +201,7 @@ void writeFile(char players[][MAX_NAME]) {
 	fprintf(fp, "%s", "| TABLE  | \n");
 	fprintf(fp, "%s", "├--------┼--------┬--------┬--------┬--------┬--------┐\n");
 
-	/* Save players name's to the file. */
+	/* Save players names to the file. */
 	for(i = 0; i < SIX; i++) {
 		fprintf(fp, "%c %-7s", '|', players[i]);
 	}
@@ -220,7 +220,8 @@ void writeFile(char players[][MAX_NAME]) {
  * returns: nothing.
  *
  * Notes:
- * 		Simply prints the dividers for each cell in the table.
+ * 		Simply saves the dividers for each cell in the table 
+ * 		to the file.
  */
 void printDividers() {
 
@@ -298,7 +299,11 @@ void scoreDiff(char players[][MAX_NAME]) {
  * 		Prints the names of the players with a checkmark
  * 		if his/her score has been updated. Otherwise, it
  * 		prints his/her name without the checkmark to signal
- * 		that the player needs to be updated.
+ * 		that the player needs to be updated. The use of
+ * 		if-else was elected because this function is
+ * 		called from within a loop and because there are
+ * 		6 players in total. If a loop is use to print the
+ * 		names, the magnitude will be O(N^2).
  */
 void printPlayers(int *selected, char players[][MAX_NAME]) {
 
@@ -432,7 +437,8 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
  *
  * Notes:
  * 		This will save the points obtained by each player in a 
- * 		new row in the table (saved to the file).
+ * 		new row in the table (saved to the file). Saves a new
+ * 		row divider.
  */
 void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAME]) {
 
@@ -475,7 +481,7 @@ void getNames(char players[SIX][MAX_NAME]) {
 		printf("Enter player %d: ", i + 1);
 		fgets(*(players + i), 14, stdin);
 		len = strlen(players[i]);
-		players[i][len-1] = '\0';
+		players[i][len-1] = '\0';	// Gets rid of the '\n' 
 	}
 
 	puts("");
@@ -483,14 +489,13 @@ void getNames(char players[SIX][MAX_NAME]) {
 
 
 /*
- * args: @players contains the name of the players.
+ * args: @players contains the names of the players.
  *
  * returns: nothing.
  *
  * Notes:
- * 		Let's the players adjust their scores if a mistake was
- * 		made after entering their scores after each round. This 
- * 		can be done at any time.
+ * 		Let the players adjust their scores if a mistake was
+ * 		made after each round. This can be done at any time.
  */
 void adjustScore(char players[][MAX_NAME]) {
 	
@@ -579,7 +584,7 @@ int option() {
  * Notes: 
  *		Game loop. First we get the names of the players,
  *		then we open a file to start saving the game progress as
- *		it develops (save it to the scores.txt file after each 
+ *		it develops (save it to the temp.txt file after each 
  *		round).
  *
  *		We then ask if we want to play a round. If not, the 
