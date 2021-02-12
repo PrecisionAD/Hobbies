@@ -1,3 +1,13 @@
+
+/*
+ * Made this program when I used to work as a server.
+ * Instead of counting the bills manually up to four 
+ * times, I ended up making this to speed things up
+ * when going to the bank haha!
+ *
+ * Programmed by Adrian Meneses.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,7 +19,8 @@
  * 		The total amount of the addition of all values.
  *
  * Notes:
- * 		Nothing.
+ * 		Computes the total amount of every number entered and
+ * 		returns it.
  */
 int total(int ones, int fives, int tens, int twenty, int fifty, int oneHundred) {
 
