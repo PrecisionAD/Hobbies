@@ -3,7 +3,7 @@
  * Reading aprox ~340m digits of pi. Reads the ocurrence of
  * every number in pi.
  *
- * Programmer: Adrian Meneses
+ * Programmed by Adrian Meneses
  * Date: 01/23/2021
  */
 
@@ -78,7 +78,14 @@ void totalDigits() {
 
 }
 
-
+/*
+ * args: none.
+ *
+ * returns: nothing.
+ *
+ * Notes:
+ * 		Main menu.
+ */
 int main() {
 
 	time_t start = time(NULL);
