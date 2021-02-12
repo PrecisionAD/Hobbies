@@ -1,5 +1,9 @@
+
 /*
  * Program will return the binary representation of a (positive) number.
+ * The representation of up to 32 bits can be displayed currently.
+ *
+ * Programmed by Adrian Meneses.
  */
 
 #include <stdio.h>
@@ -14,7 +18,7 @@ int main() {
 	char buffer[33];
 	int number = 0;
 
-	printf("Enter a number to get its binary representation: ");
+	printf("Enter a positive number to get its binary representation: ");
 	fgets(buffer, 32, stdin);
 
 	number = atoi(buffer);
