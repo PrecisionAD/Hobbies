@@ -1,13 +1,13 @@
 
 /* Small program to compute an approximation of pi.
  * Currently, it will comute up to 8 correct digits.
- * Programmer: Adrian M.
+ * Programmed by Adrian Meneses.
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-#define num 4
+#define NUM 4
 #define ONE_MILLION 1000000
 #define TEN_BILLION 10000000
 #define HUN_MILLION 100000000
@@ -25,19 +25,18 @@ int main() {
 	int i;
 	for(i = 0; i < ONE_BILLION; i++){
 		if(den == 1.0){
-			pi = num / den;
+			pi = NUM / den;
 			den += 2;
 		}
 		else{
-			pi = pi - (num / den);
+			pi = pi - (NUM / den);
 			den += 2;
-			pi = pi + (num / den);
+			pi = pi + (NUM / den);
 			den += 2;
 		}
 	}
 
 	printf("The approximation of pi is %.15f\n", pi);
-	printf("den = %f\n", den);
 
 	return 0;
 }
