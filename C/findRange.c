@@ -6,7 +6,7 @@
  * a better implementation (such as to ask to enter 
  * a number) should be put in place.
  *
- * Programmer: Adrian Meneses
+ * Programmed by Adrian Meneses.
  * Date: 02/19/2020
  */
 
