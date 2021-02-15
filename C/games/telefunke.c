@@ -5,7 +5,7 @@
  * scores.txt will be opened so append everything from temp.txt.
  * As of right now, up to 6 players can play.
  *
- * Programmed by: Adrian Meneses
+ * Author: Adrian Meneses
  * Date: 01/15/2021
  * v1.5.1
  */
