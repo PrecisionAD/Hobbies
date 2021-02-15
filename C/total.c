@@ -5,7 +5,7 @@
  * times, I ended up making this to speed things up
  * when going to the bank haha!
  *
- * Programmed by Adrian Meneses.
+ * Author: Adrian Meneses.
  */
 
 #include <stdio.h>
@@ -39,7 +39,9 @@ int total(int ones, int fives, int tens, int twenty, int fifty, int oneHundred) 
 
 /*
  * Args:
- 			None.
+ * 			None.
+ *
+ * Returns: the bill (the value) entered.
  *
  * Notes:
  * 		Makes sure the user will enter positive values
@@ -66,7 +68,16 @@ int input() {
 }
 
 /*
- * Main
+ * Args:
+ * 		None.
+ *
+ * Returns:
+ * 		Nothing.
+ *
+ * Notes:
+ * 		I ask in a sequential manner each bill in ascending 
+ * 		order just so the computation is correct. At the end,
+ * 		I simply display the total amount to be deposited.
  */
 int main() {
 
