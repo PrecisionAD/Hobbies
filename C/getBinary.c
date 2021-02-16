@@ -2,8 +2,9 @@
 /*
  * Program will return the binary representation of a (positive) number.
  * The representation of up to 32 bits can be displayed currently.
+ * The idea is to make a separate function for the loop.
  *
- * Programmed by Adrian Meneses.
+ * Author: Adrian Meneses.
  */
 
 #include <stdio.h>
@@ -37,13 +38,14 @@ int main() {
 	}
 
 	int stop = 0;
-	int mask = 0;
+	int mask = 0x01;
 	int counter = 0;
 	int i = 32; // To save the bits from MSB to LSB
 	binary[32] = '\0';
 
 	while(stop != 1) {
-		mask = number & 0x01;
+		// Extract the LSB with a mask
+		mask = number & mask;
 		number >>= 0x01;
 
 		// If mask is one, save the bit as 1, otherwise as 0
