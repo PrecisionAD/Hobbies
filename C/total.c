@@ -13,7 +13,7 @@
 
 /*
  * Args:
- * 		Receive the value for each argument (dolar amount)
+ * 		Receive the value for each argument (dolar amount).
  *
  * Returns:
  * 		The total amount of the addition of all values.
@@ -41,7 +41,8 @@ int total(int ones, int fives, int tens, int twenty, int fifty, int oneHundred) 
  * Args:
  * 			None.
  *
- * Returns: the bill (the value) entered.
+ * Returns: 
+ * 			The bill (the value) entered.
  *
  * Notes:
  * 		Makes sure the user will enter positive values
@@ -55,6 +56,7 @@ int input() {
 	fgets(buffer, 9, stdin);
 	number = atoi(buffer);
 
+	// Check that the number is not negative!
 	if(number < 0) {
 		while(number < 0) {
 			printf("Can't be a negative value!\n");
@@ -81,8 +83,8 @@ int input() {
  */
 int main() {
 
-		puts("Enter the number of bills:");
 		int ones, fives, tens, twenty, fifty, oneHundred = 0;
+		puts("Enter the number of bills:");
 
 		printf("How many one dollar bills do you have?:\n");
 		ones = input();
