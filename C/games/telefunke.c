@@ -279,12 +279,8 @@ void scoreDiff(char players[][MAX_NAME]) {
 	for(i = 0; i < SIX; i++) {
 		if(totalScore[i][0] < 0) { continue; }
 		printf("%d) %-7s +%d", (i + 1), players[i], totalScore[i][0] - lowestScore[0]);
-		if(i == indexHigh) {
-			printf("☠ ");
-		}
-		if(i == indexLow) {
-			printf("⭐");
-		}
+		if(i == indexHigh) { printf("☠ "); } // For lowest score
+		if(i == indexLow) { printf("⭐"); }  // For winning player
 		puts("");
 	}
 }
@@ -380,10 +376,6 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 	int selected[6] = { 0, 0, 0, 0, 0, 0 };
 	char option[6];
 	char buffer[5];
-	/*char abc[] = { 'a', 'b', 'c','d', 'e', 'f', 'g', 'h', 'i',
-								 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
-								 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-	char *ptr;*/
 
 	printf("╔═════════╗\n");
 	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
