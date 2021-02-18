@@ -487,7 +487,7 @@ void getNames(char players[SIX][MAX_NAME]) {
 		printf("Enter player %d: ", i + 1);
 		fgets(*(players + i), 14, stdin);
 		len = strlen(players[i]);
-		players[i][len-1] = '\0';	// Gets rid of the '\n' 
+		players[i][len-1] = '\0';	// Gets rid of the '\n' at the end of each name
 	}
 
 	puts("");
@@ -559,8 +559,8 @@ int option() {
 	char buffer[5];
 
 	printf("What would you like to do?\n");
-	printf("1) Adjust a score\n");
-	printf("2) Play a round\n");
+	printf("1) Play a round\n");
+	printf("2) Adjust a score\n");
 	printf("3) End the game\n");
 
 	do {
