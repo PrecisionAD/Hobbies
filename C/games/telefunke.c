@@ -92,6 +92,9 @@ void appendNewScores() {
 		fprintf(fp1, "%s", buffer);
 	}
 
+	fclose(fp1);
+	fclose(fp2);
+
 }
 
 
