@@ -521,7 +521,7 @@ void adjustScore(char players[][MAX_NAME]) {
 
 	} while(done != 1);
 
-	i = option;
+	i = option; // To have a more readable array
 
 	// Adjust the score
 	printf("\nThe current score for %s is %d pts\n", players[i - 1], totalScore[i - 1][0]);
