@@ -13,7 +13,13 @@
 
 /*
  * Args:
- * 		Receive the value for each argument (dolar amount).
+ *	  @ones the number of bills entered.
+ *	  @fives the number of bills entered.
+ *	  @tens the number of bills entered.
+ *	  @twenty the number of bills entered.
+ *	  @fifty the number of bills entered.
+ *	  @oneHundred the number of bills entered.
+ * 		Receive the value for each argument (total bills).
  *
  * Returns:
  * 		The total amount of the addition of all values.
@@ -39,10 +45,10 @@ int total(int ones, int fives, int tens, int twenty, int fifty, int oneHundred) 
 
 /*
  * Args:
- * 			None.
+ * 		None.
  *
  * Returns: 
- * 			The bill (the value) entered.
+ * 		The bill (the value) entered.
  *
  * Notes:
  * 		Makes sure the user will enter positive values
