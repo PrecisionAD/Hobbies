@@ -3,7 +3,7 @@
  * This program opens a file (.srt) that contains the time
  * tags of the dialog of a specific movie or episode. What it 
  * does is adjust the out of sync closed caption by either
- * adding or substracting an offset entered by the user.
+ * adding or subtracting an offset entered by the user.
  *
  * As an example, if the closed captions of a movie are behind 
  * half a second (0.5 seconds), the program will ask for a file
@@ -40,13 +40,13 @@ void adjust(int *number, int *choice);
  *
  * Notes:
  * 		Part of the main() is to prompt the user to enter a file and a number
- * 		(either add or substract) to fix the sync in the .srt file. After
+ * 		(either add or subtract) to fix the sync in the .srt file. After
  * 		asking for the file, it will add all divide every line in the file
  * 		in half and store it into a 2D array. Later, it will call the function
  * 		extract() which will get rid of the chars and strings to leave a 
  * 		sequence of only numbers such as 000008712 for example.
  *
- * 		Then, it will add/substract the offset. Finally, it will add leading
+ * 		Then, it will add/subtract the offset. Finally, it will add leading
  * 		zeros (since the left most zeros are omitted by the language C) and
  * 		place the adjusted number back in the file.
  */
@@ -118,6 +118,15 @@ void greet() {
 	
 }
 
+
+/*
+ * Args:
+ * 		None.
+ *
+ * Returns:
+ * 		The option selected by the user. It could be the number
+ * 		1 (to add some offset) or number 2 (to subtract some offset).
+ */
 int addOrSub() {
 
 	char choice[5];
