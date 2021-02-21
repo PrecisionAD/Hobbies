@@ -138,7 +138,16 @@ int addOrSub() {
 	return number;
 }
 
-/* The key() will check that the value entered to subtract is a positive number. */
+/*
+ * Args:
+ * 		@key contains the number (offset) to be converted.
+ *
+ * Returns:
+ * 		A valid number (offset).
+ *
+ * Notes:
+ * 		The key() will check that the value entered to subtract is a positive number.
+ */
 int checkNum(char *key) {
 
 	int number = atoi(key);
