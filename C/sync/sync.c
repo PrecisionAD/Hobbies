@@ -31,9 +31,25 @@ FILE * openFile();
 void extract(char times[ROW][COL], int len);
 void adjust(int *number, int *choice);
 
-/* Part of the main() is to prompt the user to enter a file and a number
- * to fix the sync in the .srt file. Currently, those two features are 
- * commented out so the progress is quicker to develop the program. */
+/*
+ * Args:
+ * 		None.
+ *
+ * Returns:
+ * 		Nothing.
+ *
+ * Notes:
+ * 		Part of the main() is to prompt the user to enter a file and a number
+ * 		(either add or substract) to fix the sync in the .srt file. After
+ * 		asking for the file, it will add all divide every line in the file
+ * 		in half and store it into a 2D array. Later, it will call the function
+ * 		extract() which will get rid of the chars and strings to leave a 
+ * 		sequence of only numbers such as 000008712 for example.
+ *
+ * 		Then, it will add/substract the offset. Finally, it will add leading
+ * 		zeros (since the left most zeros are omitted by the language C) and
+ * 		place the adjusted number back in the file.
+ */
 int main(int argc, char *argv[]) {
 
 	// Display how program works
