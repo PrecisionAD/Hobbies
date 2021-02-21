@@ -1,3 +1,22 @@
+
+/*
+ * This program opens a file (.srt) that contains the time
+ * tags of the dialog of a specific movie or episode. What it 
+ * does is adjust the out of sync closed caption by either
+ * adding or substracting an offset entered by the user.
+ *
+ * As an example, if the closed captions of a movie are behind 
+ * half a second (0.5 seconds), the program will ask for a file
+ * and then for the amount of offset to add. The program will 
+ * then retrieve the digits only from the file (there are 
+ * strings as well) and put them into a 2D array. After that,
+ * it will adjust the times by adding the 0.5 seconds to the
+ * extracted digits and then place them back into the
+ * original file but adjusted.
+ *
+ * Author: Adrian Meneses.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
