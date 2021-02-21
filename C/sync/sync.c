@@ -138,6 +138,7 @@ int addOrSub() {
 	return number;
 }
 
+
 /*
  * Args:
  * 		@key contains the number (offset) to be converted.
@@ -162,6 +163,7 @@ int checkNum(char *key) {
 	}
 	return number;
 }
+
 
 /* 
  * Args:
@@ -195,8 +197,21 @@ FILE * openFile() {
 	return readFile;
 }
 
-/* The extract() will receive a 2D array (times) pre-filled with all the times from a .srt file
- * and will extract only the digits to subtract the required time to sync into the extracted array. */
+
+/* 
+ * Args:
+ * 		@times contains all the numbers and chars to be extracted.
+ * 		@len contains how big the array is.
+ *
+ * Returns:
+ * 		Does not return anything but creates a file with the extracted
+ * 		numbers.
+ *
+ * Notes:
+ * 		The extract() will receive a 2D array (times) pre-filled with all 
+ * 		the times from a .srt file and will extract only the digits to 
+ * 		subtract the required time to sync into the extracted array.
+ */
 void extract(char times[ROW][COL], int len) {
 
 	int space = 0;
@@ -233,6 +248,7 @@ void extract(char times[ROW][COL], int len) {
 	}//end outer for loop
 	fclose(fp);
 }
+
 
 /* The subtract() will recieve a key to subtract to each extracted number from the original
  * file and placed in a file named 'adjusted'. Choice will contain either 1 is addition is
