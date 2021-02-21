@@ -93,7 +93,17 @@ int main(int argc, char *argv[]) {
 
 } //end main
 
-/* The greet() will explain how to enter values to subtract. */
+/* 
+ * Args:
+ * 		None.
+ *
+ * Returns:
+ * 		Nothing.
+ *
+ * Notes:
+ * 		The greet() will explain how to enter values to add 
+ * 		or subtract.
+ */
 void greet() {
 
 	puts("If file contains two decimals:");
