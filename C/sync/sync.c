@@ -163,8 +163,17 @@ int checkNum(char *key) {
 	return number;
 }
 
-/* The openFile() will attempt to open the file specified by the user. If the file does not
- * exist, the program will exit. */
+/* 
+ * Args:
+ * 		None.
+ *
+ * Returns:
+ * 		A file pointer with the new file to read from.
+ *
+ * Notes:
+ * 		The openFile() will attempt to open the file specified by the user. If the file does not
+ * 		exist, the program will exit.
+ */
 FILE * openFile() {
 
 	char file[20];
