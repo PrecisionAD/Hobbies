@@ -89,6 +89,9 @@ int main(int argc, char *argv[]) {
 	// Close the file pointer
 	fclose(readFile);
 
+	// Delete the extracted.txt file
+	remove("extracted.txt");
+
 	return  0;
 
 } //end main
