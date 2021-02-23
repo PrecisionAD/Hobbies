@@ -250,9 +250,25 @@ void extract(char times[ROW][COL], int len) {
 }
 
 
-/* The adjust() will recieve a key(offset) to subtract to each extracted number from the original
- * file and placed in a file named 'adjusted'. Choice will contain either 1 is addition is
- * needed or 2 if subtraction is needed. */
+/* 
+ * Args:
+ *		@offset contains the 'time' to be added or subtracted
+ *		@choice contains the option to make the addition or subtraction
+ *
+ * Returns:
+ * 		Nothing.
+ *
+ * Notes:
+ * 		The adjust() will recieve a key(offset) to subtract to each
+ * 		extracted number from the original file and placed in a file 
+ * 		named 'adjusted'. Choice will contain either 1 if addition is
+ * 		needed or 2 if subtraction is needed.
+ *
+ *		We start by getting the contents from the file, then we 
+ *		eliminate the '\n' at the end to avoid issues. We then 
+ *		compute the length for each line in the file to know how 
+ *		many zeros to add to the left of the number later (if any).
+ */
 void adjust(int *offset, int *choice) {
 
 	FILE *fp = fopen("extracted.txt", "r");
@@ -263,7 +279,7 @@ void adjust(int *offset, int *choice) {
 	int num = 0;
 
 	while(fgets(buffer, 15, fp) != NULL) {
-		token = strtok(buffer, "");					// Get content from buffer
+		token = strtok(buffer, "");						// Get content from buffer
 		buffer[strlen(buffer)-1] = '\0';			// Get rid of '\n' at the end
 		int originalLen = strlen(buffer);			// Get original length to place zeros back
 
@@ -276,10 +292,16 @@ void adjust(int *offset, int *choice) {
 		}
 		sprintf(adjusted, "%d", num);
 		
-		int modLen = strlen(adjusted);				// Get length after adjusted times
+		/* Here, this is what happens: if the number before adjustment 
+		 * is say '9112556' and after adding the offset it becomes
+		 * '10112556' then we know that the difference is 1 in length
+		 * between the two. That means that we need to add one zero to
+		 * the left of the adjusted number.
+		 */ 
+		int modLen = strlen(adjusted);						// Get length after adjusted times
 		int adjustedLen = originalLen - modLen;		// Get difference in length
 		
-		if(adjustedLen > 0) {						// If difference greater than 0, add the zeros
+		if(adjustedLen > 0) {											// If difference greater than 0, add the zeros
 			do {
 				fprintf(fp2, "%s", "0");
 				adjustedLen--;
