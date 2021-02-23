@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
 	fgets(key, 20, stdin);
 
 	// Ask for time to subtract and check the number is valid
-	int number = checkNum(key);
+	int offset = checkNum(key);
 
 	// Ask for the file and check if it exists or is not NULL
 	FILE *readFile = openFile();
@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
 	extract(times, row);
 
 	// Adjust the requested time
-	adjust(&number, &answer);
+	adjust(&offset, &answer);
 
 	// Close the file pointer
 	fclose(readFile);
@@ -250,10 +250,10 @@ void extract(char times[ROW][COL], int len) {
 }
 
 
-/* The subtract() will recieve a key to subtract to each extracted number from the original
+/* The adjust() will recieve a key(offset) to subtract to each extracted number from the original
  * file and placed in a file named 'adjusted'. Choice will contain either 1 is addition is
  * needed or 2 if subtraction is needed. */
-void adjust(int *key, int *choice) {
+void adjust(int *offset, int *choice) {
 
 	FILE *fp = fopen("extracted.txt", "r");
 	FILE *fp2 = fopen("fixed.txt", "a");
@@ -269,10 +269,10 @@ void adjust(int *key, int *choice) {
 
 		num = atoi(token);
 		if(*choice == 1) {
-			num = num + *key;
+			num = num + *offset;
 		}
 		else {
-			num = num - *key;
+			num = num - *offset;
 		}
 		sprintf(adjusted, "%d", num);
 		
