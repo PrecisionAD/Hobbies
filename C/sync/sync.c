@@ -53,7 +53,7 @@ FILE * openFile(char *file, char *mode) {
 	fp = fopen(file, mode);
 	if(fp == NULL) {
 		printf("The file %s could not be opened! Check the name!\n", file);
-		exit(1);
+		//exit(1);
 	}
 
 	return fp;
@@ -213,14 +213,25 @@ FILE * askFile() {
 	char file[20];
 	char test[50];
 	printf("\nEnter the name of the file, for example, \"file.txt\"\n");
+	/*printf("File: ");
+	fgets(file, 20, stdin);
+	file[strlen(file)-1] = '\0';
+	strcpy(test, "/Users/itoyan/Documents/C/sync/");
+	strcat(test, file);*/
+
+	FILE *readFile;
+	int allGood = 0;
+	do {
 	printf("File: ");
 	fgets(file, 20, stdin);
 	file[strlen(file)-1] = '\0';
 	strcpy(test, "/Users/itoyan/Documents/C/sync/");
 	strcat(test, file);
-
-	FILE *readFile;
-	readFile = openFile(file, "r");
+		readFile = openFile(file, "r");
+		if(readFile != NULL) {
+			allGood = 1;
+		}
+	} while(allGood == 0);
 
 	return readFile;
 }
