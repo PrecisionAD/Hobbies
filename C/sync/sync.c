@@ -15,7 +15,7 @@
  * original file but adjusted.
  *
  * Author: Adrian Meneses.
- * v1.2
+ * v1.3
  */
 
 #include <stdio.h>
@@ -206,31 +206,25 @@ int checkNum(char *key) {
  *
  * Notes:
  * 		The askFile() will attempt to open the file specified by the user. If the file does not
- * 		exist, the program will exit.
+ * 		exist, the program will keep asking for the file.
  */
 FILE * askFile() {
 
-	char file[20];
-	char test[50];
-	printf("\nEnter the name of the file, for example, \"file.txt\"\n");
-	/*printf("File: ");
-	fgets(file, 20, stdin);
-	file[strlen(file)-1] = '\0';
-	strcpy(test, "/Users/itoyan/Documents/C/sync/");
-	strcat(test, file);*/
-
 	FILE *readFile;
 	int allGood = 0;
+	char file[20];
+	char test[50];
+
+	printf("\nEnter the name of the file, for example, \"file.txt\"\n");
 	do {
-	printf("File: ");
-	fgets(file, 20, stdin);
-	file[strlen(file)-1] = '\0';
-	strcpy(test, "/Users/itoyan/Documents/C/sync/");
-	strcat(test, file);
+		printf("File: ");
+		fgets(file, 20, stdin);
+		file[strlen(file)-1] = '\0';
+		strcpy(test, "/Users/itoyan/Documents/C/sync/");
+		strcat(test, file);
 		readFile = openFile(file, "r");
-		if(readFile != NULL) {
-			allGood = 1;
-		}
+
+		if(readFile != NULL) { allGood = 1; }
 	} while(allGood == 0);
 
 	return readFile;
