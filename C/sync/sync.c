@@ -246,7 +246,7 @@ void extract(char times[ROW][COL], int len) {
 	int row = 0;
 	int col = 0;
 	int index = 0;
-	FILE *fp = fopen("extracted.txt", "a");
+	FILE *fp = openFile("extracted.txt", "a");
 
 	for(row = 0; row < len; row++) {
 		for(col = 0; col < strlen(times[row]); col++) {
@@ -298,8 +298,8 @@ void extract(char times[ROW][COL], int len) {
  */
 void adjust(int *offset, int *choice) {
 
-	FILE *fp = fopen("extracted.txt", "r");
-	FILE *fp2 = fopen("fixed.txt", "a");
+	FILE *fp = openFile("extracted.txt", "r");
+	FILE *fp2 = openFile("fixed.txt", "a");
 	char buffer[15];
 	char adjusted[15];
 	char *token;
