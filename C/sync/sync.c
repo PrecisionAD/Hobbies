@@ -219,16 +219,9 @@ FILE * askFile() {
 	strcpy(test, "/Users/itoyan/Documents/C/sync/");
 	strcat(test, file);
 
-
 	FILE *readFile;
 	readFile = openFile(file, "r");
-	// Set up
-	/*FILE *readFile;
-	readFile = fopen(file, "r");
-	if(readFile == NULL) {
-		printf("\nFile could not be located/opened! Check the name of the file again.\n");
-		exit(1);
-	}*/
+
 	return readFile;
 }
 
@@ -279,7 +272,6 @@ void extract(char times[ROW][COL], int len) {
 		}//end inner for loop
 		fprintf(fp, "%s", "\n");
 		space = 0;
-		//break;
 	}//end outer for loop
 	fclose(fp);
 }
