@@ -15,6 +15,7 @@
  * original file but adjusted.
  *
  * Author: Adrian Meneses.
+ * v1.2
  */
 
 #include <stdio.h>
@@ -27,9 +28,37 @@
 void greet();
 int addOrSub();
 int checkNum(char *key);
-FILE * openFile();
+FILE * askFile();
 void extract(char times[ROW][COL], int len);
 void adjust(int *number, int *choice);
+
+
+
+/*
+ * Args:
+ * 		@file contains the file name to be opened.
+ * 		@mode contains the mode of how to open the file.
+ *
+ * Returns:
+ * 		A file pointer with the file requested.
+ *
+ * Notes:
+ * 		This function was made to eliminate the duplicate code
+ * 		that was in various functions to open files on the fly.
+ */
+FILE * openFile(char *file, char *mode) {
+
+	FILE *fp;
+
+	fp = fopen(file, mode);
+	if(fp == NULL) {
+		printf("The file could not be opened! Check the name!\n");
+		exit(1);
+	}
+
+	return fp;
+}
+
 
 /*
  * Args:
@@ -67,7 +96,7 @@ int main(int argc, char *argv[]) {
 	int offset = checkNum(key);
 
 	// Ask for the file and check if it exists or is not NULL
-	FILE *readFile = openFile();
+	FILE *readFile = askFile();
 
 	char buffer[100];
 	char times[ROW][COL];
@@ -176,10 +205,10 @@ int checkNum(char *key) {
  * 		A file pointer with the new file to read from.
  *
  * Notes:
- * 		The openFile() will attempt to open the file specified by the user. If the file does not
+ * 		The askFile() will attempt to open the file specified by the user. If the file does not
  * 		exist, the program will exit.
  */
-FILE * openFile() {
+FILE * askFile() {
 
 	char file[20];
 	char test[50];
@@ -190,13 +219,16 @@ FILE * openFile() {
 	strcpy(test, "/Users/itoyan/Documents/C/sync/");
 	strcat(test, file);
 
-	// Set up
+
 	FILE *readFile;
+	readFile = openFile(file, "r");
+	// Set up
+	/*FILE *readFile;
 	readFile = fopen(file, "r");
 	if(readFile == NULL) {
 		printf("\nFile could not be located/opened! Check the name of the file again.\n");
 		exit(1);
-	}
+	}*/
 	return readFile;
 }
 
@@ -316,6 +348,7 @@ void adjust(int *offset, int *choice) {
 	}
 	fclose(fp);
 	fclose(fp2);
+
 }
 
 
