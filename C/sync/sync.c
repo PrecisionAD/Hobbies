@@ -52,7 +52,7 @@ FILE * openFile(char *file, char *mode) {
 
 	fp = fopen(file, mode);
 	if(fp == NULL) {
-		printf("The file could not be opened! Check the name!\n");
+		printf("The file %s could not be opened! Check the name!\n", file);
 		exit(1);
 	}
 
