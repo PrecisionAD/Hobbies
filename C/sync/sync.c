@@ -53,7 +53,6 @@ FILE * openFile(char *file, char *mode) {
 	fp = fopen(file, mode);
 	if(fp == NULL) {
 		printf("The file %s could not be opened! Check the name!\n", file);
-		//exit(1);
 	}
 
 	return fp;
