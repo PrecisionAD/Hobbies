@@ -137,6 +137,7 @@ int main(int argc, char *argv[]) {
  */
 void greet() {
 
+	// Need to rework this part, it is confusing
 	puts("If file contains two decimals:");
 	printf("To subtract 10 seconds, enter 1000\n"
 			"To subtract 1 second, enter 100\n"
@@ -146,7 +147,6 @@ void greet() {
 	printf("To subtract 10 seconds, enter 10000\n"
 			"To subtract 1 second, enter 1000\n"
 			"To subtract 0.5 seconds, enter 500\n\n");
-	
 }
 
 
@@ -342,6 +342,7 @@ void adjust(int *offset, int *choice) {
 		fprintf(fp2, "%s", adjusted);
 		fprintf(fp2, "%s", "\n");
 	}
+
 	fclose(fp);
 	fclose(fp2);
 

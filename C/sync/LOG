@@ -6,3 +6,21 @@ Version 1.1 released.
 Changes: 
 	- Added feature to ask if addition or subtraction is needed (addOrSub()).
 	- Tweaked adjusted() to include new feature.
+
+Date: 02/21/2021
+Version 1.1.1 released.
+Changes:
+	- Added documentation to functions.
+	- Refactored some variables for better readability.
+
+Date: 02/22/2021
+Version 1.2 released
+Changes:
+	- Added documentation.
+	- Created new openFile() function to eliminate duplicate code.
+	- Renamed old openFile() to askFile().
+
+Date: 02/25/2021
+Version 1.3 released
+	- Changed the calls to open files. 
+	- Added a loop tp keep asking for a correct file instead of ending the program.
