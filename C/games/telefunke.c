@@ -270,11 +270,11 @@ void scoreDiff(char players[][MAX_NAME]) {
 		if(totalScore[i][0] == - 1) { continue; }
 		if(totalScore[i][0] < lowestScore[0] && totalScore[i][0] >= 0) {
 			lowestScore[0] = totalScore[i][0];
-			indexLow = i;
+			indexLow = i; // Save lowest index to know highest player
 		}
 		if(totalScore[i][0] > highestScore[0]) {
 			highestScore[0] = totalScore[i][0];
-			indexHigh = i;
+			indexHigh = i; // Save highest index to know lowest player
 		}
 	}
 
