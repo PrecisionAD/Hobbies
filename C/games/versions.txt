@@ -1,0 +1,35 @@
+v1.0 - 01/15/2021
+- Initial version of the game.
+
+v1.1 - 02/02/2021
+- Reworked setScores() completely to update scores for each player individually instead of sequentially.
+- Created new printPlayers() function.
+
+v1.1.1 - 02/03/2021
+- Added comment to let the users know that a player was already updated.
+
+v1.2 - 02/04/2021
+- Added new function to compute and print the difference in points for each player in each round.
+
+v1.2.1 - 02/05/2021
+- Added skull emoji to lowest raking player.
+- If a player is missing, it won't be printed.
+
+v1.3 - 02/06/2021
+- Reworked gameWith5() to have a switch statement.
+- Added new option() that returns the menu option.
+- Added adjustScore() that will modify a player's score.
+
+v1.4.1 - 02/08/2021
+- Updated documentation for various methods to be more precise about what each method does.
+- New askInput() to eliminate duplicate code.
+
+v1.5 - 02/09/2021
+- Added new appendNewScores() in order to save some time. Originally, the file scores.txt was created and every game was saved to it. After the game ended, the complete file would be read which in the future would take longer and longer to read because of the increased size. Because of that, now the game will create a temp.txt file that will be appended to the scores.txt only at the end of the game and it will be removed from the directory as part of the clean up.
+
+v1.5.1 - 02/11/2021
+- Added new openFile() to eliminate redundant code and to open files from a single funtion instead of doing it throught the program.
+- Minor documentation additions/edits.
+
+v1.5.2 - 02/15/2021
+- Fixed a logic error in the main game loop that prevented the game from ending after all rounds were completed.
