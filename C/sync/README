@@ -1,3 +1,5 @@
-Program version: 1.0
+Description:
 
-Description: The program reads a specific file (.srt) to extract the digits and subtract a value to re-sync the file with the audio. The program will first ask for the number to subtract and then for the name of the file.
+The program reads a specific file (.srt) to extract the digits and subtract a value to re-sync the file with the audio. The program will first ask for the number to subtract and then for the name of the file. As an example, the .srt file might contains a line in this format: 00:05:46,579 --> 00:05:48,580 (which means the dialogue was already filtered).
+
+What this program does is extract only the digits (in this sample case it would be 000546579 and 000548580 and put them into a 2D array. Later, an offset is either added or subtracted. Finally, the modified numbers are put back into a file to be reformatted as they were.
