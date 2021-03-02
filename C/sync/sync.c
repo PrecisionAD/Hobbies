@@ -137,8 +137,12 @@ int main(int argc, char *argv[]) {
  */
 void greet() {
 
-	// Need to rework this part, it is confusing
-	puts("If file contains two decimals:");
+	puts("To make an adjustment to the .srt file, simply subtract the time");
+	puts("from where the dialogue starts in the video (e.g. 2 minutes and 30 seconds)");
+	puts("to where the dialogue should be (e.g. 2 minutes and 25 seconds).");
+	puts("This means you should subtract 5 seconds (5000) from the file.");
+
+	/*puts("If file contains two decimals:");
 	printf("To subtract 10 seconds, enter 1000\n"
 			"To subtract 1 second, enter 100\n"
 			"To subtract 0.5 seconds, enter 50\n\n");
@@ -146,7 +150,7 @@ void greet() {
 	puts("If file contains three decimals:");
 	printf("To subtract 10 seconds, enter 10000\n"
 			"To subtract 1 second, enter 1000\n"
-			"To subtract 0.5 seconds, enter 500\n\n");
+			"To subtract 0.5 seconds, enter 500\n\n");*/
 }
 
 
@@ -178,7 +182,7 @@ int addOrSub() {
  * 		A valid number (offset).
  *
  * Notes:
- * 		The key() will check that the value entered to subtract is a positive number.
+ * 		This will check that the value entered to subtract is a positive number.
  */
 int checkNum(char *key) {
 
