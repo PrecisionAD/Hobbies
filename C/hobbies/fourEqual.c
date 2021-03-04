@@ -366,7 +366,19 @@ void * searchBday() {
 }//end searchOnes()
 
 
-
+/*
+ * Args:
+ * 		None.
+ *
+ * Returns:
+ * 		Nothing.
+ *
+ * Notes:
+ * 		The idea is to see how fast a program can be when 
+ * 		it runs with multiple threads. There are 6 threads 
+ * 		that will find how many ocurrences of a sequence for
+ * 		a particular number appear in pi.
+ */
 int main() {
 
 	pthread_t t0;
@@ -396,7 +408,6 @@ int main() {
 	pthread_join(t4, NULL);
 	pthread_join(t5, NULL);
 	pthread_join(B, NULL);
-
 
 	return 0;
 }
