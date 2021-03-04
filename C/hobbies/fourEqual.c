@@ -39,7 +39,6 @@ void * searchFives() {
 
 	// File pointer will read 4 numbers at a time
 	fgets(dummyBuffer, 5, inDummy);
-	//printf("before while loop dummyBuffer has: %s\n", dummyBuffer);
 
 	char index0;
 	char index1;
@@ -61,13 +60,11 @@ void * searchFives() {
 
 			// Set *in to point to inDummy
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("in if, dummy buffer: %s\n", dummyBuffer);
 		}
 		// If not equal, advance one number only
 		else {
 			fseek(inDummy, -3, SEEK_CUR);
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("dummy buffer: %s\n", dummyBuffer);
 		}
 		i++;
 	}
@@ -91,7 +88,6 @@ void * searchFours() {
 
 	// File pointer will read 4 numbers at a time
 	fgets(dummyBuffer, 5, inDummy);
-	//printf("before while loop dummyBuffer has: %s\n", dummyBuffer);
 
 	char index0;
 	char index1;
@@ -113,13 +109,11 @@ void * searchFours() {
 
 			// Set *in to point to inDummy
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("in if, dummy buffer: %s\n", dummyBuffer);
 		}
 		// If not equal, advance one number only
 		else {
 			fseek(inDummy, -3, SEEK_CUR);
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("dummy buffer: %s\n", dummyBuffer);
 		}
 		i++;
 	}
@@ -143,7 +137,6 @@ void * searchThrees() {
 
 	// File pointer will read 4 numbers at a time
 	fgets(dummyBuffer, 5, inDummy);
-	//printf("before while loop dummyBuffer has: %s\n", dummyBuffer);
 
 	char index0;
 	char index1;
@@ -165,13 +158,11 @@ void * searchThrees() {
 
 			// Set *in to point to inDummy
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("in if, dummy buffer: %s\n", dummyBuffer);
 		}
 		// If not equal, advance one number only
 		else {
 			fseek(inDummy, -3, SEEK_CUR);
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("dummy buffer: %s\n", dummyBuffer);
 		}
 		i++;
 	}
@@ -195,7 +186,6 @@ void * searchTwos() {
 
 	// File pointer will read 4 numbers at a time
 	fgets(dummyBuffer, 5, inDummy);
-	//printf("before while loop dummyBuffer has: %s\n", dummyBuffer);
 
 	char index0;
 	char index1;
@@ -217,13 +207,11 @@ void * searchTwos() {
 
 			// Set *in to point to inDummy
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("in if, dummy buffer: %s\n", dummyBuffer);
 		}
 		// If not equal, advance one number only
 		else {
 			fseek(inDummy, -3, SEEK_CUR);
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("dummy buffer: %s\n", dummyBuffer);
 		}
 		i++;
 	}
@@ -248,7 +236,6 @@ void * searchOnes() {
 
 	// File pointer will read 4 numbers at a time
 	fgets(dummyBuffer, 5, inDummy);
-	//printf("before while loop dummyBuffer has: %s\n", dummyBuffer);
 
 	char index0;
 	char index1;
@@ -270,13 +257,11 @@ void * searchOnes() {
 
 			// Set *in to point to inDummy
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("in if, dummy buffer: %s\n", dummyBuffer);
 		}
 		// If not equal, advance one number only
 		else {
 			fseek(inDummy, -3, SEEK_CUR);
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("dummy buffer: %s\n", dummyBuffer);
 		}
 		i++;
 	}
@@ -300,7 +285,6 @@ void * searchZeros() {
 
 	// File pointer will read 4 numbers at a time
 	fgets(dummyBuffer, 5, inDummy);
-	//printf("before while loop dummyBuffer has: %s\n", dummyBuffer);
 
 	char index0;
 	char index1;
@@ -324,13 +308,11 @@ void * searchZeros() {
 
 			// Set *in to point to inDummy
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("in if, dummy buffer: %s\n", dummyBuffer);
 		}
 		// If not equal, advance one number only
 		else {
 			fseek(inDummy, -3, SEEK_CUR);
 			fgets(dummyBuffer, 5, inDummy);
-			//printf("dummy buffer: %s\n", dummyBuffer);
 		}
 		i++;
 	}
@@ -361,8 +343,6 @@ void * searchBday() {
 	fgets(dummyBuffer, 7, inDummy);
 	printf("before while loop dummyBuffer has: %s\n", dummyBuffer);
 		
-	//int n = strcmp(dummyBuffer, key);
-	//printf("n = %d\n", n);
 	int n;
 
 	int counter = 0;
@@ -370,14 +350,10 @@ void * searchBday() {
 	while(i != MAX3) {
 		n = strcmp(dummyBuffer, key);
 		if(n == 0) { 
-			//printf("n = %d\n", n);
 			break; 
 		}
 		fseek(inDummy, -5, SEEK_CUR);
-		//char c = fgetc(inDummy);
-		//printf("c: %c\n", c);
 		fgets(dummyBuffer, 7, inDummy);
-		//printf("after while loop dummyBuffer has: %s\n", dummyBuffer);
 		counter += 1;
 		i++;
 	}
