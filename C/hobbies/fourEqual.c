@@ -26,6 +26,21 @@
 
 int done = 0;
 
+
+/*
+ * Args:
+ * 		None.
+ *
+ * Returns:
+ * 		A thread pointer to signal main that it has finished.
+ *
+ * Notes:
+ * 		This funtions along the next 5, do the exact same thing:
+ * 		each function is executed by a thread that will search
+ * 		for a sequence (4 consecutive numbers together). It will
+ * 		also increment a counter to know how many ocurrences it 
+ * 		found.
+ */
 void * searchFives() {
 
 	char dummyBuffer[10];
@@ -48,6 +63,7 @@ void * searchFives() {
 	int totalConsecutive = 0;
 	int i = 0;
 	while(i != MAX3) {
+		// Store the next 4 numbers from the file to compare them
 		index0 = dummyBuffer[0];
 		index1 = dummyBuffer[1];
 		index2 = dummyBuffer[2];
@@ -55,7 +71,7 @@ void * searchFives() {
 
 		// Check if the 4 numbers are equal
 		if(index0 == '5' && (index0 == index1) && (index0 == index2) && (index0 == index3)) {
-			// Increase counter for that consecutive number
+			// Increase counter for that consecutive number if equal
 			totalConsecutive++;
 
 			// Set *in to point to inDummy
@@ -205,7 +221,7 @@ void * searchTwos() {
 			// Increase counter for that consecutive number
 			totalConsecutive++;
 
-			// Set *in to point to inDummy
+			// Since we found a sequence, read the next 4 numbers
 			fgets(dummyBuffer, 5, inDummy);
 		}
 		// If not equal, advance one number only
