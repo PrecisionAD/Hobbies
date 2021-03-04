@@ -6,8 +6,12 @@
  * appears in pi. There is also 6 threads doing 6 different 
  * things (calculating how many ocurrences of a number appear
  * in pi - the number appears four consecutive times).
+ * 
+ * The last method (searchBday) will accept a date as a 
+ * birthday and the thread assigned to it will search what
+ * position in pi that particular ocurrence appears.
  *
- * Programmed by Adrian Meneses.
+ * Author: Adrian Meneses.
  */
 
 #include <stdio.h>
