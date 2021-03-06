@@ -1,8 +1,20 @@
 /*
- * Record keeping program. It will open a file (temp.txt)
- * and start saving the current points for the round for each
- * player. At the end of the game or by user's choice, the file
- * scores.txt will be opened so append everything from temp.txt.
+ * Record keeping program. The way we keep track of scores and
+ * print them to console is by opening a file (temp.txt)
+ * and start saving the current points for the current round for each
+ * player. 
+ *
+ * In the middle of the process the program will ask, after each round
+ * has been played, to enter the scores for each player. This is done
+ * dynamically (user selects to enter any players' score at will)
+ * which saves times compared to entering the scores sequentially.
+ *
+ * There is also an option to amend any score at any time.
+ *
+ * At the end of the game or by user's choice, the file
+ * scores.txt will be opened to append everything from temp.txt in an
+ * attempt to save some time while printing the tables with scores.
+ *
  * As of right now, up to 6 players can play.
  *
  * Author: Adrian Meneses
