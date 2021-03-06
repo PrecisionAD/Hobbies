@@ -294,15 +294,20 @@ void extract(char times[ROW][COL], int len) {
  * 		Nothing.
  *
  * Notes:
- * 		The adjust() will recieve a key(offset) to subtract to each
+ * 		The adjust() will recieve a key (offset) to subtract to each
  * 		extracted number from the original file and placed in a file 
  * 		named 'adjusted'. Choice will contain either 1 if addition is
  * 		needed or 2 if subtraction is needed.
  *
- *		We start by getting the contents from the file, then we 
- *		eliminate the '\n' at the end to avoid issues. We then 
- *		compute the length for each line in the file to know how 
- *		many zeros to add to the left of the number later (if any).
+ *		We start by getting the contents from the file, line by line,
+ *		which are in the following format: 000546579.
+ *
+ *		We eliminate the '\n' at the end toa void issues. We then either
+ *		add or subtract the offset. finally, we will use the length of the
+ *		number to see if we need to add zeros on the left side of the 
+ *		number because the total length needs to be 9. After all the
+ *		steps are done, we place the adjusted number with proper zeros
+ *		back in the file called "fixed.txt"
  */
 void adjust(int *offset, int *choice) {
 
