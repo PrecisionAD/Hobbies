@@ -43,7 +43,7 @@ int totalScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
  * returns: nothing.
  *
  * Notes:
- * 		Let's users know that there are no more games and
+ * 		Let users know that there are no more games and
  * 		the final scores are being printed.
  */
 void printDone() {
@@ -86,8 +86,11 @@ FILE * openFile(char *fileName, char *mode) {
  *
  * Notes:
  * 		This will save the current scores (table) from the 
- * 		temp.txt file into the scores.txt file to prevent from
- * 		reading the complete scores.txt as it was originally. 
+ * 		temp.txt file into the scores.txt file at the end 
+ * 		of the game to prevent reading the complete scores.txt 
+ * 		(where there is a history of all the games that have
+ * 		been played) as it was originally.
+ *
  * 		This is to save a little bit of time in opening and 
  * 		closing the file (temp.txt) each time during the game.
  */
@@ -117,7 +120,7 @@ void appendNewScores() {
  *
  * Notes:
  * 		Print everything that was saved (such as new scores)
- * 		to the file for each player.
+ * 		to the file temp.txt for each player.
  */ 		
 void printFile() {
 
@@ -315,8 +318,8 @@ void scoreDiff(char players[][MAX_NAME]) {
  * 		that the player needs to be updated. The use of
  * 		if-else was elected because this function is
  * 		called from within a loop and because there are
- * 		6 players in total. If a loop is use to print the
- * 		names, the magnitude will be O(N^2).
+ * 		6 players in total only. If a loop is used to print 
+ * 		the names, the magnitude will be O(N^2).
  */
 void printPlayers(int *selected, char players[][MAX_NAME]) {
 
@@ -373,14 +376,15 @@ int askInput(char *buffer) {
  *
  * Notes:
  * 		This will ask to enter the points obtained for each
- * 		player in the round. If a mistakes was made while
- * 		entering a score, the option to redo it is available.
- * 		All this is done dynamically instead of entering each
- * 		score sequentially. 
+ * 		player after one round. If a mistake was made while
+ * 		entering a score, the option to redo it on the spot
+ * 		is available. All this is done dynamically instead 
+ * 		of entering each score sequentially. 
  *
- * 		The selected[] array is used to mark each player as 
- * 		updated (the index contains a 0 if the player has not
- * 		been updated and a 1 if player was updated).
+ * 		The selected[] array is used as a reference to mark 
+ * 		each player as updated (the index contains a 0 if 
+ * 		the player has not been updated and a 1 if player
+ * 		was updated).
  */
 void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
 
@@ -603,8 +607,13 @@ int option() {
  *		We then ask if we want to play a round. If not, the 
  *		game ends and we display the table with the total scores. 
  *		If yes, we will ask for the new scores for each player, 
- *		append them to the file, and finally we print the current
- *		table with all the scores.
+ *		append them to the file (temp.txt), and then we print the
+ *		table with the current scores.
+ *
+ * 		When the game ends, everything that was saved to the temp.txt
+ * 		file will be copied to the scores.txt, the final scores
+ * 		will be printed one last time and the temp.txt file will
+ * 		be deleted from the directory as part of the clean up.
  */
 void gameStart() {
 
