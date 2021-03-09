@@ -38,9 +38,11 @@ int totalScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
 
 
 /*
- * args: none.
+ * args: 
+ * 		None.
  *
- * returns: nothing.
+ * returns: 
+ * 		Nothing.
  *
  * Notes:
  * 		Let users know that there are no more games and
@@ -81,8 +83,10 @@ FILE * openFile(char *fileName, char *mode) {
 
 /*
  * args:
+ * 		None.
  *
- * returns: nothing.
+ * returns: 
+ * 		Nothing.
  *
  * Notes:
  * 		This will save the current scores (table) from the 
@@ -114,9 +118,11 @@ void appendNewScores() {
 
 
 /*
- * args: none.
+ * args:
+ * 		None.
  *
- * returns: nothing.
+ * returns: 
+ * 		Nothing.
  *
  * Notes:
  * 		Print everything that was saved (such as new scores)
@@ -138,9 +144,11 @@ void printFile() {
 }
 
 
-/* args: none.
+/* args:
+ * 		None.
  *
- * returns: nothing.
+ * returns: 
+ * 		Nothing.
  *
  * Notes:
  * 		This will add to the end of the table the total 
@@ -166,9 +174,11 @@ void updateFile() {
 
 
 /*
- * args: none.
+ * args: 
+ * 		None.
  *
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes:
  * 		Prints the table for the current game and adds the 
@@ -203,7 +213,8 @@ void printTable() {
 /*
  * args: @players contains the names of the players.
  *
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes:
  * 		This will save to the file the header of the table 
@@ -235,9 +246,11 @@ void writeFile(char players[][MAX_NAME]) {
 
 
 /*
- * args: none.
+ * args: 
+ * 		None.
  *
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes:
  * 		Simply saves the dividers for each cell in the table 
@@ -260,7 +273,8 @@ void printDividers() {
  * args: @players contains the names of the player.
  * 			 @totalScores contains the scores for the players
  *
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes:
  * 		Print the difference in points from each player
@@ -309,7 +323,8 @@ void scoreDiff(char players[][MAX_NAME]) {
  * 			 @totalScores contains the scores for the players
  * 			 @game contains the round type currently in play.
  *
- * returns: nothing.
+ * returns: 
+ * 		Nothing.
  *
  * Notes:
  * 		Prints the names of the players with a checkmark
@@ -372,7 +387,8 @@ int askInput(char *buffer) {
  * 			 @totalScores contains the scores for the players.
  * 			 @game contains the round type currently in play.
  *
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes:
  * 		This will ask to enter the points obtained for each
@@ -450,7 +466,8 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
  * 			 @totalScores contains the scores for the players.
  * 			 @game contains the round type currently in play.
  * 
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes:
  * 		This will save the points obtained by each player in a 
@@ -483,7 +500,8 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 /*
  * args: @players holds the player names.
  *
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes:
  * 		Will ask for the names of each player and 
@@ -508,7 +526,8 @@ void getNames(char players[SIX][MAX_NAME]) {
 /*
  * args: @players contains the names of the players.
  *
- * returns: nothing.
+ * returns: 
+ * 		Nothing.
  *
  * Notes:
  * 		Let the players adjust their scores if a mistake was
@@ -553,7 +572,8 @@ void adjustScore(char players[][MAX_NAME]) {
 
 
 /*
- * args: none.
+ * args:
+ * 		None.
  *
  * returns: the menu option selected by the user.
  *
@@ -594,9 +614,11 @@ int option() {
 
 
 /*
- * args: none. 
+ * args:
+ * 		None. 
  *
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes: 
  *		Game loop. First we get the names of the players,
@@ -666,9 +688,11 @@ void gameStart() {
 
 
 /*
- * args: none.
+ * args: 
+ * 		None.
  *
- * returns: nothing.
+ * returns:
+ * 		Nothing.
  *
  * Notes:
  * 		Main menu that calls the start of the game.
