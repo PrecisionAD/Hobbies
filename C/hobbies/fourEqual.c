@@ -91,6 +91,8 @@ void * searchFives() {
 	return NULL;
 }//end searchOnes()
 
+
+
 void * searchFours() {
 
 	char dummyBuffer[10];
@@ -140,6 +142,8 @@ void * searchFours() {
 
 }//end searchOnes()
 
+
+
 void * searchThrees() {
 
 	char dummyBuffer[10];
@@ -188,6 +192,8 @@ void * searchThrees() {
 	return NULL;
 
 }//end searchOnes()
+
+
 
 void * searchTwos() {
 
@@ -239,6 +245,7 @@ void * searchTwos() {
 }//end searchOnes()
 
 
+
 void * searchOnes() {
 
 	char dummyBuffer[10];
@@ -287,6 +294,8 @@ void * searchOnes() {
 	return NULL;
 
 }//end searchOnes()
+
+
 
 void * searchZeros() {
 
@@ -341,6 +350,8 @@ void * searchZeros() {
 	return (void *) diff;
 
 }//end searchOnes()
+
+
 
 void * searchBday() {
 
