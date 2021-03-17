@@ -585,12 +585,12 @@ int option() {
 
 void results() {
 	
-	totalScore[0][0] = 100;
+	totalScore[0][0] = 3;
 	totalScore[1][0] = 210;
-	totalScore[2][0] = 66;
-	totalScore[3][0] = 34;
-	totalScore[4][0] = 56;
-	totalScore[5][0] = 88;
+	totalScore[2][0] = 6;
+	totalScore[3][0] = 3;
+	totalScore[4][0] = 3;
+	totalScore[5][0] = 3;
 	int temp = 0;
 	int lowest = 0;
 	int index = -1;
@@ -598,8 +598,8 @@ void results() {
 	int i,j;
 	for(i = 0; i < SIX; i++) {
 		lowest = totalScore[i][0];
-		for(j = (i+1); j < SIX; j++) {
-			if(totalScore[j][0] < lowest) {
+		for(j = (i); j < SIX; j++) {
+			if(totalScore[j][0] <= lowest) {
 				lowest = totalScore[j][0];
 				index = j;
 			}
@@ -608,7 +608,7 @@ void results() {
 		temp = totalScore[i][0];
 		totalScore[i][0] = lowest;
 		totalScore[index][0] = temp;
-		printf("%d\n", totalScore[i][0]);
+		printf("i = %d index = %d score = %d\n", i, index, totalScore[i][0]);
 	}
 }
 
