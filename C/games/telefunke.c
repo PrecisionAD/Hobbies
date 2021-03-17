@@ -31,6 +31,12 @@
 #define SIX 6
 #define MAX_NAME 15 
 
+struct player {
+	char * name;
+	int score;
+};
+
+
 int row = 0;
 int gameRound = 0;
 int totalScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
@@ -73,7 +79,7 @@ FILE * openFile(char *fileName, char *mode) {
 
 	fp = fopen(fileName, mode);
 	if(fp == NULL) {
-		printf("The file requested could not be opened! (line 51)\n");
+		printf("The file requested could not be opened! (openFile function)\n");
 		exit(1);
 	}
 
@@ -506,17 +512,22 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
  * Notes:
  * 		Will ask for the names of each player and 
  * 		store it in the 2D array for later use in 
- * 		the game.
+ * 		the game. We also allocate space for the 
+ * 		player struct and save the names of each
+ * 		player.
  */
-void getNames(char players[SIX][MAX_NAME]) {
+void getNames(char players[SIX][MAX_NAME], struct player * p) {
 
 	int i;
 	int len = 0;
+
 	for(i = 0; i < SIX; i++) {
+		p[i].name = malloc(sizeof(char)+15);
 		printf("Enter player %d: ", i + 1);
 		fgets(*(players + i), 14, stdin);
 		len = strlen(players[i]);
 		players[i][len-1] = '\0';	// Gets rid of the '\n' at the end of each name
+		strcpy(p[i].name, *(players + i));
 	}
 
 	puts("");
@@ -570,7 +581,6 @@ void adjustScore(char players[][MAX_NAME]) {
 }
 
 
-
 /*
  * args:
  * 		None.
@@ -613,6 +623,8 @@ int option() {
 }
 
 
+
+
 /*
  * args:
  * 		None.
@@ -636,7 +648,7 @@ int option() {
  * 		(which is the next score in the array) and start the
  * 		process again.
  */
-void results() {
+void sortResults() {
 	
 	int temp = 0;
 	int lowest = 0;
@@ -658,7 +670,6 @@ void results() {
 		totalScore[index][0] = temp;
 	}
 }
-
 
 
 /*
@@ -691,6 +702,7 @@ void results() {
  */
 void gameStart() {
 
+	struct player p[SIX];
 	char players[SIX][MAX_NAME];
 	char game[7][MAX_NAME] = { "3x3", "3x4", "4x4", "3x3x3",
 															"3x3x4", "3x4x4", "4x4x4" };
@@ -699,7 +711,7 @@ void gameStart() {
 	int done = 0;
 	int menuOption = 0;
 
-	getNames(players);
+	getNames(players, p);
 	writeFile(players);
 
 	do {
@@ -709,10 +721,6 @@ void gameStart() {
 
 		switch(menuOption) {
 			case 1:
-				adjustScore(players);
-				break;
-
-			case 2:
 				enterScores(players, totalScores, game);
 				saveScores(players, totalScores, game);	
 				printTable();
@@ -720,12 +728,16 @@ void gameStart() {
 				puts("\n");
 				break;
 
+			case 2:
+				adjustScore(players);
+				break;
+
 			case 3:
 				printDone();
 				updateFile();
 				printFile();
 				appendNewScores();
-				results();
+				sortResults();
 				remove("temp.txt");
 				done = 1;	
 				break;
