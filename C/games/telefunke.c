@@ -582,20 +582,36 @@ int option() {
 }
 
 
-
+/*
+ * args:
+ * 		None.
+ *
+ * returns:
+ * 		nothing.
+ *
+ * Notes:
+ * 		This will sort the total scores for all players in
+ * 		ascending order to let the players know the difference
+ * 		in points compared to whoever won the game (the player
+ * 		with the lowest amount of points).
+ *
+ * 		The outer loop will start with the first score in the
+ * 		array while the inner for loop will compare the second 
+ * 		element from the array onwards against the current lowest
+ * 		score. After it is done, it will swap places with the 
+ * 		index where the new lowest score was found.
+ *
+ * 		After that, the outer loop will grab the next index 
+ * 		(which is the next score in the array) and start the
+ * 		process again.
+ */
 void results() {
 	
-	totalScore[0][0] = 3;
-	totalScore[1][0] = 210;
-	totalScore[2][0] = 6;
-	totalScore[3][0] = 3;
-	totalScore[4][0] = 3;
-	totalScore[5][0] = 3;
 	int temp = 0;
 	int lowest = 0;
 	int index = -1;
-	
 	int i,j;
+
 	for(i = 0; i < SIX; i++) {
 		lowest = totalScore[i][0];
 		for(j = (i); j < SIX; j++) {
@@ -605,10 +621,10 @@ void results() {
 			}
 		}
 		
+		// Swap the lowest score and place it in new index
 		temp = totalScore[i][0];
 		totalScore[i][0] = lowest;
 		totalScore[index][0] = temp;
-		printf("i = %d index = %d score = %d\n", i, index, totalScore[i][0]);
 	}
 }
 
