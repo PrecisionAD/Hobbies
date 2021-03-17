@@ -615,7 +615,54 @@ int option() {
 
 /*
  * args:
- * 		None. 
+ * 		None.
+ *
+ * returns:
+ * 		nothing.
+ *
+ * Notes:
+ * 		This will sort the total scores for all players in
+ * 		ascending order to let the players know the difference
+ * 		in points compared to whoever won the game (the player
+ * 		with the lowest amount of points).
+ *
+ * 		The outer loop will start with the first score in the
+ * 		array while the inner for loop will compare the second 
+ * 		element from the array onwards against the current lowest
+ * 		score. After it is done, it will swap places with the 
+ * 		index where the new lowest score was found.
+ *
+ * 		After that, the outer loop will grab the next index 
+ * 		(which is the next score in the array) and start the
+ * 		process again.
+ */
+void results() {
+	
+	int temp = 0;
+	int lowest = 0;
+	int index = -1;
+	int i,j;
+
+	for(i = 0; i < SIX; i++) {
+		lowest = totalScore[i][0];
+		for(j = (i); j < SIX; j++) {
+			if(totalScore[j][0] <= lowest) {
+				lowest = totalScore[j][0];
+				index = j;
+			}
+		}
+		
+		// Swap the lowest score and place it in new index
+		temp = totalScore[i][0];
+		totalScore[i][0] = lowest;
+		totalScore[index][0] = temp;
+	}
+}
+
+
+
+/*
+ * args: none. 
  *
  * returns:
  * 		Nothing.
@@ -673,6 +720,7 @@ void gameStart() {
 				updateFile();
 				printFile();
 				appendNewScores();
+				results();
 				remove("temp.txt");
 				done = 1;	
 				break;
