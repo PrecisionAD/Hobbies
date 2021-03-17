@@ -683,6 +683,11 @@ void results() {
  * 		file will be copied to the scores.txt, the final scores
  * 		will be printed one last time and the temp.txt file will
  * 		be deleted from the directory as part of the clean up.
+ *		append them to the file, and finally we print the current
+ *		table with all the scores.
+ *		
+ *		In the end, the players will be able to see who won and
+ *		the point difference.
  */
 void gameStart() {
 
