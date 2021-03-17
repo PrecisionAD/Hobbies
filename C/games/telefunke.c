@@ -646,6 +646,9 @@ void results() {
  *		If yes, we will ask for the new scores for each player, 
  *		append them to the file, and finally we print the current
  *		table with all the scores.
+ *		
+ *		In the end, the players will be able to see who won and
+ *		the point difference.
  */
 void gameStart() {
 
