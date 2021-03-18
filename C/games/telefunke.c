@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.5.2
+ * v1.6
  */
 
 
@@ -31,11 +31,11 @@
 #define SIX 6
 #define MAX_NAME 15 
 
+// To compare who won at the end
 struct player {
 	char * name;
 	int score;
 };
-
 
 int row = 0;
 int gameRound = 0;
@@ -627,6 +627,21 @@ int option() {
 }
 
 
+/*
+ * args: @p is the pointer for the player struct
+ *
+ * returns:
+ * 		Nothing.
+ *
+ * Notes:
+ * 		Display the difference in points compared to the 
+ * 		player with the least amount of points after the
+ * 		game has ended. We use the totalScore array (which
+ * 		should have the scores sorted in ascending order)
+ * 		and compare them against the scores in the struct 
+ * 		for each player. If it matches, we simply subtract
+ * 		that player's points against the best player.
+ */
 void printDifference(struct player *p) {
 
 	int i, j;
