@@ -408,7 +408,7 @@ int askInput(char *buffer) {
  * 		the player has not been updated and a 1 if player
  * 		was updated).
  */
-void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME]) {
+void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAME], struct player *p) {
 
 	int done = 0;
 	int allDone = 0;
@@ -438,6 +438,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 				fgets(option, 6, stdin);
 				points = atoi(option);
 			
+				p[selectedOption - 1].score += points;      // Update player struct score
 				totalScores[selectedOption - 1] += points; 	// Update points for the player
 				selected[selectedOption - 1] = 1; 					// Mark player as updated
 				allDone++;																	// Update master count for loop
@@ -446,6 +447,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 				printf("Is the score correct? ");
 				fgets(buffer, 5, stdin);
 				if(strcmp(buffer, "no\n") == 0 || strcmp(buffer, "n\n") == 0) {
+					p[selectedOption - 1].score -= points;    // Reset player struct score
 					totalScores[selectedOption - 1] -= points;// Reset points
 					selected[selectedOption - 1] = 0;					// Unmark player
 					allDone--;																// Reset master count
@@ -521,8 +523,10 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 	int i;
 	int len = 0;
 
+	// Get names and initialize the player struct at the same time
 	for(i = 0; i < SIX; i++) {
 		p[i].name = malloc(sizeof(char)+15);
+		p[i].score = 0;
 		printf("Enter player %d: ", i + 1);
 		fgets(*(players + i), 14, stdin);
 		len = strlen(players[i]);
@@ -623,6 +627,20 @@ int option() {
 }
 
 
+void printDifference(struct player *p) {
+
+	int i, j;
+
+	printf("\nPoints difference:\n");
+
+	for(i = 0; i < SIX; i++) {
+		for(j = 0; j < SIX; j++) {
+			if(p[j].score == totalScore[i][0]) {
+				printf("%d) %-8s +%-3d points \n", (i+1), p[j].name, p[j].score - totalScore[0][0]);
+			}
+		}
+	}
+}
 
 
 /*
@@ -663,6 +681,8 @@ void sortResults() {
 				index = j;
 			}
 		}
+
+		//printf("name is %s points %d\n", p[i].name, totalScore[i][0]);
 		
 		// Swap the lowest score and place it in new index
 		temp = totalScore[i][0];
@@ -721,7 +741,7 @@ void gameStart() {
 
 		switch(menuOption) {
 			case 1:
-				enterScores(players, totalScores, game);
+				enterScores(players, totalScores, game, p);
 				saveScores(players, totalScores, game);	
 				printTable();
 				scoreDiff(players);
@@ -738,6 +758,7 @@ void gameStart() {
 				printFile();
 				appendNewScores();
 				sortResults();
+				printDifference(p);
 				remove("temp.txt");
 				done = 1;	
 				break;
