@@ -33,3 +33,7 @@ v1.5.1 - 02/11/2021
 
 v1.5.2 - 02/15/2021
 - Fixed a logic error in the main game loop that prevented the game from ending after all rounds were completed.
+
+v1.6 - 03/17/2021
+- Created new sortResults() to sort the total scores in ascending order just so we can print at the end of the game the point differences between the players.
+- Created new printDifferences() to print the differences in points from each players against the best player (the one who has the least amount of points).
