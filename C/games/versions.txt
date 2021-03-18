@@ -37,3 +37,6 @@ v1.5.2 - 02/15/2021
 v1.6 - 03/17/2021
 - Created new sortResults() to sort the total scores in ascending order just so we can print at the end of the game the point differences between the players.
 - Created new printDifferences() to print the differences in points from each players against the best player (the one who has the least amount of points).
+
+v1.6.1 - 03/18/2021
+- Changed struct name variable from char pointer to char array to avoid having to call free() at the end of the game. Because of that, changed the logic (deleted the malloc call in getNames() for the variable names in the player struct) to make it simpler.
