@@ -33,7 +33,7 @@
 
 // To compare who won at the end
 struct player {
-	char * name;
+	char name[15];
 	int score;
 };
 
@@ -276,6 +276,55 @@ void printDividers() {
 
 
 /*
+ * args:
+ * 		None.
+ *
+ * returns:
+ * 		nothing.
+ *
+ * Notes:
+ * 		This will sort the total scores for all players in
+ * 		ascending order to let the players know the difference
+ * 		in points compared to whoever won the game (the player
+ * 		with the lowest amount of points).
+ *
+ * 		The outer loop will start with the first score in the
+ * 		array while the inner for loop will compare the second 
+ * 		element from the array onwards against the current lowest
+ * 		score. After it is done, it will swap places with the 
+ * 		index where the new lowest score was found.
+ *
+ * 		After that, the outer loop will grab the next index 
+ * 		(which is the next score in the array) and start the
+ * 		process again.
+ */
+void sortResults() {
+	
+	int temp = 0;
+	int lowest = 0;
+	int index = -1;
+	int i,j;
+
+	for(i = 0; i < SIX; i++) {
+		lowest = totalScore[i][0];
+		for(j = (i); j < SIX; j++) {
+			if(totalScore[j][0] <= lowest) {
+				lowest = totalScore[j][0];
+				index = j;
+			}
+		}
+
+		// Swap the lowest score and place it in new index
+		temp = totalScore[i][0];
+		totalScore[i][0] = lowest;
+		totalScore[index][0] = temp;
+
+	}
+
+}
+
+
+/*
  * args: @players contains the names of the player.
  * 			 @totalScores contains the scores for the players
  *
@@ -297,6 +346,9 @@ void scoreDiff(char players[][MAX_NAME]) {
 	int indexLow = 0;
 	int indexHigh = 0;
 
+	// To always have the scores sorted before printing difference
+	sortResults();
+
 	lowestScore[0] = totalScore[0][0]; // Start comparing from index 0
 	highestScore[0] = totalScore[0][0];
 
@@ -317,8 +369,8 @@ void scoreDiff(char players[][MAX_NAME]) {
 	for(i = 0; i < SIX; i++) {
 		if(totalScore[i][0] < 0) { continue; }
 		printf("%d) %-7s +%d", (i + 1), players[i], totalScore[i][0] - lowestScore[0]);
-		if(i == indexHigh) { printf("☠ "); } // For lowest score
-		if(i == indexLow) { printf("⭐"); }  // For winning player
+		if(i == indexHigh) { printf(" ☠ "); } // For lowest score
+		if(i == indexLow) { printf(" ⭐"); }  // For winning player
 		puts("");
 	}
 }
@@ -525,7 +577,6 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 
 	// Get names and initialize the player struct at the same time
 	for(i = 0; i < SIX; i++) {
-		p[i].name = malloc(sizeof(char)+15);
 		p[i].score = 0;
 		printf("Enter player %d: ", i + 1);
 		fgets(*(players + i), 14, stdin);
@@ -648,62 +699,13 @@ void printDifference(struct player *p) {
 
 	printf("\nPoints difference:\n");
 
+	/* Print the difference */
 	for(i = 0; i < SIX; i++) {
-		for(j = 0; j < SIX; j++) {
-			if(p[j].score == totalScore[i][0]) {
-				printf("%d) %-8s +%-3d points \n", (i+1), p[j].name, p[j].score - totalScore[0][0]);
-			}
-		}
+		printf("%d) %-7s +%d", (i + 1), p[i].name, totalScore[i][0] - p[0].score);
+		if(toalScore[i][0] - p[0].score == 0) { printf(" ⭐"); }  // For winning player
+		puts("");
 	}
-}
 
-
-/*
- * args:
- * 		None.
- *
- * returns:
- * 		nothing.
- *
- * Notes:
- * 		This will sort the total scores for all players in
- * 		ascending order to let the players know the difference
- * 		in points compared to whoever won the game (the player
- * 		with the lowest amount of points).
- *
- * 		The outer loop will start with the first score in the
- * 		array while the inner for loop will compare the second 
- * 		element from the array onwards against the current lowest
- * 		score. After it is done, it will swap places with the 
- * 		index where the new lowest score was found.
- *
- * 		After that, the outer loop will grab the next index 
- * 		(which is the next score in the array) and start the
- * 		process again.
- */
-void sortResults() {
-	
-	int temp = 0;
-	int lowest = 0;
-	int index = -1;
-	int i,j;
-
-	for(i = 0; i < SIX; i++) {
-		lowest = totalScore[i][0];
-		for(j = (i); j < SIX; j++) {
-			if(totalScore[j][0] <= lowest) {
-				lowest = totalScore[j][0];
-				index = j;
-			}
-		}
-
-		//printf("name is %s points %d\n", p[i].name, totalScore[i][0]);
-		
-		// Swap the lowest score and place it in new index
-		temp = totalScore[i][0];
-		totalScore[i][0] = lowest;
-		totalScore[index][0] = temp;
-	}
 }
 
 
