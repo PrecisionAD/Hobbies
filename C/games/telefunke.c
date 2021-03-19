@@ -322,6 +322,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 
 	}
 
+	printf("Points difference:\n");
 	
 	/* Print the difference */
 	for(i = 0; i < SIX; i++) {
@@ -432,7 +433,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 	int done = 0;
 	int allDone = 0;
 	int points = 0;
-	int selectedOption = 0;
+	int index = 0;
 	int selected[6] = { 0, 0, 0, 0, 0, 0 };
 	char option[6];
 	char buffer[5];
@@ -448,28 +449,28 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 		printPlayers(selected, players);
 
 		// Ask for player name to be updated
-		selectedOption = askInput(option);
+		index = askInput(option);
 
-		if(selectedOption > 0 && selectedOption < 7) {
+		if(index > 0 && index < 7) {
 			// Check if player was updated already
-			if(selected[selectedOption - 1] == 0) {
-				printf("Enter new score for %s: ", players[selectedOption - 1]);
+			if(selected[index - 1] == 0) {
+				printf("Enter new score for %s: ", players[index - 1]);
 				fgets(option, 6, stdin);
 				points = atoi(option);
 			
-				p[selectedOption - 1].score += points;      // Update player struct score
-				totalScores[selectedOption - 1] += points; 	// Update points for the player
-				selected[selectedOption - 1] = 1; 					// Mark player as updated
-				allDone++;																	// Update master count for loop
+				p[index - 1].score += points;     // Update player struct score
+				totalScores[index - 1] += points; // Update points for the player
+				selected[index - 1] = 1; 					// Mark player as updated
+				allDone++;												// Update master count for loop
 
 				// Let's confirm if points entered are correct
 				printf("Is the score correct? ");
 				fgets(buffer, 5, stdin);
 				if(strcmp(buffer, "no\n") == 0 || strcmp(buffer, "n\n") == 0) {
-					p[selectedOption - 1].score -= points;    // Reset player struct score
-					totalScores[selectedOption - 1] -= points;// Reset points
-					selected[selectedOption - 1] = 0;					// Unmark player
-					allDone--;																// Reset master count
+					p[index - 1].score -= points;      // Reset player struct score
+					totalScores[index - 1] -= points;  // Reset points
+					selected[index - 1] = 0;					 // Unmark player
+					allDone--;                         // Reset master count
 					puts("");
 				}
 			}
