@@ -57,9 +57,9 @@ int totalScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
  */
 void printDone() {
 	
-	printf("\n\n\n****************\n");
-	printf("* FINAL SCORES *\n");
-	printf("****************");
+	printf("\n\n\n%40s\n", "****************");
+	printf("%40s\n", "* FINAL SCORES *");
+	printf("%40s", "****************");
 
 }
 
@@ -278,7 +278,7 @@ void printDividers() {
 
 /*
  * args: @players contains the names of the player.
- * 			 @totalScores contains the scores for the players
+ * 			 @p is the pointer to the player struct
  *
  * returns:
  * 		Nothing.
@@ -333,9 +333,9 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 				p[j].flag = 1;
 
 				// "Marks" a player as printed already
-				if(i > 0) {
+				/*if(i > 0) {
 					tempScore[i][0] = -1;
-				}
+				}*/
 				puts("");
 			}
 		}
@@ -346,8 +346,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 
 /*
  * args: @players contains the names of the player.
- * 			 @totalScores contains the scores for the players
- * 			 @game contains the round type currently in play.
+ * 			 @selected contains the 'tags' for a player 
  *
  * returns: 
  * 		Nothing.
@@ -412,6 +411,7 @@ int askInput(char *buffer) {
  * args: @players contains the names of the players.
  * 			 @totalScores contains the scores for the players.
  * 			 @game contains the round type currently in play.
+ *			 @p is the pointer to the player struct.
  *
  * returns:
  * 		Nothing.
@@ -491,7 +491,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 
 /*
  * args: @players contains the names of the players.
- * 			 @totalScores contains the scores for the players.
+ * 			 @currentScore contains the scores for the players.
  * 			 @game contains the round type currently in play.
  * 
  * returns:
@@ -527,6 +527,7 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 
 /*
  * args: @players holds the player names.
+ * 			 @p is the pointer to the player struct.
  *
  * returns:
  * 		Nothing.
@@ -534,9 +535,8 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
  * Notes:
  * 		Will ask for the names of each player and 
  * 		store it in the 2D array for later use in 
- * 		the game. We also allocate space for the 
- * 		player struct and save the names of each
- * 		player.
+ * 		the game. We also initialize the player 
+ * 		struct and save the names of each player.
  */
 void getNames(char players[SIX][MAX_NAME], struct player * p) {
 
@@ -560,6 +560,7 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 
 /*
  * args: @players contains the names of the players.
+ * 			 @p is the pointer to the new struct.
  *
  * returns: 
  * 		Nothing.
@@ -567,8 +568,10 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
  * Notes:
  * 		Let the players adjust their scores if a mistake was
  * 		made after each round. This can be done at any time.
+ * 		Both the global array and the player struct are
+ * 		updated with the new score.
  */
-void adjustScore(char players[][MAX_NAME]) {
+void adjustScore(char players[][MAX_NAME], struct player *p) {
 	
 	int i;
 	int done = 0;
@@ -599,6 +602,7 @@ void adjustScore(char players[][MAX_NAME]) {
 	fgets(buffer, 9, stdin);
 	newScore = atoi(buffer);
 	totalScore[i - 1][0] = newScore;
+	p[i - 1].score = newScore;
 	printf("\nNew score of %d pts for player %s was updated.\n\n", totalScore[i - 1][0], players[i - 1]);
 	sleep(2);
 
@@ -705,7 +709,7 @@ void gameStart() {
 				break;
 
 			case 2:
-				adjustScore(players);
+				adjustScore(players, p);
 				break;
 
 			case 3:
