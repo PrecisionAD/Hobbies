@@ -44,3 +44,6 @@ v1.6.1 - 03/18/2021
 v1.7 - 03/19/2021
 - Reworked scoreDiff() to first sort the scores in a temp array and then use it to print the names in order compared to winning player.
 - Deleted sortResults() and printDifference().
+
+v1.7.1 - 03/19/2021
+- Updated the way a score was modified to affect the player struct as well as the global array of scores when a manual correction was made.
