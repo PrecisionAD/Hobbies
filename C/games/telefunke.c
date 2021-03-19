@@ -292,7 +292,10 @@ void printDividers() {
  */
 void scoreDiff(char players[][MAX_NAME], struct player *p) {
 
-	int i = 0;
+	int i, j;
+	int temp = 0;
+	int lowest = 0;
+	int index = -1;
 	int tempScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
 
 	// Copy the scores to display them later in order
@@ -300,11 +303,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 		tempScore[i][0] = totalScore[i][0];
 	}
 	
-	int temp = 0;
-	int lowest = 0;
-	int index = -1;
-	int j;
-
+	// Sort the scores and reset the player flag to avoid printing double
 	for(i = 0; i < SIX; i++) {
 		lowest = tempScore[i][0];
 		p[i].flag = 0;
@@ -324,7 +323,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 
 	printf("Points difference:\n");
 	
-	/* Print the difference */
+	/* Print the difference in points */
 	for(i = 0; i < SIX; i++) {
 		for(j = 0; j < SIX; j++) {
 			if(p[j].score == tempScore[i][0] && p[j].flag == 0) {
@@ -333,6 +332,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 				if(i == 5) { printf(" ☠ "); } // For lowest score
 				p[j].flag = 1;
 
+				// "Marks" a player as printed already
 				if(i > 0) {
 					tempScore[i][0] = -1;
 				}
