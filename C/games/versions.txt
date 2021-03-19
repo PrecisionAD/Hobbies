@@ -40,3 +40,7 @@ v1.6 - 03/17/2021
 
 v1.6.1 - 03/18/2021
 - Changed struct name variable from char pointer to char array to avoid having to call free() at the end of the game. Because of that, changed the logic (deleted the malloc call in getNames() for the variable names in the player struct) to make it simpler.
+
+v1.7 - 03/19/2021
+- Reworked scoreDiff() to first sort the scores in a temp array and then use it to print the names in order compared to winning player.
+- Deleted sortResults() and printDifference().
