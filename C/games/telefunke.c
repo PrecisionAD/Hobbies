@@ -330,12 +330,8 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 				printf("%d) %-7s +%d", (i + 1), p[j].name, tempScore[i][0] - tempScore[0][0]);
 				if(i == 0) { printf(" ⭐"); }  // For winning player
 				if(i == 5) { printf(" ☠ "); } // For lowest score
-				p[j].flag = 1;
+				p[j].flag = 1; // Marks a player as printed already
 
-				// "Marks" a player as printed already
-				/*if(i > 0) {
-					tempScore[i][0] = -1;
-				}*/
 				puts("");
 			}
 		}
@@ -550,7 +546,7 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 		printf("Enter player %d: ", i + 1);
 		fgets(*(players + i), 14, stdin);
 		len = strlen(players[i]);
-		players[i][len-1] = '\0';	// Gets rid of the '\n' at the end of each name
+		players[i][len-1] = '\0';	// Gets rid of the '\n' at the end of each name to avoid issues
 		strcpy(p[i].name, *(players + i));
 	}
 
