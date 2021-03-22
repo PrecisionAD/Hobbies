@@ -457,14 +457,14 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 		index = askInput(option);
 
 		if(index > 0 && index < 7) {
-			// Check if player was updated already
+			// If index at selected[] is 1, player was updated already
 			if(selected[index - 1] == 0) {
 				printf("Enter new score for %s: ", players[index - 1]);
 				fgets(option, 6, stdin);
 				points = atoi(option);
 			
 				p[index - 1].score += points;     // Update player struct score
-				totalScores[index - 1] += points; // Update points for the player
+				totalScores[index - 1] += points; // Update global points for the player
 				selected[index - 1] = 1; 					// Mark player as updated
 				allDone++;												// Update master count for loop
 
@@ -517,7 +517,7 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 	/* Loop to update the scores. */
 	for(i = 0; i < SIX; i++) {
 		fprintf(fp, "| %-7d", currentScore[i]);
-		totalScore[i][0] = (currentScore[i] + totalScore[i][0]);
+		totalScore[i][0] = (currentScore[i] + totalScore[i][0]); // Update global score array
 		currentScore[i] = 0;
 	}
 	
@@ -550,13 +550,15 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 
 	// Get names and initialize the player struct at the same time
 	for(i = 0; i < SIX; i++) {
-		p[i].score = 0;
-		p[i].flag = 0;
 		printf("Enter player %d: ", i + 1);
 		fgets(*(players + i), 14, stdin);
 		len = strlen(players[i]);
-		players[i][len-1] = '\0';	// Gets rid of the '\n' at the end of each name to avoid issues
+		players[i][len-1] = '\0';	// Avoid issues when printing the table
+
+		// Now init the player struct
 		strcpy(p[i].name, *(players + i));
+		p[i].score = 0;
+		p[i].flag = 0;
 	}
 
 	puts("");
@@ -599,7 +601,7 @@ void adjustScore(char players[][MAX_NAME], struct player *p) {
 
 	} while(done != 1);
 
-	i = option; // To have a more readable array
+	i = option; // To have a more readable array in the next print statements
 
 	// Adjust the score
 	printf("\nThe current score for %s is %d pts\n", players[i - 1], totalScore[i - 1][0]);
@@ -689,8 +691,7 @@ void gameStart() {
 
 	struct player p[SIX];
 	char players[SIX][MAX_NAME];
-	char game[7][MAX_NAME] = { "3x3", "3x4", "4x4", "3x3x3",
-															"3x3x4", "3x4x4", "4x4x4" };
+	char game[7][MAX_NAME] = { "3x3", "3x4", "4x4", "3x3x3", "3x3x4", "3x4x4", "4x4x4" }; // Rounds
 	int totalScores[SIX] = { 0, 0, 0, 0, 0, 0 };
 	int round = 0;
 	int done = 0;
