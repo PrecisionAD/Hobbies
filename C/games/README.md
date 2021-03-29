@@ -40,8 +40,8 @@ The intention is to win a round and this is done when you end up with no cards. 
 
 <ul>
 
-<li>The ace is 15 points</li>
-<li>The number 2 (black denominations) are 2 points. Red denominations are 20 points</li>
+<li>The number 1 (ace) is 15 points</li>
+<li>The number 2 (black denominations) is 2 points. Red denominations are 20 points</li>
 <li>From number 3 to number 10, they are all their number value</li>
 <li>Jack is 10 points</li>
 <li>Queen is 10 points</li>
