@@ -38,8 +38,13 @@ struct player {
 	int flag;
 };
 
+// To save a table divider after each round is played
 int row = 0;
+
+// To know which round is currently being played
 int gameRound = 0;
+
+// To manipulate the scores on the fly without affecting the structs
 int totalScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
 
 
@@ -330,7 +335,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 			if(p[j].score == tempScore[i][0] && p[j].flag == 0) {
 				printf("%d) %-7s +%d", (i + 1), p[j].name, tempScore[i][0] - tempScore[0][0]);
 
-			  // More stars means the winning player has a big margin in points
+			  // More stars means the winning player has a biger margin in points
 				if(stars == 0) {
 					if((tempScore[1][0] - tempScore[0][0]) > 250) { printf(" ⭐⭐⭐"); }
 					else if((tempScore[1][0] - tempScore[0][0]) >= 150) { printf(" ⭐⭐"); }
