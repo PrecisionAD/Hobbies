@@ -4,6 +4,7 @@ The game is rather simple: it keeps the scores of up to 6 players by printing a 
 
 <br>
 <br>
+<br>
 
 
 <h3>How to Play</h3>
