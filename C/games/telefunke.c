@@ -29,7 +29,14 @@
 #include <unistd.h>
 
 #define SIX 6
-#define MAX_NAME 15 
+#define MAX_NAME 15
+
+#define RESET "\033[0m"
+#define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
+#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
+#define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
+#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
+#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
 
 // To compare who won at the end
 struct player {
@@ -452,6 +459,8 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
 	printf("╚═════════╝\n");
 	
+	printf("If the round is over, it's time to update those scores!\n\n");
+
 	while(done != 1) {
 		printf("\nUpdate score for which player?\n");
 
@@ -472,6 +481,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 				totalScores[index - 1] += points; // Update global points for the player
 				selected[index - 1] = 1; 					// Mark player as updated
 				allDone++;												// Update master count for loop
+				printf(BOLDGREEN "Player %s updated!\n\n" RESET, p[index - 1].name);
 
 				// Let's confirm if points entered are correct
 				printf("Is the score correct? ");
@@ -485,7 +495,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 				}
 			}
 			else {
-				printf("That players has already been updated!\n");
+				printf(BOLDMAGENTA"\nThat player has already been updated! Pick another one!\n" RESET);
 			}
 		}
 		else {
