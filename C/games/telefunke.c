@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.7.1
+ * v1.7.2
  */
 
 
@@ -381,22 +381,22 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 void printPlayers(int *selected, char players[][MAX_NAME]) {
 
 	if(selected[0] != 1) { printf("1) %s\n", players[0]); }
-	else { printf("1) %s ✓\n", players[0]); }
+	else { printf("1) %s" BOLDGREEN " ✓\n" RESET, players[0]); }
 
 	if(selected[1] != 1) { printf("2) %s\n", players[1]); }
-	else { printf("2) %s ✓\n", players[1]); }
+	else { printf("2) %s" BOLDGREEN " ✓\n" RESET, players[1]); }
 
 	if(selected[2] != 1) { printf("3) %s\n", players[2]); }
-	else { printf("3) %s ✓\n", players[2]); }
+	else { printf("3) %s" BOLDGREEN " ✓\n" RESET, players[2]); }
 		
-	if(selected[3] != 1) { printf("4) %s\n", players[3]); }
-	else { printf("4) %s ✓\n", players[3]); }
+	if(selected[3] != 1) { printf("4) %s\n" RESET, players[3]); }
+	else { printf("4) %s" BOLDGREEN " ✓\n" RESET, players[3]); }
 		
-	if(selected[4] != 1) { printf("5) %s\n", players[4]); }
-	else { printf("5) %s ✓\n", players[4]); }
+	if(selected[4] != 1) { printf("5) %s\n" RESET, players[4]); }
+	else { printf("5) %s" BOLDGREEN " ✓\n" RESET, players[4]); }
 		
-	if(selected[5] != 1) { printf("6) %s", players[5]); }
-	else { printf("6) %s ✓", players[5]); }
+	if(selected[5] != 1) { printf("6) %s" , players[5]); }
+	else { printf("6) %s" BOLDGREEN " ✓" RESET, players[5]); }
 
 	puts("");
 }
@@ -491,7 +491,8 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 					totalScores[index - 1] -= points;  // Reset points
 					selected[index - 1] = 0;					 // Unmark player
 					allDone--;                         // Reset master count
-					puts("");
+					printf(BOLDGREEN "Changes were reverted back!\n" RESET);
+					sleep(1);
 				}
 			}
 			else {
