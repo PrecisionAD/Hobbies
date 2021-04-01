@@ -48,3 +48,7 @@ v1.7 - 03/19/2021
 v1.7.1 - 03/19/2021
 - Updated the way a score was modified to affect the player struct as well as the global array of scores when a manual correction was made.
 - Added feature that displays more stars depending on the point difference between the second best player and the best player.
+
+v1.7.2 - 04/01/2021
+- Added comments to for clarity when printing certain values such as points.
+- Added new colors when printing output to alert the user that changes were either ok or they need attention.
