@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.7.2
+ * v1.7.3
  */
 
 
@@ -455,11 +455,11 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 	char option[6];
 	char buffer[5];
 
-	printf("╔═════════╗\n");
-	printf("║ %-6s  ║ <=== Game you are currently playing!\n", game[gameRound++]);
-	printf("╚═════════╝\n");
+	printf(BOLDBLUE "╔═════════╗\n" RESET);
+	printf(BOLDBLUE "║ %-6s  ║ <=== Game you are currently playing!\n" RESET, game[gameRound++]);
+	printf(BOLDBLUE "╚═════════╝\n" RESET);
 	
-	printf("If the round is over, it's time to update those scores!\n\n");
+	printf("\nIf the round is over, it's time to update those scores!\n");
 
 	while(done != 1) {
 		printf("\nUpdate score for which player?\n");
@@ -766,9 +766,19 @@ void gameStart() {
  */ 		
 int main() {
 
-	printf("┌---------------------------┐\n");
-	printf("| Are you ready? Telefunke! |\n");
-	printf("└---------------------------┘\n\n");
+	printf(BOLDYELLOW "┌-----------------------------------------┐\n" RESET);
+	usleep(150000);
+	printf(BOLDYELLOW "|            Are you ready?               |\n" RESET);
+	usleep(150000);
+	printf(BOLDYELLOW "|                                         |\n" RESET);
+	usleep(150000);
+	printf(BOLDYELLOW "| Only one player will end up triumphant! |\n" RESET);
+	usleep(150000);
+	printf(BOLDYELLOW "|                                         |\n" RESET);
+	usleep(150000);
+	printf(BOLDYELLOW "|           Will it be you?               |\n" RESET);
+	usleep(150000);
+	printf(BOLDYELLOW "└-----------------------------------------┘\n\n" RESET);
 
 	gameStart();
 	puts("\n");
