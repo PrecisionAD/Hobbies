@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.7.3
+ * v1.7.4
  */
 
 
@@ -31,7 +31,8 @@
 #define SIX 6
 #define MAX_NAME 15
 
-#define RESET "\033[0m"
+#define RESET       "\033[0m"
+#define BLUE        "\033[0;34m"           /* Blue */
 #define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
 #define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
 #define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
@@ -185,7 +186,7 @@ void updateFile() {
 	}
 
 	fprintf(fp, "%s", "|Total Scores");
-	fprintf(fp, "%s", "\n└--------┴--------┴--------┴--------┴--------┴--------┘\n");
+	fprintf(fp, BOLDBLUE "%s" RESET, "\n└--------┴--------┴--------┴--------┴--------┴--------┘\n");
 
 	fclose(fp);
 
@@ -222,7 +223,7 @@ void printTable() {
 	}
 
 	puts("|Current Total");
-	printf("%s", "└--------┴--------┴--------┴--------┴--------┴--------┘\n");
+	printf(BOLDBLUE "%s" RESET, "└--------┴--------┴--------┴--------┴--------┴--------┘\n");
 
 	fclose(fp);
 
@@ -247,17 +248,17 @@ void writeFile(char players[][MAX_NAME]) {
 
 	fp = openFile("temp.txt", "a");
 
-	fprintf(fp, "%s", "\n\n┌--------┐\n");
+	fprintf(fp, BOLDBLUE "%s" RESET, "\n\n┌--------┐\n");
 	fprintf(fp, "%s", "| TABLE  | \n");
-	fprintf(fp, "%s", "├--------┼--------┬--------┬--------┬--------┬--------┐\n");
+	fprintf(fp, BOLDBLUE "%s" RESET, "├--------┼--------┬--------┬--------┬--------┬--------┐\n");
 
 	/* Save players names to the file. */
 	for(i = 0; i < SIX; i++) {
-		fprintf(fp, "%c %-7s", '|', players[i]);
+		fprintf(fp, "%c" BOLDMAGENTA " %-7s"RESET, '|', players[i]);
 	}
 	
-	fprintf(fp, "%s", "|");
-	fprintf(fp, "%s", "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
+	fprintf(fp, BOLDBLUE "%s" RESET, "|");
+	fprintf(fp, BOLDBLUE "%s" RESET, "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
 
 	fclose(fp);
 
@@ -281,7 +282,7 @@ void printDividers() {
 
 	fp = openFile("temp.txt", "a");
 
-	fprintf(fp, "%s", "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
+	fprintf(fp, BOLDBLUE "%s" RESET, "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
 
 	fclose(fp);
 
@@ -539,7 +540,7 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 	
 	fprintf(fp, "%s", "|");
 	fprintf(fp, "%s", game[row++]);
-	fprintf(fp, "%s", "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
+	fprintf(fp, BOLDBLUE "%s" RESET, "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
 
 	fclose(fp);
 
