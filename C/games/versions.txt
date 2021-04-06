@@ -52,3 +52,6 @@ v1.7.1 - 03/19/2021
 v1.7.2 - 04/01/2021
 - Added comments to for clarity when printing certain values such as points.
 - Added new colors when printing output to alert the user that changes were either ok or they need attention.
+
+v1.7.4 - 04/05/2021
+- Now the score table prints in color as well as the names.
