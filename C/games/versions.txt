@@ -55,3 +55,30 @@ v1.7.2 - 04/01/2021
 
 v1.7.4 - 04/05/2021
 - Now the score table prints in color as well as the names.
+
+v1.7.5 - 04/06/2021
+- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+
+	v1.7.5 - 04/06/2021
+	- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+
+		v1.7.5 - 04/06/2021
+		- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+
+			v1.7.5 - 04/06/2021
+			- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+
+				v1.7.5 - 04/06/2021
+				- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+
+					v1.7.5 - 04/06/2021
+					- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+
+						v1.7.5 - 04/06/2021
+						- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+
+							v1.7.5 - 04/06/2021
+							- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+
+								v1.7.5 - 04/06/2021
+								- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
