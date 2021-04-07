@@ -120,7 +120,7 @@ int main(int argc, char *argv[]) {
 	// Delete the extracted.txt file
 	remove("extracted.txt");
 
-	return  0;
+	return 0;
 
 } //end main
 
@@ -319,10 +319,11 @@ void adjust(int *offset, int *choice) {
 	int num = 0;
 
 	while(fgets(buffer, 15, fp) != NULL) {
-		token = strtok(buffer, "");						// Get content from buffer
-		buffer[strlen(buffer)-1] = '\0';			// Get rid of '\n' at the end
+		token = strtok(buffer, "");						// Read first set of numbers
+		buffer[strlen(buffer)-1] = '\0';			// Get rid of '\n' to avoid issues when adjusting
 		int originalLen = strlen(buffer);			// Get original length to place zeros back
 
+		// Here we make the adjustment
 		num = atoi(token);
 		if(*choice == 1) {
 			num = num + *offset;
@@ -330,6 +331,7 @@ void adjust(int *offset, int *choice) {
 		else {
 			num = num - *offset;
 		}
+
 		sprintf(adjusted, "%d", num);
 		
 		/* Here, this is what happens: if the number before adjustment 
