@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.7.4
+ * v1.7.5
  */
 
 
@@ -601,6 +601,17 @@ void adjustScore(char players[][MAX_NAME], struct player *p) {
 	int option = 0;
 	int newScore = 0;
 	char buffer[10];
+
+	// Check that at least one round has been played
+	int sum = 0;
+	for(i = 0; i < SIX; i++) {
+		sum += totalScore[i][0];
+	}
+
+	if(!sum) {
+		printf(BOLDMAGENTA "\nPerhaps play a round first? All scores are currently 0!\n" RESET);
+		return;
+	}
 
 	// Print all players
 	printf("\nAdjust score for which player?\n");
