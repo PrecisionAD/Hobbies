@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.7.5
+ * v1.7.6
  */
 
 
@@ -342,9 +342,9 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 			if(p[j].score == tempScore[i][0] && p[j].flag == 0) {
 				printf("%d) %-7s +%d", (i + 1), p[j].name, tempScore[i][0] - tempScore[0][0]);
 
-			  // More stars means the winning player has a biger margin in points
+			  // More stars means the winning player has a bigger margin in points to second place
 				if(stars == 0) {
-					if((tempScore[1][0] - tempScore[0][0]) > 250) { printf(" ⭐⭐⭐"); }
+					if((tempScore[1][0] - tempScore[0][0]) > 240) { printf(" ⭐⭐⭐"); }
 					else if((tempScore[1][0] - tempScore[0][0]) >= 150) { printf(" ⭐⭐"); }
 					else if(i == 0) { printf(" ⭐"); }  
 					stars = 1;
