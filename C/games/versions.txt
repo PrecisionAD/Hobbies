@@ -59,26 +59,6 @@ v1.7.4 - 04/05/2021
 v1.7.5 - 04/06/2021
 - Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
 
-	v1.7.5 - 04/06/2021
-	- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
-
-		v1.7.5 - 04/06/2021
-		- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
-
-			v1.7.5 - 04/06/2021
-			- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
-
-				v1.7.5 - 04/06/2021
-				- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
-
-					v1.7.5 - 04/06/2021
-					- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
-
-						v1.7.5 - 04/06/2021
-						- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
-
-							v1.7.5 - 04/06/2021
-							- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
-
-								v1.7.5 - 04/06/2021
-								- Added an extra check when trying to adjust a player's points when all scores are 0 (no round has been played yet).
+v1.7.6 - 04/07/2021
+- Fixed a typo in the comments.
+- Adjusted the points needed to display more stars for the winning player.
