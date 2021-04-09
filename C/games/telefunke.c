@@ -773,7 +773,9 @@ void gameStart() {
  * 		Nothing.
  *
  * Notes:
- * 		Main menu that calls the start of the game.
+ * 		Main menu that calls the start of the game. The usleep 
+ * 		has the intention to present the greeting menu from top 
+ * 		to bottom as an animation.
  */ 		
 int main() {
 
