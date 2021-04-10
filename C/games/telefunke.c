@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.7.7
+ * v1.7.8
  */
 
 
@@ -216,9 +216,17 @@ void printTable() {
 		printf("%s", buffer);
 	}
 	
-	/* Add the total scores at the bottom of the table */
-	for(i = 0; i < SIX; i++) {
-		printf("| %-7d", totalScore[i][0]);
+	/* Display 0's if no round has been played */
+	if(gameRound == 0) {
+		for(i = 0; i < SIX; i++) {
+			printf("| %-7d", 0);
+		}
+	}
+	else {
+		/* Add the total scores at the bottom of the table */
+		for(i = 0; i < SIX; i++) {
+			printf("| %-7d", totalScore[i][0]);
+		}
 	}
 
 	puts("|Current Total");
@@ -672,7 +680,7 @@ int option() {
 		option = askInput(buffer);
 
 		// Check if input is valid 
-		if(option < 1 || option > 3) {
+		if(option < 1 || option > 4) {
 			printf("\nThat's an invalid option! Try again!\n");
 		}
 		else {
@@ -740,6 +748,8 @@ void gameStart() {
 				printTable();
 				scoreDiff(players, p);
 				puts("\n");
+		// One round was played
+		round++;
 				break;
 
 			case 2:
@@ -747,7 +757,7 @@ void gameStart() {
 				break;
 
 			case 3:
-				printFile();
+				printTable();
 				break;
 
 			case 4:
@@ -763,7 +773,7 @@ void gameStart() {
 		}
 
 		// One round was played
-		round++;
+		//round++;
 
 	} while(done != 1);
 
