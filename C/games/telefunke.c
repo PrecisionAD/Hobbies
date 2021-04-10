@@ -664,7 +664,8 @@ int option() {
 	printf("What would you like to do?\n");
 	printf("1) Play a round\n");
 	printf("2) Adjust a score\n");
-	printf("3) End the game\n");
+	printf("3) Print the table\n");
+	printf("4) End the game\n");
 
 	do {
 		// Ask for menu choice 
@@ -746,6 +747,10 @@ void gameStart() {
 				break;
 
 			case 3:
+				printFile();
+				break;
+
+			case 4:
 				printDone();
 				updateFile();
 				printFile();
