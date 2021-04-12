@@ -68,3 +68,8 @@ v1.7.7 - 04/09/2021
 
 v1.7.8 - 04/10/2021
 - Fixed bug preventing the game from finishing.
+
+v1.7.9 - 04/10/2021
+- Changed type of printDone() from void to int to save a couple lines of code when ending the game.
+- Added a new line character after printing the table scores for better readability.
+- Moved the 'round' variable that keeps track of the rounds played inside case 1 of the switch statement.
