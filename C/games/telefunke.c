@@ -67,12 +67,13 @@ int totalScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
  * 		Let users know that there are no more games and
  * 		the final scores are being printed.
  */
-void printDone() {
+int printDone() {
 	
 	printf("\n\n\n%40s\n", "****************");
 	printf("%40s\n", "* FINAL SCORES *");
 	printf("%40s", "****************");
 
+	return 1;
 }
 
 
@@ -230,7 +231,7 @@ void printTable() {
 	}
 
 	puts("|Current Total");
-	printf(BOLDBLUE "%s" RESET, "└--------┴--------┴--------┴--------┴--------┴--------┘\n");
+	printf(BOLDBLUE "%s" RESET, "└--------┴--------┴--------┴--------┴--------┴--------┘\n\n");
 
 	fclose(fp);
 
@@ -328,19 +329,20 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 	for(i = 0; i < SIX; i++) {
 		lowest = tempScore[i][0];
 		p[i].flag = 0;
+		
 		for(j = (i); j < SIX; j++) {
 			if(tempScore[j][0] <= lowest) {
 				lowest = tempScore[j][0];
 				index = j;
 			}
-		}
+		}// Inner loop
 
 		// Swap the lowest score and place it in new index
 		temp = tempScore[i][0];
 		tempScore[i][0] = lowest;
 		tempScore[index][0] = temp;
 
-	}
+	}// Outer loop
 
 	printf("Points difference:\n");
 	
@@ -499,7 +501,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 					totalScores[index - 1] -= points;  // Reset points
 					selected[index - 1] = 0;					 // Unmark player
 					allDone--;                         // Reset master count
-					printf(BOLDGREEN "Changes were reverted back!\n" RESET);
+					printf(BOLDGREEN "Changes were reverted!\n" RESET);
 					sleep(1);
 				}
 			}
@@ -616,6 +618,7 @@ void adjustScore(char players[][MAX_NAME], struct player *p) {
 		sum += totalScore[i][0];
 	}
 
+	// If no round has been played, no need to adjust scores
 	if(!sum) {
 		printf(BOLDMAGENTA "\nPerhaps play a round first? All scores are currently 0!\n" RESET);
 		return;
@@ -748,8 +751,7 @@ void gameStart() {
 				printTable();
 				scoreDiff(players, p);
 				puts("\n");
-		// One round was played
-		round++;
+				round++; // One round was played
 				break;
 
 			case 2:
@@ -761,19 +763,14 @@ void gameStart() {
 				break;
 
 			case 4:
-				printDone();
+				done = printDone();
 				updateFile();
 				printFile();
 				appendNewScores();
 				scoreDiff(players, p);
 				remove("temp.txt");
-				done = 1;	
 				break;
-
 		}
-
-		// One round was played
-		//round++;
 
 	} while(done != 1);
 
