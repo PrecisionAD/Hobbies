@@ -1,7 +1,5 @@
 
-<h6>Compute π</h6>
-<br>
-<br>
+<h4><strong>Compute π</strong></h4>
 
 <p>
 A simple program to aproximate the value of π.
