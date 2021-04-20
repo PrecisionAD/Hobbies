@@ -1,1 +1,11 @@
-A Pi file is needed for the programs to work
+
+
+<h3>readPi</h3>
+<hr>
+Reads how many specific digits are in Pi (the file provided to read from). A Pi file is needed for the programs to work.
+
+<br>
+
+<h3>fourEquals</h3>
+<hr>
+This will returns the consecutive sequence of every digit (from 0 to 9) that are found in Pi. It can also find a specified pattern (such as a birthday).

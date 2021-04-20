@@ -73,3 +73,6 @@ v1.7.9 - 04/10/2021
 - Changed type of printDone() from void to int to save a couple lines of code when ending the game.
 - Added a new line character after printing the table scores for better readability.
 - Moved the 'round' variable that keeps track of the rounds played inside case 1 of the switch statement.
+
+v1.7.9
+- Fixed a bug when printing the scores: if less than 6 players were playing, the negative score of the missing player (-1) was causing the printing to be out of order. Instead, only the existing players will be printed instead of printing all the players.

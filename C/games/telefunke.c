@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.7.8
+ * v1.7.9
  */
 
 
@@ -316,6 +316,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 	int i, j;
 	int temp = 0;
 	int lowest = 0;
+	int highest = 0;
 	int index = -1;
 	int stars = 0;
 	int tempScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
@@ -327,13 +328,21 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 	
 	// Sort the scores and reset the player flag to avoid printing double
 	for(i = 0; i < SIX; i++) {
-		lowest = tempScore[i][0];
-		p[i].flag = 0;
+		if(tempScore[i][0] > -1) {
+			lowest = tempScore[i][0];
+			p[i].flag = 0;
+		}
+		else {
+			continue;
+		}
 		
 		for(j = (i); j < SIX; j++) {
-			if(tempScore[j][0] <= lowest) {
+			if(tempScore[j][0] > -1 && tempScore[j][0] <= lowest) {
 				lowest = tempScore[j][0];
 				index = j;
+			}
+			if(tempScore[j][0] > tempScore[0][0]) {
+				highest = tempScore[j][0];
 			}
 		}// Inner loop
 
@@ -349,7 +358,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 	/* Print the difference in points */
 	for(i = 0; i < SIX; i++) {
 		for(j = 0; j < SIX; j++) {
-			if(p[j].score == tempScore[i][0] && p[j].flag == 0) {
+			if(p[j].score == tempScore[i][0] && p[j].flag == 0 && p[j].score > -1) {
 				printf("%d) %-7s +%d", (i + 1), p[j].name, tempScore[i][0] - tempScore[0][0]);
 
 			  // More stars means the winning player has a bigger margin in points to second place
@@ -360,7 +369,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 					stars = 1;
 				}
 
-				if(i == 5) { printf(" ☠ "); } 
+				if(highest == p[j].score) { printf(" ☠ "); } 
 				p[j].flag = 1; // To avoid printing same player twice 
 
 				puts("");
