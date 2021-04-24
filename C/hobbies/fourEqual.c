@@ -43,7 +43,7 @@ int done = 0;
  */
 void * searchFives() {
 
-	char dummyBuffer[10];
+	char dummyBuffer[16];
 	FILE *inDummy = NULL;
 
 	inDummy = fopen("billion2.txt", "r");
@@ -95,7 +95,7 @@ void * searchFives() {
 
 void * searchFours() {
 
-	char dummyBuffer[10];
+	char dummyBuffer[16];
 	FILE *inDummy = NULL;
 
 	inDummy = fopen("billion2.txt", "r");
@@ -146,7 +146,7 @@ void * searchFours() {
 
 void * searchThrees() {
 
-	char dummyBuffer[10];
+	char dummyBuffer[16];
 	FILE *inDummy = NULL;
 
 	inDummy = fopen("billion2.txt", "r");
@@ -197,7 +197,7 @@ void * searchThrees() {
 
 void * searchTwos() {
 
-	char dummyBuffer[10];
+	char dummyBuffer[16];
 	FILE *inDummy = NULL;
 
 	inDummy = fopen("billion2.txt", "r");
@@ -248,7 +248,7 @@ void * searchTwos() {
 
 void * searchOnes() {
 
-	char dummyBuffer[10];
+	char dummyBuffer[16];
 	FILE *inDummy = NULL;
 
 	inDummy = fopen("billion2.txt", "r");
@@ -299,7 +299,7 @@ void * searchOnes() {
 
 void * searchZeros() {
 
-	char dummyBuffer[10];
+	char dummyBuffer[16];
 	FILE *inDummy = NULL;
 
 	inDummy = fopen("billion2.txt", "r");
@@ -355,7 +355,7 @@ void * searchZeros() {
 
 void * searchBday() {
 
-	char dummyBuffer[10];
+	char dummyBuffer[16];
 	//char key[10] = {'5', '4', '1', '9', '7', '9'};
 	char key[10] = {'0', '8', '0', '9', '8', '3'};
 	FILE *inDummy = NULL;
