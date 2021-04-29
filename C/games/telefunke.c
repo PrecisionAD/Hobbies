@@ -120,14 +120,14 @@ FILE * openFile(char *fileName, char *mode) {
  */
 void appendNewScores() {
 	
-	char buffer[100];
+	char buffer[120];
 	FILE *fp1 = NULL;
 	FILE *fp2 = NULL;
 
 	fp1 = openFile("scores.txt", "a");
 	fp2 = openFile("temp.txt", "r");
 
-	while(fgets(buffer, 100, fp2) != NULL) {
+	while(fgets(buffer, 120, fp2) != NULL) {
 		fprintf(fp1, "%s", buffer);
 	}
 
@@ -150,12 +150,12 @@ void appendNewScores() {
  */ 		
 void printFile() {
 
-	char buffer[100];
+	char buffer[120];
 	FILE *fp = NULL;
 
 	fp = openFile("temp.txt", "r");
 
-	while(fgets(buffer, 100, fp) != NULL) {
+	while(fgets(buffer, 120, fp) != NULL) {
 		printf("%s", buffer);
 	}
 
@@ -206,14 +206,14 @@ void updateFile() {
  */
 void printTable() {
 
-	char buffer[100];
+	char buffer[120];
 	FILE *fp = NULL;
 	int i;
 
 	fp = openFile("temp.txt", "r");
 
 	/* Print the table from the file */
-	while(fgets(buffer, 100, fp) != NULL) {
+	while(fgets(buffer, 120, fp) != NULL) {
 		printf("%s", buffer);
 	}
 	
@@ -619,7 +619,7 @@ void adjustScore(char players[][MAX_NAME], struct player *p) {
 	int done = 0;
 	int option = 0;
 	int newScore = 0;
-	char buffer[10];
+	char buffer[12];
 
 	// Check that at least one round has been played
 	int sum = 0;
@@ -679,7 +679,7 @@ int option() {
 
 	int option = 0;
 	int done = 0;
-	char buffer[5];
+	char buffer[8];
 
 	printf("What would you like to do?\n");
 	printf("1) Play a round\n");
