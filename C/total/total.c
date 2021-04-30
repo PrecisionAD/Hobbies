@@ -56,10 +56,10 @@ int total(int ones, int fives, int tens, int twenty, int fifty, int oneHundred) 
  */
 int input() {
 	
-	char buffer[10];
+	char buffer[16];
 	int number = 0;
 
-	fgets(buffer, 9, stdin);
+	fgets(buffer, 10, stdin);
 	number = atoi(buffer);
 
 	// Check that the number is not negative!
@@ -67,7 +67,7 @@ int input() {
 		while(number < 0) {
 			printf("Can't be a negative value!\n");
 			printf("Enter new amount: ");
-			fgets(buffer, 9, stdin);
+			fgets(buffer, 10, stdin);
 			number = atoi(buffer);
 		}
 	}
