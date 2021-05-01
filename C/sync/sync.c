@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
 	// Ask if addition of subtraction is needed
 	int answer = addOrSub();
 
-	char key[20];
+	char key[24];
 	printf("\nEnter the time you want to adjust:\n");
 	printf("Time: ");
 	fgets(key, 20, stdin);
@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
 	// Ask for the file and check if it exists or is not NULL
 	FILE *readFile = askFile();
 
-	char buffer[100];
+	char buffer[120];
 	char times[ROW][COL];
 	char *token;
 	int row = 0;
@@ -164,7 +164,7 @@ void greet() {
  */
 int addOrSub() {
 
-	char choice[5];
+	char choice[12];
 	puts("Press 1 if you need addition or 2 if you need subtraction.");
 	printf("Choice: ");
 	fgets(choice, 10, stdin);
@@ -215,8 +215,8 @@ FILE * askFile() {
 
 	FILE *readFile;
 	int allGood = 0;
-	char file[20];
-	char test[50];
+	char file[24];
+	char test[52];
 
 	printf("\nEnter the name of the file, for example, \"file.txt\"\n");
 	do {
@@ -313,8 +313,8 @@ void adjust(int *offset, int *choice) {
 
 	FILE *fp = openFile("extracted.txt", "r");
 	FILE *fp2 = openFile("fixed.txt", "a");
-	char buffer[15];
-	char adjusted[15];
+	char buffer[16];
+	char adjusted[16];
 	char *token;
 	int num = 0;
 
