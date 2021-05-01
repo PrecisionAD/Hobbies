@@ -11,32 +11,28 @@
 #define ONE_MILLION 1000000
 #define TEN_BILLION 10000000
 #define HUN_MILLION 100000000
-#define ONE_BILLION 1000000000
+#define ONE_BILLION 1000000000000
 
 int main() {
 
-	/* Variables which are den (denominator) and pi. */
-	double pi = 0.0, den = 1.0;
+	double i;
+	int flag = 0;
+	double pi = 4;
+	
+	for(i = 3; i < 20000000000; i += 2) {
+		if(flag) {
+			pi += 4.0 / i;
+		}
+		else {
+			pi -= 4.0 / i;
+		}
 
-	/* For loop will iterate "length" times. If denominator is equal than
-	1.0 then divide numerator (4.0) by the denominator (1.0). If not, add
-	2 to the denominator and subtract (4/3 which is num/den) from pi. Next,
-	add (4/5 or num/den) to pi. */
-	int i;
-	for(i = 0; i < ONE_BILLION; i++){
-		if(den == 1.0){
-			pi = NUM / den;
-			den += 2;
-		}
-		else{
-			pi = pi - (NUM / den);
-			den += 2;
-			pi = pi + (NUM / den);
-			den += 2;
-		}
+		flag = !flag;
 	}
 
-	printf("The approximation of pi is %.15f\n", pi);
+	printf("The approximation of pi is %.25f\n", pi);
 
 	return 0;
+
 }
+
