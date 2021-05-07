@@ -16,7 +16,7 @@
 int main() {
 	
 	char * binary;
-	char buffer[33];
+	char buffer[36];
 	int number = 0;
 
 	printf("Enter a positive number to get its binary representation: ");
