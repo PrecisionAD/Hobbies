@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.7.9
+ * v1.8
  */
 
 
@@ -639,12 +639,23 @@ void adjustScore(char players[][MAX_NAME], struct player *p) {
 		printf("%d) %-6s %-3d pts\n", (i + 1), players[i], totalScore[i][0]);
 	}
 
+	// To give the option to return without making a change to the scores
+	printf("%d) Return to main menu\n", i + 1);
+
 	do {
 		// Get the user's choice and make sure it's valid
 		option = askInput(buffer);
 
-		if(option < 1 || option > 6) { printf("Invalid option! Try again!\n"); }
-		else { done = 1; }
+		if(option < 1 || option > 7) { printf("Invalid option! Try again!\n"); }
+		else { 
+			if(i == 6) {
+				printf("\n\n"); // Add some padding before printing main menu
+				return;
+			}
+			else {
+				done = 1;
+			}
+		}
 
 	} while(done != 1);
 
@@ -680,6 +691,10 @@ int option() {
 	int option = 0;
 	int done = 0;
 	char buffer[8];
+
+	printf("***************************\n");
+	printf("*        MAIN MENU        *\n");
+	printf("***************************\n\n");
 
 	printf("What would you like to do?\n");
 	printf("1) Play a round\n");
