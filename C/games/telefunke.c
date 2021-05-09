@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8
+ * v1.8.1
  */
 
 
@@ -61,7 +61,8 @@ int totalScore[SIX][5] = { {0}, {0}, {0}, {0}, {0}, {0} };
  * 		None.
  *
  * returns: 
- * 		Nothing.
+ * 		Returns 1 just so when the function returns to
+ * 		the main loop, it will exit the do-while.
  *
  * Notes:
  * 		Let users know that there are no more games and
@@ -471,8 +472,8 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 	int points = 0;
 	int index = 0;
 	int selected[6] = { 0, 0, 0, 0, 0, 0 };
-	char option[6];
-	char buffer[5];
+	char option[8];
+	char buffer[8];
 
 	printf(BOLDBLUE "╔═════════╗\n" RESET);
 	printf(BOLDBLUE "║ %-6s  ║ <=== Game you are currently playing!\n" RESET, game[gameRound++]);
