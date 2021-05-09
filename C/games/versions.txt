@@ -80,3 +80,7 @@ v1.7.9 -
 v1.8 - 05/07/2021
 - Added new print out "Main Menu" to distinguish it from other options.
 - Added new return option when trying to adjust a score (a mistake from the user, no need to adjust any score).
+
+v1.8.1 - 05/08/2021
+- Fixed some comments to reflect the changes made to the function.
+- Increased char array space in bytes to align it with memory.
