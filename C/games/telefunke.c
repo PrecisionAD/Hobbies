@@ -767,7 +767,7 @@ void gameStart() {
 	do {
 		// Ask for a menu option
 		if(round < 7) { menuOption = option(); }
-		else { menuOption = 3; }
+		else { menuOption = 4; }
 
 		switch(menuOption) {
 			case 1:
