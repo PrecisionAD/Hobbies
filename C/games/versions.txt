@@ -84,3 +84,6 @@ v1.8 - 05/07/2021
 v1.8.1 - 05/08/2021
 - Fixed some comments to reflect the changes made to the function.
 - Increased char array space in bytes to align it with memory.
+
+v1.8.2 - 05/11/2021
+- Added the exit() call to the openFile() function to terminate the program if a file couldn't be openened.
