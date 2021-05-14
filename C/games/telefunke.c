@@ -38,7 +38,13 @@
 #define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
 #define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
 
-// To compare who won at the end
+/*
+ * Fields:
+ * 		name: holds the player's name.
+ * 		score: holds the player's score.
+ * 		flag: this prevents printing the same player twice.
+ * 		huevos: keeps track of how many times a player won a round.
+ */
 struct player {
 	char name[16];
 	int score;
