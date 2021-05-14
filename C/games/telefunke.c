@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8.2
+ * v1.8.3
  */
 
 
@@ -43,6 +43,7 @@ struct player {
 	char name[16];
 	int score;
 	int flag;
+	int huevos;
 };
 
 // To save a table divider after each round is played
@@ -373,6 +374,10 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 				if(highest == p[j].score) { printf(" ☠ "); } 
 				p[j].flag = 1; // To avoid printing same player twice 
 
+				if(p[j].huevos > 0) {
+					printf("   |   Huevitos: %d", p[j].huevos);
+				}
+
 				puts("");
 			}
 		}
@@ -496,6 +501,10 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 				printf("Enter new score for %s: ", players[index - 1]);
 				fgets(option, 6, stdin);
 				points = atoi(option);
+
+				if(points == 0) {
+					p[index - 1].huevos++;
+				}
 			
 				p[index - 1].score += points;     // Update player struct score
 				totalScores[index - 1] += points; // Update global points for the player
@@ -595,6 +604,7 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 		strcpy(p[i].name, *(players + i));
 		p[i].score = 0;
 		p[i].flag = 0;
+		p[i].huevos = 0;
 	}
 
 	puts("");
