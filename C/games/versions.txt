@@ -90,3 +90,6 @@ v1.8.2 - 05/11/2021
 
 v1.8.3 - 05/13/2021
 - Added new field called "huevos" which will keep track the winner in each round. It will print along the difference in points.
+
+v1.8.4 - 05/14/2021
+- Moved the print out of 'Huevitos' to be before the stars in order to achieve alignment.
