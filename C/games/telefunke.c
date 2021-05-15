@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8.3
+ * v1.8.4
  */
 
 
@@ -369,20 +369,20 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 			if(p[j].score == tempScore[i][0] && p[j].flag == 0 && p[j].score > -1) {
 				printf("%d) %-7s +%d", (i + 1), p[j].name, tempScore[i][0] - tempScore[0][0]);
 
+				if(p[j].huevos > 0) {
+					printf("   | %10s%d", "Huevos: ", p[j].huevos);
+				}
+
 			  // More stars means the winning player has a bigger margin in points to second place
 				if(stars == 0) {
-					if((tempScore[1][0] - tempScore[0][0]) > 240) { printf(" ⭐⭐⭐"); }
-					else if((tempScore[1][0] - tempScore[0][0]) >= 150) { printf(" ⭐⭐"); }
-					else if(i == 0) { printf(" ⭐"); }  
+					if((tempScore[1][0] - tempScore[0][0]) > 240) { printf("  ⭐⭐⭐"); }
+					else if((tempScore[1][0] - tempScore[0][0]) >= 150) { printf("  ⭐⭐"); }
+					else if(i == 0) { printf("  ⭐"); }  
 					stars = 1;
 				}
 
 				if(highest == p[j].score) { printf(" ☠ "); } 
 				p[j].flag = 1; // To avoid printing same player twice 
-
-				if(p[j].huevos > 0) {
-					printf("   |   Huevitos: %d", p[j].huevos);
-				}
 
 				puts("");
 			}
