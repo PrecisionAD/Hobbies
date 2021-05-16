@@ -93,3 +93,6 @@ v1.8.3 - 05/13/2021
 
 v1.8.4 - 05/14/2021
 - Moved the print out of 'Huevitos' to be before the stars in order to achieve alignment.
+
+v1.8.5 - 05/15/2021
+- Removed the writeFile() and placed inside the getNames() since both functions are only run once for the remainder of the program.
