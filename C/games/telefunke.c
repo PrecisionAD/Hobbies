@@ -246,40 +246,6 @@ void printTable() {
 }
 
 
-/*
- * args: @players contains the names of the players.
- *
- * returns:
- * 		Nothing.
- *
- * Notes:
- * 		This will save to the file the header of the table 
- * 		with the names of each player. This function is
- * 		only run once everytime the program is run.
- */
-void writeFile(char players[][MAX_NAME]) {
-
-	int i;
-	FILE *fp = NULL;
-
-	fp = openFile("temp.txt", "a");
-
-	fprintf(fp, BOLDBLUE "%s" RESET, "\n\n┌--------┐\n");
-	fprintf(fp, "%s", "| TABLE  | \n");
-	fprintf(fp, BOLDBLUE "%s" RESET, "├--------┼--------┬--------┬--------┬--------┬--------┐\n");
-
-	/* Save players names to the file. */
-	for(i = 0; i < SIX; i++) {
-		fprintf(fp, "%c" BOLDMAGENTA " %-7s"RESET, '|', players[i]);
-	}
-	
-	fprintf(fp, BOLDBLUE "%s" RESET, "|");
-	fprintf(fp, BOLDBLUE "%s" RESET, "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
-
-	fclose(fp);
-
-}
-
 
 /*
  * args: 
@@ -593,6 +559,9 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
  * 		store it in the 2D array for later use in 
  * 		the game. We also initialize the player 
  * 		struct and save the names of each player.
+ *
+ * 		Lastly, we create the table and save the 
+ * 		initial headers for each player.
  */
 void getNames(char players[SIX][MAX_NAME], struct player * p) {
 
@@ -612,6 +581,29 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 		p[i].flag = 0;
 		p[i].huevos = 0;
 	}
+
+	/*
+	 * Now that players have been initialized, let's save the headers
+	 * for each player in the table.
+	 */
+	i = 0;
+	FILE *fp = NULL;
+
+	fp = openFile("temp.txt", "a");
+
+	fprintf(fp, BOLDBLUE "%s" RESET, "\n\n┌--------┐\n");
+	fprintf(fp, "%s", "| TABLE  | \n");
+	fprintf(fp, BOLDBLUE "%s" RESET, "├--------┼--------┬--------┬--------┬--------┬--------┐\n");
+
+	/* Save players names to the file. */
+	for(i = 0; i < SIX; i++) {
+		fprintf(fp, "%c" BOLDMAGENTA " %-7s"RESET, '|', players[i]);
+	}
+	
+	fprintf(fp, BOLDBLUE "%s" RESET, "|");
+	fprintf(fp, BOLDBLUE "%s" RESET, "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
+
+	fclose(fp);
 
 	puts("");
 }
@@ -778,7 +770,6 @@ void gameStart() {
 	int menuOption = 0;
 
 	getNames(players, p);
-	writeFile(players);
 
 	do {
 		// Ask for a menu option
