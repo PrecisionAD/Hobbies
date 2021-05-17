@@ -32,6 +32,7 @@
 #define MAX_NAME 15
 
 #define RESET       "\033[0m"
+#define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
 #define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
 #define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
 #define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
@@ -569,6 +570,8 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 	int i;
 	int len = 0;
 
+	printf(BOLDBLACK "Up to 6 players can play. Enter -1 for a player as a score if less than 6 players are playing.\n\n" RESET);
+
 	// Get names and initialize the player struct at the same time
 	for(i = 0; i < SIX; i++) {
 		printf("Enter player %d: ", i + 1);
@@ -639,7 +642,7 @@ void adjustScore(char players[][MAX_NAME], struct player *p) {
 
 	// If no round has been played, no need to adjust scores
 	if(!sum) {
-		printf(BOLDMAGENTA "\nPerhaps play a round first? All scores are currently 0!\n" RESET);
+		printf(BOLDMAGENTA "\nPerhaps play a round first? All scores are currently 0!\n\n" RESET);
 		return;
 	}
 
