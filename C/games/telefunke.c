@@ -474,6 +474,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 				fgets(option, 6, stdin);
 				points = atoi(option);
 
+				// Mark only one player to be the winner for current round
 				if(points == 0) {
 					p[index - 1].huevos++;
 				}
