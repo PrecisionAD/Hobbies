@@ -502,7 +502,7 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 			}
 		}
 		else {
-			printf("Invalid option! Try again!\n");
+			printf(BOLDMAGENTA "Oops! Which player were you trying to update? You entered %d\n" RESET, index);
 		}
 
 		// If all players updated, move on
