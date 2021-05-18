@@ -328,7 +328,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 
 	}// Outer loop
 
-	printf("Points difference:\n");
+	printf(BOLDBLACK "Points difference:\n" RESET);
 	
 	/* Print the difference in points */
 	for(i = 0; i < SIX; i++) {
