@@ -342,8 +342,8 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 
 			  // More stars means the winning player has a bigger margin in points to second place
 				if(stars == 0) {
-					if((tempScore[1][0] - tempScore[0][0]) > 240) { printf("  ⭐⭐⭐"); }
-					else if((tempScore[1][0] - tempScore[0][0]) >= 150) { printf("  ⭐⭐"); }
+					if((tempScore[1][0] - tempScore[0][0]) > 100) { printf("  ⭐⭐⭐"); }
+					else if((tempScore[1][0] - tempScore[0][0]) >= 75) { printf("  ⭐⭐"); }
 					else if(i == 0) { printf("  ⭐"); }  
 					stars = 1;
 				}
