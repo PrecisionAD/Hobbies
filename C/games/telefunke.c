@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8.6
+ * v1.8.7
  */
 
 
@@ -796,6 +796,8 @@ void gameStart() {
 
 			case 3:
 				printTable();
+				scoreDiff(players, p);
+				puts("\n");
 				break;
 
 			case 4:
