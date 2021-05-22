@@ -187,17 +187,24 @@ void updateFile() {
 
 	int i;
 	FILE *fp = NULL;
+	FILE *fp2 = NULL;
 
 	fp = openFile("temp.txt", "a");
+	fp2 = openFile("withoutFormat.txt", "a");
 
 	for(i = 0; i < SIX; i++) {
 		fprintf(fp, "| %-7d", totalScore[i][0]);
+		fprintf(fp2, "| %-7d", totalScore[i][0]);
 	}
 
 	fprintf(fp, "%s", "|Total Scores");
 	fprintf(fp, BOLDBLUE "%s" RESET, "\n└--------┴--------┴--------┴--------┴--------┴--------┘\n");
 
+	fprintf(fp2, "%s", "|Total Scores");
+	fprintf(fp2, "%s", "\n└--------┴--------┴--------┴--------┴--------┴--------┘\n");
+
 	fclose(fp);
+	fclose(fp2);
 
 }
 
@@ -530,12 +537,15 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 
 	int i;
 	FILE *fp = NULL;
+	FILE *fp2 = NULL;
 
 	fp = openFile("temp.txt", "a");
+	fp2 = openFile("withoutFormat.txt", "a");
 
 	/* Loop to update the scores. */
 	for(i = 0; i < SIX; i++) {
 		fprintf(fp, "| %-7d", currentScore[i]);
+		fprintf(fp2, "| %-7d", currentScore[i]);
 		totalScore[i][0] = (currentScore[i] + totalScore[i][0]); // Update global score array
 		currentScore[i] = 0;
 	}
@@ -544,7 +554,12 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 	fprintf(fp, "%s", game[row++]);
 	fprintf(fp, BOLDBLUE "%s" RESET, "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
 
+	fprintf(fp2, "%s", "|");
+	//fprintf(fp2, "%s", game[row++]);
+	fprintf(fp2, "%s", "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
+
 	fclose(fp);
+	fclose(fp2);
 
 }
 
@@ -592,8 +607,10 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 	 */
 	i = 0;
 	FILE *fp = NULL;
+	FILE *fp2 = NULL;
 
 	fp = openFile("temp.txt", "a");
+	fp2 = openFile("withoutFormat.txt", "a");
 
 	fprintf(fp, BOLDBLUE "%s" RESET, "\n\n┌--------┐\n");
 	fprintf(fp, "%s", "| TABLE  | \n");
@@ -607,7 +624,20 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 	fprintf(fp, BOLDBLUE "%s" RESET, "|");
 	fprintf(fp, BOLDBLUE "%s" RESET, "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
 
+	fprintf(fp2, "%s", "\n\n┌--------┐\n");
+	fprintf(fp2, "%s", "| TABLE  | \n");
+	fprintf(fp2, "%s", "├--------┼--------┬--------┬--------┬--------┬--------┐\n");
+
+	/* Save players names to the file. */
+	for(i = 0; i < SIX; i++) {
+		fprintf(fp2, "%c" " %-7s", '|', players[i]);
+	}
+	
+	fprintf(fp2, "%s", "|");
+	fprintf(fp2, "%s", "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
+
 	fclose(fp);
+	fclose(fp2);
 
 	puts("");
 }
