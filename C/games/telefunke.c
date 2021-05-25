@@ -308,16 +308,18 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 		tempScore[i][0] = totalScore[i][0];
 	}
 	
-	// Sort the scores and reset the player flag to avoid printing double
+	// Sort the scores and reset the player flag to avoid printing same player
 	for(i = 0; i < SIX; i++) {
 		if(tempScore[i][0] > -1) {
 			lowest = tempScore[i][0];
 			p[i].flag = 0;
 		}
 		else {
+			// The -1 on the if-statement signals a placeholder for a non-player
 			continue;
 		}
 		
+		// Sort scores to prepare the printing
 		for(j = (i); j < SIX; j++) {
 			if(tempScore[j][0] > -1 && tempScore[j][0] <= lowest) {
 				lowest = tempScore[j][0];
