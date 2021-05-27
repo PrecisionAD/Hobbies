@@ -181,7 +181,9 @@ void printFile() {
  *
  * Notes:
  * 		This will add to the end of the table the total 
- * 		scores print out for each player.
+ * 		scores print out for each player. It will also 
+ * 		create an extra file without the formatting of
+ * 		colors.
  */ 		
 void updateFile() {
 
