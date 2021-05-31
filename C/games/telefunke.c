@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8.9
+ * v1.8.10
  */
 
 
@@ -339,7 +339,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 
 	}// Outer loop
 
-	printf(BOLDBLACK "Points difference:\n" RESET);
+	printf(BOLDBLACK "Points difference compared to best player:\n" RESET);
 	
 	/* Print the difference in points */
 	for(i = 0; i < SIX; i++) {
@@ -348,7 +348,7 @@ void scoreDiff(char players[][MAX_NAME], struct player *p) {
 				printf("%d) %-7s +%d", (i + 1), p[j].name, tempScore[i][0] - tempScore[0][0]);
 
 				if(p[j].huevos > 0) {
-					printf("   | %10s%d", "Huevos: ", p[j].huevos);
+					printf("   | %10s%d", "Huevitos: ", p[j].huevos);
 				}
 
 			  // More stars means the winning player has a bigger margin in points to second place
