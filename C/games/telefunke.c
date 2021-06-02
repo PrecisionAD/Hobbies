@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8.10
+ * v1.8.11
  */
 
 
@@ -559,7 +559,6 @@ void saveScores(char players[][MAX_NAME], int *currentScore, char game[][MAX_NAM
 	fprintf(fp, BOLDBLUE "%s" RESET, "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
 
 	fprintf(fp2, "%s", "|");
-	//fprintf(fp2, "%s", game[row++]);
 	fprintf(fp2, "%s", "\n├--------┼--------┼--------┼--------┼--------┼--------┤\n");
 
 	fclose(fp);
