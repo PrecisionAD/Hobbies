@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8.11
+ * v1.8.12
  */
 
 
@@ -467,11 +467,14 @@ void enterScores(char players[][MAX_NAME], int *totalScores, char game[][MAX_NAM
 	printf(BOLDBLUE "╔═════════╗\n" RESET);
 	printf(BOLDBLUE "║ %-6s  ║ <=== Game you are currently playing!\n" RESET, game[gameRound++]);
 	printf(BOLDBLUE "╚═════════╝\n" RESET);
+
+	printTable();
+	scoreDiff(players, p);
 	
 	printf("\nIf the round is over, it's time to update those scores!\n");
 
 	while(done != 1) {
-		printf("\nUpdate score for which player?\n");
+		printf(BOLDBLACK "\nUpdate score for which player?\n" RESET);
 
 		// If name has not been updated, print it without the checkmark
 		printPlayers(selected, players);
