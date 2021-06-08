@@ -114,3 +114,8 @@ v1.8.10 - 05/30/2021
 
 v1.8.11 - 06/01/2021
 - Code clean up.
+
+v1.8.12 - 06/07/2021
+- Added a table printout if option 1 is selected to have a view of current scores.
+- Added a printout of the score difference after option 1 is selected.
+- Added a bolded printout of some menu options.
