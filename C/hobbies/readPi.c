@@ -30,7 +30,7 @@
  */
 void totalDigits() {
 	
-	char buffer[5];
+	char buffer[8];
 	FILE *read = NULL;
 
 	read = fopen("billion2.txt", "r");
