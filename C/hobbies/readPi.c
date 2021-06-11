@@ -46,6 +46,11 @@ void totalDigits() {
 
 	while(enough != THREE_MILL) {
 		char c = buffer[0];
+
+		if(enough % 100000000 == 0) {
+			printf("Still computing the numbers...\n");
+		}
+
 		switch(c) {
 			case '0': zero++; 	break;
 			case '1': one++;		break;
