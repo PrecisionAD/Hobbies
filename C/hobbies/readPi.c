@@ -40,6 +40,7 @@ void totalDigits() {
 	}
 
 	int enough = 0;
+	int counter = 0;
 	int zero, one, two, three, four, five, six, seven, eight, nine;
 	zero = one = two = three = four = five = six = seven = eight = nine = 0;
 	fgets(buffer, 2, read);
@@ -48,7 +49,14 @@ void totalDigits() {
 		char c = buffer[0];
 
 		if(enough % 100000000 == 0) {
-			printf("Still computing the numbers...\n");
+			counter++;
+
+			if(counter % 3 == 0) {
+				printf("Almost there...\n");
+			}
+			else {
+				printf("Still computing...\n");
+			}
 		}
 
 		switch(c) {
