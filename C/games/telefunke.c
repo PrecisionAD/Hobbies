@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8.12
+ * v1.8.13
  */
 
 
@@ -595,7 +595,7 @@ void getNames(char players[SIX][MAX_NAME], struct player * p) {
 
 	// Get names and initialize the player struct at the same time
 	for(i = 0; i < SIX; i++) {
-		printf("Enter player %d: ", i + 1);
+		printf("Enter player's %d name: ", i + 1);
 		fgets(*(players + i), 14, stdin);
 		len = strlen(players[i]);
 		players[i][len-1] = '\0';	// Avoid issues when printing the table
