@@ -19,7 +19,7 @@
  *
  * Author: Adrian Meneses
  * Date: 01/15/2021
- * v1.8.13
+ * v1.8.14
  */
 
 
@@ -695,18 +695,17 @@ void adjustScore(char players[][MAX_NAME], struct player *p) {
 		// Get the user's choice and make sure it's valid
 		option = askInput(buffer);
 
-		if(option < 1 || option > 7) { printf("Invalid option! Try again!\n"); }
-		else { 
-			if(i == 6) {
-				printf("\n\n"); // Add some padding before printing main menu
-				return;
-			}
-			else {
-				done = 1;
-			}
+		// Return immediately if choice is 7
+		if(option == 7) { 
+			printf("\n\n");
+			return;
 		}
+		else if(option < 1 || option > 7) { printf("Invalid option! Try again!\n"); }
+		else { done = 1; }
 
 	} while(done != 1);
+
+	printf("im here outside loop\n");
 
 	i = option; // To have a more readable array in the next print statements
 
