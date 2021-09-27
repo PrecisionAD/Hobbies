@@ -124,4 +124,4 @@ v1.8.13 - 06/13/2021
 - Adjusted the initial prompt when asking for names.
 
 v1.8.14 - 07/14/2021
-- Fixed bug preventing adjusting a player's score.
+- Fixed a bug preventing adjusting a player's score.
