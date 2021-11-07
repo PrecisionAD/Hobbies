@@ -19,17 +19,57 @@ struct Node *head2 = NULL;
 
 
 void updateNeededList(struct Node *takenList, struct Node *neededList) {
-	puts("hello");
-	struct Node *tmp1 = takenList;
 
-	puts("Current classes Needed:");
-	while(tmp1 != NULL) {
-		printf("┌------------------┐\n");
-		printf("|%s",tmp1->class);
-		printf("└------------------┘\n");
-		tmp1 = tmp1->next;
+	struct Node *tmp1 = takenList;
+	struct Node *tmp2 = neededList;
+	int done = 0;
+	int done1 = 0;
+	int done2 = 0;
+
+	printf("\nClasses already taken:		   Classes needed:\n");
+	while(done == 0) {
+		if(tmp1 != NULL && tmp2 != NULL) {
+			tmp1->class[strlen(tmp1->class) -1] = '\0';
+			tmp2->class[strlen(tmp2->class) -1] = '\0';
+			printf("┌------------------┐             ┌------------------┐\n");
+			printf("|%13s     |             |%13s     |\n",tmp1->class, tmp2->class);
+			printf("└------------------┘             └------------------┘\n");
+			tmp1 = tmp1->next;
+			tmp2 = tmp2->next;
+		}
+
+		if(tmp1 == NULL || tmp2 == NULL) {
+			done = 1;
+		}
 	}
 
+	while(done1 == 0) {
+		if(tmp1 != NULL) {
+			tmp1->class[strlen(tmp1->class) -1] = '\0';
+			printf("┌------------------┐\n");
+			printf("|%13s     |         \n",tmp1->class);
+			printf("└------------------┘\n");
+			tmp1 = tmp1->next;
+		}
+
+		if(tmp1 == NULL) {
+			done1 = 1;
+		}
+	}
+
+	while(done2 == 0) {
+		if(tmp2 != NULL) {
+			tmp2->class[strlen(tmp2->class) -1] = '\0';
+			printf("                                 ┌------------------┐\n");
+			printf("                                 |%13s     |         \n",tmp2->class);
+			printf("                                 └------------------┘\n");
+			tmp2 = tmp2->next;
+		}
+
+		if(tmp2 == NULL) {
+			done2 = 1;
+		}
+	}
 
 }
 
@@ -37,99 +77,111 @@ void updateNeededList(struct Node *takenList, struct Node *neededList) {
 
 void showMenu(struct Node *takenList, struct Node *neededList) {
 
-	printf("Select an option from the menu\n");
+	printf("Main Menu\n");
 	printf("1. Mark a class as taken \n");
-	printf("2.\n");
-	printf("3.\n");
-	printf("4.\n\n");
+	printf("2. Add a needed class\n");
+	printf("3. Remove a needed class\n");
+	printf("4. Edit a needed class\n\n");
+	printf("Select an option from the menu: ");
 
 	char buffer[4];
 	int option = 0;
 
-	printf("option: ");
 	fgets(buffer, 3, stdin);
 	if((option = atoi(buffer)) == 1) {
 		updateNeededList(takenList, neededList);
 	}
-
+	
 }
+
 
 
 /*
  * args:
- * 	- className: the name of the current class to add
+ * 	@*file: the file pointer needed to create a list
  *
  * returns:
- * 	A pointer to the list of taken classes.
+ * 	A pointer to the list of needed classes.
  *
- * This will create the nodes (list) of the
- * classes that have been taken already.
+ * This will create the nodes (list) of classes.
  *
  */
-struct Node * createNeededList(char *className) {
+struct Node * createNeededList(FILE *file) {
 
 	struct Node *newNode;
+	char buffer[12];
 
-	newNode = malloc(sizeof(struct Node));
+	/* We create the list of classes here.
+	 * Allocate memory for the new node, copy
+	 * the data, and get rid of the newline 
+	 * character to prevent formatting issues
+	 * when printing the list. */
+	while(fgets(buffer, 12, file) != NULL) {
+		newNode = malloc(sizeof(struct Node));
+		strcpy(newNode->class, buffer);
+		newNode->next = NULL;
+		buffer[strlen(buffer) -1] = '\0';
 
-	strcpy(newNode->class, className);
-	//printf("im here and the class is %s\n", newNode->class);
-
-	if(head2 == NULL) {
-		head2 = newNode;
-	}
-	else {
-		struct Node *tmp = head2;
-
-		while(tmp->next != NULL) {
-			tmp = tmp->next;
+		if(head2 == NULL) {
+			head2 = newNode;
 		}
+		else {
+			struct Node *tmp = head2;
 
-		//printf("Node %s", newNode->class);
-		tmp->next = newNode;
+			while(tmp->next != NULL) {
+				tmp = tmp->next;
+			}
+
+			tmp->next = newNode;
+		}
 	}
 
+	/* Return a head pointer of the list created. */
 	return head2;
 }
 
 
 /*
  * args:
- * 	- className: the name of the current class to add
+ * 	@*file: the file pointer needed to create a list
  *
  * returns:
  * 	A pointer to the list of taken classes.
  *
- * This will create the nodes (list) of the
- * classes that have been taken already.
+ * This will create the nodes (list) of classes.
  *
  */
-struct Node * createTakenList(FILE *file1) {
+struct Node * createTakenList(FILE *file) {
 
 	struct Node *newNode;
 	char buffer[12];
 
-	while(fgets(buffer, 12, file1) != NULL) {
+	/* We create the list of classes here.
+	 * Allocate memory for the new node, copy
+	 * the data, and get rid of the newline 
+	 * character to prevent formatting issues
+	 * when printing the list. */
+	while(fgets(buffer, 12, file) != NULL) {
 		newNode = malloc(sizeof(struct Node));
 		strcpy(newNode->class, buffer);
 		newNode->next = NULL;
+		buffer[strlen(buffer) -1] = '\0';
+
 		if(head == NULL) {
 			head = newNode;
 		}
 		else {
 			struct Node *tmp = head;
-			puts("--2--");
 
 			while(tmp->next != NULL) {
-				puts("--3--");
 				tmp = tmp->next;
 			}
 
-			//printf("Node %s", newNode->class);
 			tmp->next = newNode;
 		}
 	}
 
+	/* Return a head pointer of the list created. */
 	return head;
 }
 
@@ -161,30 +213,14 @@ int main() {
 	struct Node *neededHead = NULL;
 	char taken[12] = "taken.txt";
 	char needed[12] = "needed.txt";
-	char buffer[12];
 
 	file1 = checkFile(taken);
 	file2 = checkFile(needed);
 
-	puts("--1--");
 	takenHead = createTakenList(file1);
-
-	puts("--1--");
-
-	while(fgets(buffer, 12, file2) != NULL) {
-		//printf("%s", buffer);
-		neededHead = createNeededList(buffer);
-	}
+	neededHead = createNeededList(file2);
 
 	showMenu(takenHead, neededHead);
-
-	/*struct Node *tmp = takenHead;
-
-	while(tmp->next != NULL) {
-		tmp = tmp->next;
-	}
-
-	printf("last node is %s\n", tmp->class);*/
 
 	return 0;
 }
