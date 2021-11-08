@@ -18,10 +18,132 @@ struct Node *head = NULL;
 struct Node *head2 = NULL;
 
 
-void updateNeededList(struct Node *takenList, struct Node *neededList) {
+void * dmalloc(size_t size) {
+	
+	void *p = malloc(size);
+	if(p == NULL) {
+		printf("Memory allocation failed!\n");
+		exit(1);
+	}
 
-	struct Node *tmp1 = takenList;
-	struct Node *tmp2 = neededList;
+	return p;
+}
+
+
+
+void markClass() {
+	
+	struct Node *prev = head2;
+	struct Node *current = head2->next;
+	struct Node *newNode = dmalloc(sizeof(node));
+	int found = 0;
+	char buffer[12];
+
+	printf("What's the class you want to mark as taken?\n");
+	fgets(buffer, 12, stdin);
+	
+	do {
+		if(strcmp(buffer, prev->class) == 0) {
+			head2 = current;
+			//found = 1; //or break instead?
+			break;
+			// return node that was found?
+		}
+		else {
+			if(strcmp(buffer, current->class) == 0) {
+				prev->next = current->next;
+				//found = 1; //or break instead?
+				break;
+				//return current node that was found?
+			}
+		}
+		
+		prev = prev->next;
+		current = current->next;
+	} while(found == 0 && current != NULL);
+
+	strcpy(newNode->class, buffer);
+	newNode->next = head;
+	head = newNode;
+}
+
+
+
+void addClass(int option, char *course) {
+
+	struct Node *newNode = dmalloc(sizeof(node));
+	struct Node *current;
+
+	strcpy(newNode->class, course);
+	newNode->next = NULL;
+	
+	/* Point to the correct list to add the new class. */
+	if(option == 1) {
+		current = head;
+	}
+	else {
+		current = head2;
+	}
+
+	if(current == NULL) {
+		current = newNode;
+	}
+	else {
+		puts("im here");
+		newNode->next = current;
+		printf("newNode %s", newNode->class);
+		current = newNode;
+	}
+
+	if(option == 1) {
+		head = current;
+	}
+	else {
+		head2 = current;
+	}
+
+}
+
+
+
+void removeClass() {
+
+}
+
+
+
+void editClass() {
+
+}
+
+
+
+void prepareClass() {
+
+	int option = 0;
+	char course[12];
+	char buffer[12];
+
+	printf("\nWhat's the name of the class you would like to add?\n");
+	printf("Class name: ");
+	fgets(course, 12, stdin);
+
+	printf("\nOn which list you want to add the class?\n"
+				 "1. Already taken list\n"
+				 "2. Needed classes list\n");
+	printf("Option: ");
+	fgets(buffer, 12, stdin);
+	option = atoi(buffer);
+
+	addClass(option, course);
+}
+
+
+
+void updateNeededList() {
+
+	struct Node *tmp1 = head;
+	struct Node *tmp2 = head2;
 	int done = 0;
 	int done1 = 0;
 	int done2 = 0;
@@ -34,6 +156,8 @@ void updateNeededList(struct Node *takenList, struct Node *neededList) {
 			printf("┌------------------┐             ┌------------------┐\n");
 			printf("|%13s     |             |%13s     |\n",tmp1->class, tmp2->class);
 			printf("└------------------┘             └------------------┘\n");
+			tmp1->class[strlen(tmp1->class)] = '\n';
+			tmp2->class[strlen(tmp2->class)] = '\n';
 			tmp1 = tmp1->next;
 			tmp2 = tmp2->next;
 		}
@@ -49,6 +173,7 @@ void updateNeededList(struct Node *takenList, struct Node *neededList) {
 			printf("┌------------------┐\n");
 			printf("|%13s     |         \n",tmp1->class);
 			printf("└------------------┘\n");
+			tmp1->class[strlen(tmp1->class)] = '\n';
 			tmp1 = tmp1->next;
 		}
 
@@ -63,6 +188,7 @@ void updateNeededList(struct Node *takenList, struct Node *neededList) {
 			printf("                                 ┌------------------┐\n");
 			printf("                                 |%13s     |         \n",tmp2->class);
 			printf("                                 └------------------┘\n");
+			tmp2->class[strlen(tmp2->class)] = '\n';
 			tmp2 = tmp2->next;
 		}
 
@@ -75,22 +201,49 @@ void updateNeededList(struct Node *takenList, struct Node *neededList) {
 
 
 
-void showMenu(struct Node *takenList, struct Node *neededList) {
-
-	printf("Main Menu\n");
-	printf("1. Mark a class as taken \n");
-	printf("2. Add a needed class\n");
-	printf("3. Remove a needed class\n");
-	printf("4. Edit a needed class\n\n");
-	printf("Select an option from the menu: ");
+void showMenu() {
 
 	char buffer[4];
 	int option = 0;
+	int done = 0;
 
-	fgets(buffer, 3, stdin);
-	if((option = atoi(buffer)) == 1) {
-		updateNeededList(takenList, neededList);
-	}
+	do {
+		printf("\n\nMain Menu\n");
+		printf("1. Mark a class as taken \n");
+		printf("2. Add a class\n");
+		printf("3. Remove a needed class\n");
+		printf("4. Edit a needed class\n");
+		printf("5. Print the lists\n");
+		printf("6. I'm done!\n\n");
+		printf("Select an option from the menu: ");
+		fgets(buffer, 3, stdin);
+
+		if((option = atoi(buffer)) == 1) {
+			updateNeededList();
+		}
+		else if((option = atoi(buffer)) == 2) {
+			updateNeededList();
+			prepareClass();
+		}
+		else if((option = atoi(buffer)) == 3) {
+			updateNeededList();
+			removeClass();
+		}
+		else if((option = atoi(buffer)) == 4) {
+			updateNeededList();
+			editClass();
+		}
+		else if((option = atoi(buffer)) == 5) {
+			updateNeededList();	
+		}
+		else if((option = atoi(buffer)) == 6) {
+			done = 1;
+		}
+		else {
+			printf("Wrong option. Try again.\n");
+		}
+		
+	} while(done == 0);
 	
 }
 
@@ -190,7 +343,7 @@ FILE * checkFile(char * fileName) {
 
 	FILE *tmp;
 
-	tmp = fopen(fileName, "r");
+	tmp = fopen(fileName, "r+");
 	if(tmp == NULL) {
 		printf("The file %s could not be found!\n", fileName);
 		exit(1);
@@ -209,18 +362,20 @@ int main() {
 	
 	FILE *file1;
 	FILE *file2;
-	struct Node *takenHead = NULL;
-	struct Node *neededHead = NULL;
+	//struct Node *takenHead = NULL;
+	//struct Node *neededHead = NULL;
 	char taken[12] = "taken.txt";
 	char needed[12] = "needed.txt";
 
 	file1 = checkFile(taken);
 	file2 = checkFile(needed);
 
-	takenHead = createTakenList(file1);
-	neededHead = createNeededList(file2);
+	//takenHead = 
+	createTakenList(file1);
+	//neededHead = 
+	createNeededList(file2);
 
-	showMenu(takenHead, neededHead);
+	showMenu();
 
 	return 0;
 }
