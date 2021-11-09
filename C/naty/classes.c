@@ -364,7 +364,13 @@ struct Node * createTakenList(FILE *file) {
 	return head;
 }
 
-
+/*
+ * args:
+ * 	@*fileName: name of the file to open
+ *
+ * returns:
+ *	A FILE pointer with the newly opened file.
+ */
 FILE * checkFile(char * fileName) {
 
 	FILE *tmp;
