@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 /* Node where each class can be stored individially. */
 typedef struct Node {
@@ -37,34 +38,58 @@ void markClass() {
 	struct Node *current = head2->next;
 	struct Node *newNode = dmalloc(sizeof(node));
 	int found = 0;
+	int i = 0;
 	char buffer[12];
+	char c = ' ';
 
-	printf("What's the class you want to mark as taken?\n");
+	printf("Type the name of the class you want to mark as taken\n");
+	printf("Class name: ");
 	fgets(buffer, 12, stdin);
 	
+	while(found == 0) {
+		c = buffer[i];
+		buffer[i] = toupper(buffer[i]);
+		//printf("c = %c\n", c);
+		i++;
+		if((c - ' ') ==  0) {
+			found = 1;
+		}
+	}
+	//printf("new string is %s", buffer);
+	
+	found = 0;
+
 	do {
 		if(strcmp(buffer, prev->class) == 0) {
 			head2 = current;
-			//found = 1; //or break instead?
-			break;
+			strcpy(newNode->class, buffer);
+			newNode->next = head;
+			head = newNode;
+			found = 1; //or break instead?
+			//break;
 			// return node that was found?
 		}
 		else {
+			//printf("buffer = %s", buffer);
+			//printf("current class= %s", current->class);
 			if(strcmp(buffer, current->class) == 0) {
+				puts("in here");
 				prev->next = current->next;
-				//found = 1; //or break instead?
-				break;
+				strcpy(newNode->class, buffer);
+				newNode->next = head;
+				head = newNode;
+				found = 1; //or break instead?
+				//break;
 				//return current node that was found?
 			}
 		}
 		
 		prev = prev->next;
+		//printf("prev now%s", prev->class);
 		current = current->next;
+		//printf("current now %s", current->class);
 	} while(found == 0 && current != NULL);
 
-	strcpy(newNode->class, buffer);
-	newNode->next = head;
-	head = newNode;
 }
 
 
@@ -220,6 +245,7 @@ void showMenu() {
 
 		if((option = atoi(buffer)) == 1) {
 			updateNeededList();
+			markClass();
 		}
 		else if((option = atoi(buffer)) == 2) {
 			updateNeededList();
