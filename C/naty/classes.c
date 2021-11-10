@@ -165,7 +165,7 @@ void prepareClass() {
 
 
 
-void updateNeededList() {
+void printLists() {
 
 	struct Node *tmp1 = head;
 	struct Node *tmp2 = head2;
@@ -236,33 +236,29 @@ void showMenu() {
 		printf("\n\nMain Menu\n");
 		printf("1. Mark a class as taken \n");
 		printf("2. Add a class\n");
-		printf("3. Remove a needed class\n");
-		printf("4. Edit a needed class\n");
-		printf("5. Print the lists\n");
-		printf("6. I'm done!\n\n");
+		printf("3. Remove a class\n");
+		printf("4. Print the lists\n");
+		printf("5. Exit!\n\n");
 		printf("Select an option from the menu: ");
 		fgets(buffer, 3, stdin);
 
 		if((option = atoi(buffer)) == 1) {
-			updateNeededList();
+			printLists();
 			markClass();
 		}
 		else if((option = atoi(buffer)) == 2) {
-			updateNeededList();
+			printLists();
 			prepareClass();
 		}
 		else if((option = atoi(buffer)) == 3) {
-			updateNeededList();
+			printLists();
 			removeClass();
 		}
 		else if((option = atoi(buffer)) == 4) {
-			updateNeededList();
+			printLists();
 			editClass();
 		}
 		else if((option = atoi(buffer)) == 5) {
-			updateNeededList();	
-		}
-		else if((option = atoi(buffer)) == 6) {
 			done = 1;
 		}
 		else {
