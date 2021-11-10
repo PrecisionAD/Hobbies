@@ -2,6 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <unistd.h>
+
+#define RESET   "\033[0m"
+#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
+#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
+
 
 /* Node where each class can be stored individially. */
 typedef struct Node {
@@ -25,7 +31,7 @@ void * dmalloc(size_t size) {
 	
 	void *p = malloc(size);
 	if(p == NULL) {
-		printf("Memory allocation failed!\n");
+		printf(BOLDMAGENTA "Memory allocation failed!\n" RESET);
 		exit(1);
 	}
 
@@ -34,14 +40,54 @@ void * dmalloc(size_t size) {
 
 
 /*
- * 
+ * args:
+ * 	@*word: is the name of the word to capitalize
+ * 	@*buffer: where the capitalized word will be saved
+ *
+ * Returns:
+ * 	A char pointer (buffer) with the newly capitalized
+ * 	word.
+ *
+ * Notes:
+ * 	Here we get a word in the format 'className classNumber'
+ * 	that needs capitalization. The loop will capitalize the
+ * 	letters until a space is found.
+ */
+char * capitalize(char *word, char *buffer) {
+
+	int found = 0;
+	int i = 0;
+	char c = ' ';
+
+	printf("word = %s", word);
+	// First we copy the word to the buffer before comparison
+	strcpy(buffer, word);
+
+	printf("buffer after = %s", buffer);
+	while(found == 0) {
+		c = buffer[i];
+		buffer[i] = toupper(buffer[i]);
+		i++;
+		if((c - ' ') ==  0) {
+			found = 1;
+		}
+	}
+	puts("before leaving");
+	printf("buffer b4 leaving = %s", buffer);
+	return buffer;
+}
+
+
+/*
+ * Save the changes (if any) that were made to either list to the
+ * same files.
  */
 void saveChanges() {
 	
 	FILE *fp1;
 	FILE *fp2;
 	node *current = head;
-	node *current2 = head;
+	node *current2 = head2;
 	char buffer[12];
 
 	fp1 = fopen("taken.txt", "w");
@@ -77,21 +123,25 @@ void markClass() {
 	int found = 0;
 	int i = 0;
 	char buffer[12];
+	char course[12];
 	char c = ' ';
 
 	printf("Type the name of the class you want to mark as taken\n");
 	printf("Class name: ");
-	fgets(buffer, 12, stdin);
+	fgets(course, 12, stdin);
 	
 	// Capitalizes the class name in order to compare it later
-	while(found == 0) {
+	//strcpy(buffer, capitalize(course, buffer));
+	capitalize(course, buffer);
+	printf("marked class is %s", buffer);
+	/*while(found == 0) {
 		c = buffer[i];
 		buffer[i] = toupper(buffer[i]);
 		i++;
 		if((c - ' ') ==  0) {
 			found = 1;
 		}
-	}
+	}*/
 	
 	found = 0;
 
@@ -137,8 +187,9 @@ void addClass(int option, char *course) {
 
 	struct Node *newNode = dmalloc(sizeof(node));
 	struct Node *current;
-
-	strcpy(newNode->class, course);
+	char buffer[12];
+	
+	strcpy(newNode->class, capitalize(course, buffer));
 	newNode->next = NULL;
 	
 	/* Point to the correct list to add the new class. */
@@ -197,14 +248,18 @@ void removeClass() {
 	fgets(course, 12, stdin);
 	
 	// Capitalize the class name in order to compare it later
-	while(found == 0) {
+	strcpy(course, capitalize(course, buffer));
+	//capitalize(course, buffer);
+	printf("capitalize word is %s", course);
+
+	/*while(found == 0) {
 		c = course[i];
 		course[i] = toupper(course[i]);
 		i++;
 		if((c - ' ') ==  0) {
 			found = 1;
 		}
-	}
+	}*/
 
 	printf("\nOn which list you want to delete the class?\n"
 				 "1. Already taken list\n"
@@ -237,7 +292,7 @@ void removeClass() {
 		while(current != NULL && found == 0) {
 			if(strcmp(current->class, course) == 0) {
 				prev->next = current->next;
-				printf("\nClass has been removed!\n");
+				printf(BOLDGREEN "\nClass has been removed!\n" RESET);
 				found = 1;
 			}
 			prev = prev->next;
@@ -246,7 +301,7 @@ void removeClass() {
 	}
 
 	if(found != 1) {
-		printf("I couldn't find the class %s", course);
+		printf(BOLDMAGENTA "\nCould you check the name again? I couldn't find the class %s" RESET, course);
 	}
 }
 
