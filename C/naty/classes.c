@@ -40,6 +40,32 @@ void * dmalloc(size_t size) {
 
 
 /*
+ *
+ */
+void freeMemory() {
+	
+	node *tmp = head->next;
+
+	puts("heererere");
+	while(head != NULL) {
+		printf("deleting node: %s", head->class);
+		free(head);
+		head = tmp;
+		tmp = tmp->next;
+	}
+
+	puts("heererere");
+	tmp = head2->next;
+	
+	while(head2 != NULL) {
+		free(head2);
+		head2 = tmp;
+		tmp = tmp->next;
+	}
+}
+
+
+/*
  * args:
  * 	@*word: is the name of the word to capitalize
  * 	@*buffer: where the capitalized word will be saved
@@ -59,11 +85,9 @@ char * capitalize(char *word, char *buffer) {
 	int i = 0;
 	char c = ' ';
 
-	printf("word = %s", word);
 	// First we copy the word to the buffer before comparison
 	strcpy(buffer, word);
 
-	printf("buffer after = %s", buffer);
 	while(found == 0) {
 		c = buffer[i];
 		buffer[i] = toupper(buffer[i]);
@@ -72,8 +96,7 @@ char * capitalize(char *word, char *buffer) {
 			found = 1;
 		}
 	}
-	puts("before leaving");
-	printf("buffer b4 leaving = %s", buffer);
+
 	return buffer;
 }
 
@@ -121,27 +144,15 @@ void markClass() {
 	struct Node *current = head2->next;
 	struct Node *newNode = dmalloc(sizeof(node));
 	int found = 0;
-	int i = 0;
 	char buffer[12];
 	char course[12];
-	char c = ' ';
 
 	printf("Type the name of the class you want to mark as taken\n");
 	printf("Class name: ");
 	fgets(course, 12, stdin);
 	
 	// Capitalizes the class name in order to compare it later
-	//strcpy(buffer, capitalize(course, buffer));
 	capitalize(course, buffer);
-	printf("marked class is %s", buffer);
-	/*while(found == 0) {
-		c = buffer[i];
-		buffer[i] = toupper(buffer[i]);
-		i++;
-		if((c - ' ') ==  0) {
-			found = 1;
-		}
-	}*/
 	
 	found = 0;
 
@@ -238,10 +249,8 @@ void removeClass() {
 	struct Node *current;
 	int option = 0;
 	int found = 0;
-	int i = 0;
 	char buffer[12];
 	char course[12];
-	char c = ' ';
 
 	printf("\nWhat's the name of the class you would like to remove?\n");
 	printf("Class name: ");
@@ -249,17 +258,6 @@ void removeClass() {
 	
 	// Capitalize the class name in order to compare it later
 	strcpy(course, capitalize(course, buffer));
-	//capitalize(course, buffer);
-	printf("capitalize word is %s", course);
-
-	/*while(found == 0) {
-		c = course[i];
-		course[i] = toupper(course[i]);
-		i++;
-		if((c - ' ') ==  0) {
-			found = 1;
-		}
-	}*/
 
 	printf("\nOn which list you want to delete the class?\n"
 				 "1. Already taken list\n"
@@ -436,7 +434,7 @@ void showMenu() {
 			done = 1;
 		}
 		else {
-			printf("Wrong option. Try again.\n");
+			printf(BOLDMAGENTA "Wrong option. Try again.\n" RESET);
 		}
 		
 	} while(done == 0);
@@ -581,6 +579,9 @@ int main() {
 	// All done, we now save the chages to the file
 	saveChanges();
 	
+	// Now is time to do some clean-up
+	freeMemory();
+
 	return 0;
 }
 
