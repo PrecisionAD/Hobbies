@@ -19,6 +19,13 @@ struct Node *head = NULL;
 struct Node *head2 = NULL;
 
 
+/*
+ * args:
+ * 	@size: contains the value for the memory allocation
+ *
+ * returns:
+ * 	The newly created memory allocation
+ */
 void * dmalloc(size_t size) {
 	
 	void *p = malloc(size);
