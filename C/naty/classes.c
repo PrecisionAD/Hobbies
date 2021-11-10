@@ -44,23 +44,21 @@ void * dmalloc(size_t size) {
  */
 void freeMemory() {
 	
-	node *tmp = head->next;
+	node *tmp = head;
 
-	puts("heererere");
 	while(head != NULL) {
 		printf("deleting node: %s", head->class);
-		free(head);
-		head = tmp;
-		tmp = tmp->next;
+		head = head->next;
+		free(tmp);
+		tmp = head;
 	}
 
-	puts("heererere");
-	tmp = head2->next;
+	tmp = head2;
 	
 	while(head2 != NULL) {
-		free(head2);
-		head2 = tmp;
-		tmp = tmp->next;
+		head2 = head2->next;
+		free(tmp);
+		tmp = head2;
 	}
 }
 
