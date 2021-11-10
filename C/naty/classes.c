@@ -38,7 +38,10 @@ void * dmalloc(size_t size) {
 }
 
 
-
+/*
+ * Marks a class (deletes it) from the needed list and places 
+ * it (adds it) in the taken list.
+ */
 void markClass() {
 	
 	struct Node *prev = head2;
@@ -53,6 +56,7 @@ void markClass() {
 	printf("Class name: ");
 	fgets(buffer, 12, stdin);
 	
+	// Capitalizes the class name in order to compare it later
 	while(found == 0) {
 		c = buffer[i];
 		buffer[i] = toupper(buffer[i]);
@@ -66,6 +70,7 @@ void markClass() {
 	
 	found = 0;
 
+	// Start comparing from the head and then the body of the list
 	do {
 		if(strcmp(buffer, prev->class) == 0) {
 			head2 = current;
@@ -100,7 +105,17 @@ void markClass() {
 }
 
 
-
+/*
+ * args:
+ * 	@option: signals which list the class goes to
+ * 	@course: the name of the class to add
+ *
+ * returns:
+ * 	Nothing.
+ *
+ * Notes:
+ * 	Simply adds a class to the selected list.
+ */
 void addClass(int option, char *course) {
 
 	struct Node *newNode = dmalloc(sizeof(node));
@@ -153,6 +168,7 @@ void removeClass() {
 	printf("Class name: ");
 	fgets(course, 12, stdin);
 	
+	// Capitalize the class name in order to compare it later
 	while(found == 0) {
 		c = course[i];
 		course[i] = toupper(course[i]);
@@ -163,7 +179,7 @@ void removeClass() {
 		}
 	}
 
-	printf("class to remove is %s", course);
+	//printf("class to remove is %s", course);
 
 	printf("\nOn which list you want to delete the class?\n"
 				 "1. Already taken list\n"
@@ -172,6 +188,7 @@ void removeClass() {
 	fgets(buffer, 12, stdin);
 	option = atoi(buffer);
 
+	// Sets the temp pointers to the relevant list
 	if(option == 1) {
 		prev = head;
 		current = head->next;
@@ -181,6 +198,7 @@ void removeClass() {
 		current = head2->next;
 	}
 
+	// Search stars at the head and then the body of the list
 	if(strcmp(prev->class, course) == 0) {
 		if(option == 1) {
 			head = current;
@@ -240,7 +258,9 @@ void prepareClass() {
 }
 
 
-
+/*
+ * Prints both lists side by side for better viewing.
+ */
 void printLists() {
 
 	struct Node *tmp1 = head;
@@ -249,6 +269,12 @@ void printLists() {
 	int done1 = 0;
 	int done2 = 0;
 
+	/* We start printing the nodes from each list side by side
+	 * until a list has no more nodes to print. If that is the 
+	 * case, it means only one list has remaining nodes which
+	 * in turn it means that the other list has printed all of
+	 * its nodes.
+	 */
 	printf("\nClasses already taken:		   Classes needed:\n");
 	while(done == 0) {
 		if(tmp1 != NULL && tmp2 != NULL) {
@@ -268,6 +294,7 @@ void printLists() {
 		}
 	}
 
+	// If we are here either list (temp1 or temp2) will print
 	while(done1 == 0) {
 		if(tmp1 != NULL) {
 			tmp1->class[strlen(tmp1->class) -1] = '\0';
@@ -302,6 +329,10 @@ void printLists() {
 
 
 
+/*
+ * Show the menu options to the user and call the
+ * relevant functions to perform the actions.
+ */
 void showMenu() {
 
 	char buffer[4];
