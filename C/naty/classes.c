@@ -34,6 +34,38 @@ void * dmalloc(size_t size) {
 
 
 /*
+ * 
+ */
+void saveChanges() {
+	
+	FILE *fp1;
+	FILE *fp2;
+	node *current = head;
+	node *current2 = head;
+	char buffer[12];
+
+	fp1 = fopen("taken.txt", "w");
+	fp2 = fopen("needed.txt", "w");
+
+	while(current != NULL) {
+		strcpy(buffer, current->class);
+		fprintf(fp1, "%s", buffer);
+		current = current->next;
+	}
+
+	while(current2 != NULL) {
+		strcpy(buffer, current2->class);
+		fprintf(fp2, "%s", buffer);
+		current2 = current2->next;
+	}
+
+	fclose(fp1);
+	fclose(fp2);
+}
+
+
+
+/*
  * Marks a class (deletes it) from the needed list and places 
  * it (adds it) in the taken list.
  */
@@ -122,9 +154,7 @@ void addClass(int option, char *course) {
 		current = newNode;
 	}
 	else {
-		puts("im here");
 		newNode->next = current;
-		printf("newNode %s", newNode->class);
 		current = newNode;
 	}
 
@@ -459,7 +489,7 @@ FILE * checkFile(char * fileName) {
 
 	FILE *tmp;
 
-	tmp = fopen(fileName, "r+");
+	tmp = fopen(fileName, "r");
 	if(tmp == NULL) {
 		printf("The file %s could not be found!\n", fileName);
 		exit(1);
@@ -487,8 +517,15 @@ int main() {
 	createTakenList(file1);
 	createNeededList(file2);
 
+	fclose(file1);
+	fclose(file2);
+
+	// Do the computations needed by the user
 	showMenu();
 
+	// All done, we now save the chages to the file
+	saveChanges();
+	
 	return 0;
 }
 
