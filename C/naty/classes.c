@@ -140,6 +140,75 @@ void addClass(int option, char *course) {
 
 void removeClass() {
 
+	struct Node *prev;
+	struct Node *current;
+	int option = 0;
+	int found = 0;
+	int i = 0;
+	char buffer[12];
+	char course[12];
+	char c = ' ';
+
+	printf("\nWhat's the name of the class you would like to remove?\n");
+	printf("Class name: ");
+	fgets(course, 12, stdin);
+	
+	while(found == 0) {
+		c = course[i];
+		course[i] = toupper(course[i]);
+		//printf("c = %c\n", c);
+		i++;
+		if((c - ' ') ==  0) {
+			found = 1;
+		}
+	}
+
+	printf("class to remove is %s", course);
+
+	printf("\nOn which list you want to delete the class?\n"
+				 "1. Already taken list\n"
+				 "2. Needed classes list\n");
+	printf("Option: ");
+	fgets(buffer, 12, stdin);
+	option = atoi(buffer);
+
+	if(option == 1) {
+		prev = head;
+		current = head->next;
+	}
+	else {
+		prev = head2;
+		current = head2->next;
+	}
+
+	if(strcmp(prev->class, course) == 0) {
+		if(option == 1) {
+			head = current;
+		}
+		else {
+			head2 = current;
+		}
+	}
+	else {
+		found = 0;
+		puts("in here now");
+		while(current != NULL && found == 0) {
+			if(strcmp(current->class, course) == 0) {
+				prev->next = current->next;
+				printf("\nClass has been removed!\n");
+				found = 1;
+			}
+			prev = prev->next;
+			current = current->next;
+		}
+	}
+
+	if(found != 1) {
+		printf("I couldn't find the class %s", course);
+	}
+
+
+
 }
 
 
@@ -240,7 +309,7 @@ void showMenu() {
 	int done = 0;
 
 	do {
-		printf("\n\nMain Menu\n");
+		printf("\nMain Menu\n");
 		printf("1. Mark a class as taken \n");
 		printf("2. Add a class\n");
 		printf("3. Remove a class\n");
