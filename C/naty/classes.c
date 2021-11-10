@@ -9,11 +9,6 @@ typedef struct Node {
 	struct Node *next;
 } node;
 
-/* Just need an instance of this struct to point to 1st node. */
-typedef struct list {
-	struct list *head;
-} list;
-
 /* These are the head pointers to the corresponding list of classes. */
 struct Node *head = NULL;
 struct Node *head2 = NULL;
@@ -60,13 +55,11 @@ void markClass() {
 	while(found == 0) {
 		c = buffer[i];
 		buffer[i] = toupper(buffer[i]);
-		//printf("c = %c\n", c);
 		i++;
 		if((c - ' ') ==  0) {
 			found = 1;
 		}
 	}
-	//printf("new string is %s", buffer);
 	
 	found = 0;
 
@@ -77,29 +70,21 @@ void markClass() {
 			strcpy(newNode->class, buffer);
 			newNode->next = head;
 			head = newNode;
-			found = 1; //or break instead?
-			//break;
-			// return node that was found?
+			found = 1; 
 		}
 		else {
-			//printf("buffer = %s", buffer);
-			//printf("current class= %s", current->class);
 			if(strcmp(buffer, current->class) == 0) {
 				puts("in here");
 				prev->next = current->next;
 				strcpy(newNode->class, buffer);
 				newNode->next = head;
 				head = newNode;
-				found = 1; //or break instead?
-				//break;
-				//return current node that was found?
+				found = 1; 
 			}
 		}
 		
 		prev = prev->next;
-		//printf("prev now%s", prev->class);
 		current = current->next;
-		//printf("current now %s", current->class);
 	} while(found == 0 && current != NULL);
 
 }
@@ -132,6 +117,7 @@ void addClass(int option, char *course) {
 		current = head2;
 	}
 
+	// Check where to add the new node, head or body of list
 	if(current == NULL) {
 		current = newNode;
 	}
@@ -152,7 +138,19 @@ void addClass(int option, char *course) {
 }
 
 
-
+/*
+ * args:
+ * 	None.
+ *
+ * Returns:
+ * 	Nothing.
+ *
+ * Notes:
+ * 	Removes a class from either list. First we capitalize
+ * 	the class name because every single class name from 
+ * 	either list is already capitalized. This is so we can
+ * 	compare when removing the nodes.
+ */
 void removeClass() {
 
 	struct Node *prev;
@@ -172,14 +170,11 @@ void removeClass() {
 	while(found == 0) {
 		c = course[i];
 		course[i] = toupper(course[i]);
-		//printf("c = %c\n", c);
 		i++;
 		if((c - ' ') ==  0) {
 			found = 1;
 		}
 	}
-
-	//printf("class to remove is %s", course);
 
 	printf("\nOn which list you want to delete the class?\n"
 				 "1. Already taken list\n"
@@ -208,8 +203,7 @@ void removeClass() {
 		}
 	}
 	else {
-		found = 0;
-		puts("in here now");
+		found = 0; // Reset and reuse it as a boolean
 		while(current != NULL && found == 0) {
 			if(strcmp(current->class, course) == 0) {
 				prev->next = current->next;
@@ -224,17 +218,7 @@ void removeClass() {
 	if(found != 1) {
 		printf("I couldn't find the class %s", course);
 	}
-
-
-
 }
-
-
-
-void editClass() {
-
-}
-
 
 
 void prepareClass() {
@@ -328,7 +312,6 @@ void printLists() {
 }
 
 
-
 /*
  * Show the menu options to the user and call the
  * relevant functions to perform the actions.
@@ -363,7 +346,6 @@ void showMenu() {
 		}
 		else if((option = atoi(buffer)) == 4) {
 			printLists();
-			editClass();
 		}
 		else if((option = atoi(buffer)) == 5) {
 			done = 1;
@@ -375,7 +357,6 @@ void showMenu() {
 	} while(done == 0);
 	
 }
-
 
 
 /*
@@ -488,26 +469,22 @@ FILE * checkFile(char * fileName) {
 }
 
 
-/* 1. Check that the files exist! 
-	 2. Read the taken.txt file and create a list.
-	 3. Read the needed.txt file and create a list.
-	 4. Show menu to add/move/remove nodes.
-	 5. Clean up of pointers. */
+/*
+ * We start by first checking that the files 
+ * exist. Then, we read each file and create 
+ * a linked list for later use.
+ */
 int main() {
 	
 	FILE *file1;
 	FILE *file2;
-	//struct Node *takenHead = NULL;
-	//struct Node *neededHead = NULL;
 	char taken[12] = "taken.txt";
 	char needed[12] = "needed.txt";
 
 	file1 = checkFile(taken);
 	file2 = checkFile(needed);
 
-	//takenHead = 
 	createTakenList(file1);
-	//neededHead = 
 	createNeededList(file2);
 
 	showMenu();
