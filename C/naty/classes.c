@@ -47,7 +47,6 @@ void freeMemory() {
 	node *tmp = head;
 
 	while(head != NULL) {
-		printf("deleting node: %s", head->class);
 		head = head->next;
 		free(tmp);
 		tmp = head;
