@@ -40,7 +40,11 @@ void * dmalloc(size_t size) {
 
 
 /*
+ * args:
+ * 	none.
  *
+ * Notes:
+ * 	Frees all the memory allocated during runtime.
  */
 void freeMemory() {
 	
@@ -52,7 +56,7 @@ void freeMemory() {
 		tmp = head;
 	}
 
-	tmp = head2;
+	tmp = head2; // Use same pointer to save overhead
 	
 	while(head2 != NULL) {
 		head2 = head2->next;
@@ -301,6 +305,14 @@ void removeClass() {
 }
 
 
+/*
+ * args: 
+ * 	None.
+ *
+ * Notes:
+ * 	Asks the user for the class information before 
+ * 	actually adding the class in a node.
+ */ 	
 void prepareClass() {
 
 	int option = 0;
